@@ -5,8 +5,8 @@ import Footer from "./Pages/Footer/Footer";
 function App() {
     return (
         <div className="App">
-            {/* <Header />
-      <Content /> */}
+            <Header />
+            <Content />
             <Footer />
         </div>
     );

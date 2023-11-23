@@ -9,8 +9,8 @@ class Footer extends Component {
                 <div className="footer-up">
                     <div className="footer-content">
                         <div className="footer-subcribe">
-                            <img alt="" className="footer-logo"></img>
-                            <div className="footer-each-more">
+                            <div className="footer-logo"></div>
+                            <div className="footer-subcribe-more">
                                 <h3>227 Nguyen Van Cu Dist 5, HCMC, Vietnam</h3>
                                 <h3>altf4.21clc@gmail.com</h3>
                                 <h3>+84-12-345678</h3>
@@ -19,31 +19,31 @@ class Footer extends Component {
                         <div className="footer-each">
                             <h2>Account</h2>
                             <div className="footer-each-more">
-                                <h3>My Account</h3>
-                                <h3>Login / Register</h3>
-                                <h3>Cart</h3>
-                                <h3>Wishlist</h3>
-                                <h3>Shop</h3>
+                                <div className="footer-page-text">My Account</div>
+                                <div className="footer-page-text">Login / Register</div>
+                                <div className="footer-page-text">Cart</div>
+                                <div className="footer-page-text">Wishlist</div>
+                                <div className="footer-page-text">Shop</div>
                             </div>
                         </div>
 
                         <div className="footer-each">
-                            <h2>Quick Link</h2>
+                            <h2>Support</h2>
                             <div className="footer-each-more">
-                                <h3>Privacy Policy</h3>
-                                <h3>Term Of Use</h3>
-                                <h3>FAQ</h3>
-                                <h3>Contact</h3>
+                                <div className="footer-page-text">Privacy Policy</div>
+                                <div className="footer-page-text">Term Of Use</div>
+                                <div className="footer-page-text">FAQ</div>
+                                <div className="footer-page-text">Contact</div>
                             </div>
                         </div>
 
                         <div className="footer-follow">
                             <h2>Follow Us</h2>
                             <div className="footer-follow-more">
-                                <a href="https://www.facebook.com/dinhchhoang" target="_blank" rel="noopener noreferrer"><FaFacebook /></a>
-                                <a href="https://www.facebook.com/dinhchhoang" target="_blank" rel="noopener noreferrer"><FaTwitter /></a>
-                                <a href="https://www.facebook.com/dinhchhoang" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
-                                <a href="https://www.facebook.com/dinhchhoang" target="_blank" rel="noopener noreferrer"><FaLinkedin /></a>
+                                <a href="https://www.facebook.com/dinhchhoang" target="_blank" rel="noopener noreferrer"><FaFacebook className="footer-icon" /></a>
+                                <a href="https://www.facebook.com/dinhchhoang" target="_blank" rel="noopener noreferrer"><FaTwitter className="footer-icon" /></a>
+                                <a href="https://www.facebook.com/dinhchhoang" target="_blank" rel="noopener noreferrer"><FaInstagram className="footer-icon" /></a>
+                                <a href="https://www.facebook.com/dinhchhoang" target="_blank" rel="noopener noreferrer"><FaLinkedin className="footer-icon" /></a>
                             </div>
                         </div>
                     </div>

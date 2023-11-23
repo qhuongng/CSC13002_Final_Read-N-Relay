@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'Raleway';
-    src: url('../../../font/Raleway-VariableFont_wght.ttf') format('woff');
+    src: url('../../../public/Raleway-VariableFont_wght.ttf') format('woff');
     font-style: normal;
 }
 
@@ -36,10 +36,18 @@
     flex-shrink: 0;
 }
 
+.footer-subcribe-more {
+    width: 167px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+}
+
 .footer-logo {
     width: 281px;
     height: 19px;
-    background: url("../../../font/Logo.png");
+    background: url("../../../public/Logo-white.png");
     border: none;
 }
 
@@ -51,6 +59,7 @@
 }
 
 .footer-each-more {
+    width: 130px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -64,10 +73,16 @@
     gap: 24px;  
 }
 
+.footer-follow-more {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+}
+
 .footer-down {
     text-align: center;
     font-size: 60%;
-    padding: 16px 0px 24px 0px;
+    padding: 16px 0px 16px 0px;
     border-color: rgb(255, 255, 255);
     border-top-width: 1px;
     border-top-style: solid;
@@ -94,6 +109,31 @@ h3 {
 
 h4 {
     color: var(--Primary, #ffffff);
+    font-family: Raleway;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.footer-icon {
+    color: rgb(255, 255, 255);
+}
+
+.footer-icon:hover {
+    transition: transparent;
+    color: rgb(184, 184, 184);
+    cursor: pointer;
+}
+
+.footer-page-text:hover {
+    transition: transform 0.3s ease;
+    color: rgb(184, 184, 184);
+    cursor: pointer;
+}
+
+.footer-page-text {
+    color: var(--Text, #FAFAFA);
     font-family: Raleway;
     font-size: 16px;
     font-style: normal;
