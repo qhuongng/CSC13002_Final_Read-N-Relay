@@ -1,15 +1,12 @@
-import Header from "./Pages/Header/Header";
-import Content from "./Content";
-import Footer from "./Pages/Footer/Footer";
+import { Routes, Route } from "react-router-dom";
+import MainLayout from "./MainLayout";
 
 function App() {
-    return (
-        <div className="App">
-            <Header />
-            <Content />
-            <Footer />
-        </div>
-    );
+  return (
+    <div className="App">
+      <MainLayout />
+    </div>
+  );
 }
 
 export default App;
