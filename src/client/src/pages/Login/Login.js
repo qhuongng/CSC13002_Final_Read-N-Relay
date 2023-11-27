@@ -30,14 +30,15 @@ class Login extends Component {
 
           <div className="login-other">
             <button className="login-button">Log in</button>
-            <div className="login-link">Forgot password?</div>
-          </div>
-
-          <div className="login-already-container">
-            <div className="login-already">New here? </div>
-            <Link to="/signup" className="login-link">
-              Sign up
-            </Link>
+            <div className="login-forgot-and-sign-up">
+              <div className="login-link">Forgot password?</div>
+              <div className="login-already-container">
+                <div className="login-already">New here? </div>
+                <Link to="/signup" className="login-link">
+                  Sign up
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </div>
