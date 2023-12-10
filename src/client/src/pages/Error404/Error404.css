@@ -1,0 +1,51 @@
+@font-face {
+    font-family: "Raleway";
+    src: url("../../../public/Raleway-VariableFont_wght.ttf") format("woff");
+    font-style: normal;
+}
+
+.error404-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 100px 0;
+    font-family: Raleway;
+}
+
+.main {
+    font-size: 120px;
+    font-weight: 500;
+    margin-bottom: 40px;
+}
+
+.go-home-button {
+    display: flex;
+    margin-top: 60px;
+    padding: 16px 80px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 4px;
+    background: var(--Button2, #0c2d48);
+    white-space: nowrap;
+
+    color: var(--Text, #fafafa);
+    font-family: Raleway;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    text-decoration: none;
+}
+
+.go-home-button:hover {
+    transition: 100ms;
+    background-color: #0c2d48;
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.go-home-button:visited {
+    color: #fff;
+}
