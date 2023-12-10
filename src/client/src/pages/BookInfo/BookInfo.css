@@ -1,0 +1,424 @@
+@font-face {
+    font-family: "Raleway";
+    src: url("../../../public/Raleway-VariableFont_wght.ttf") format("woff");
+    font-style: normal;
+}
+
+.info-container {
+    font-family: Raleway;
+    margin: 100px;
+    background: #FFF;
+}
+
+.info-product-full {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 111px;
+}
+
+.info-image {
+    display: flex;
+    width: 500px;
+    height: 500px;
+    padding: 142px 111px 143px 111px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    background-color: #c2c2c2;
+}
+
+.info-product-name {
+    color: var(--Text2, #000);
+    font-family: Raleway;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px; /* 100% */
+    letter-spacing: 0.72px;
+}
+
+.info-product-rate {
+    color: var(--Text2, #000);
+    font-family: Raleway;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 21px; /* 150% */
+    opacity: 0.9;
+}
+
+.info-product-line-split {
+    width: 1px;
+    height: 16px;
+    border-left: 1px solid #0C2D48;;
+    opacity: 0.5;
+}
+
+.info-product-status {
+    color: var(--Button1, #012336);
+    font-family: Raleway;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 21px; 
+    opacity: 0.8;
+    border-bottom: 2px solid #ffffff;
+}
+
+.info-product-rate-status {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.info-product-price {
+    color: var(--Text2, #000);
+    font-family: Raleway;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px; /* 100% */
+    letter-spacing: 0.72px;
+}
+
+.info-des {
+    color: #000;
+    font-family: Raleway;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 21px; /* 150% */
+    width: 373px;
+}
+
+.info-product {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 24px;
+}
+
+.info-des {
+    color: #000;
+    font-family: Raleway;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 21px; /* 150% */
+}
+
+.info-line {
+    display: flex;
+    width: 410px;
+    height: 0px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    opacity: 0.5;
+    border-bottom: 1px solid #000000;;
+}
+
+.info-buy {
+    display: inline-flex;
+    padding: 10px 48px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 4px;
+    background: var(--Button2, #0C2D48);
+    color: var(--Text, #FAFAFA);
+    font-family: Raleway;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px; /* 150% */
+    border-width: 0;
+}
+
+.info-add {
+    display: inline-flex;
+    padding: 10px 48px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 4px;
+    border: 1px solid #0C2D48;
+    color: #0C2D48;
+    font-family: Raleway;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+}
+
+.info-like {
+    display: flex;
+    width: 48px;
+    height: 48px;
+    padding: 4px;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    border-radius: 4px;
+    border: 1px solid #0C2D48;
+}
+
+.info-access {
+    display: flex;
+    gap: 10px;
+    width: 438px;
+}
+
+.info-review {
+    height: 650px;
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.info-review-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+}
+
+.info-review-reco {
+    margin-top: 60px;
+    display: flex;
+    gap: 40px;
+    height: 650px;
+}
+
+.info-review-title {
+    width: 402px;
+    color: var(--Text2, #000);
+    font-family: Raleway;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 48px; /* 133.333% */
+    letter-spacing: 1.44px;
+}
+
+.info-each-review {
+    display: flex;
+    width: 668px;
+    height: 171px;
+    flex-shrink: 0;
+    border-radius: 5px;
+    justify-content: center;
+    gap: 30px;
+    border: 2px solid #fdfdfd;
+}
+
+.info-user-comment-name {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+}
+
+.info-user-comment {
+    color: var(--Text1, #7D8184);
+    font-family: Raleway;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px; /* 130% */
+    width: 540px;
+}
+
+.info-user-name {
+    color: #000;
+    font-family: Raleway;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px; /* 100% */
+    letter-spacing: 0.72px;
+}
+
+.info-user-photo {
+    display: flex;
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+    border-radius: 60px;
+    background-color: #c2c2c2;    
+}
+
+.info-user-photo-container {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 33px;
+}
+
+.info-reco {
+    scroll-behavior: smooth;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.info-reco-title {
+    width: 402px;
+    color: var(--Text2, #000);
+    font-family: Raleway;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 48px; /* 133.333% */
+    letter-spacing: 1.44px;
+}
+
+.info-reco-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+}
+
+.info-each-reco {
+    display: flex;
+    height: 171px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    justify-content: center;
+    gap: 20px;
+    border: 2px solid #ffffff;
+}
+
+
+.info-product-reco-photo-container{
+    background-color:#f0f0f0;
+    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+}
+
+
+.info-product-reco-photo {
+    width: 82px;
+    height: 129px;
+    background-color: #c2c2c2;
+}
+
+.info-product-reco {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 10px;
+    gap: 8px;
+    width: 280px;
+}
+
+.info-product-reco-name {
+    color: #000;  
+    font-family: Raleway;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px; 
+}
+
+.info-product-reco-des {
+    color: var(--Text1, #7D8184);
+    font-family: Raleway;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 21px;
+    width: 257px;
+}
+
+.info-product-reco-price-rate {
+    display: flex;
+    gap: 10px;
+    border-bottom: 2px solid #ffffff;
+}
+
+.info-product-reco-price {
+    color: var(--Secondary-2, #145DA0);
+    font-family: Raleway;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px; /* 150% */
+}
+
+.info-product-reco-rate {
+    color: var(--Text2, #000);
+    font-family: Raleway;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 21px; /* 150% */
+    opacity: 0.5;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #ffffff;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+    border-radius: 10px;
+}
+
+.info-buy:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+button {
+    cursor: pointer;
+}
+
+.info-add:hover {
+    opacity: 0.8;
+}
+
+.info-like:hover {
+    color: #ff0000
+}
+
+.info-each-reco:hover {
+    cursor: pointer;
+    border: 2px solid #000000;
+    border-radius: 10px;
+}
+
+.info-each-review:hover {
+    cursor: pointer;
+    border: 2px solid #000000;
+    border-radius: 10px;
+}
+
+.info-product-reco-price:hover {
+    border-bottom: 2px solid;
+    cursor: pointer;
+}
+
+.info-product-status:hover {
+    border-bottom: 2px solid;
+    cursor: pointer;
+}
