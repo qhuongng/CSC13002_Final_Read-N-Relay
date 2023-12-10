@@ -1,0 +1,135 @@
+@font-face {
+    font-family: "Raleway";
+    src: url("../../../public/Raleway-VariableFont_wght.ttf") format("woff");
+    font-style: normal;
+}
+
+.cart-container {
+    font-family: Raleway;
+    margin: 100px 100px;
+}
+
+.cart-table-header {
+    display: flex;
+    padding: 15px 0;
+    justify-content: space-between;
+    border-bottom: 1.5px solid;
+    border-color: #ececec;
+    font-weight: 600;
+}
+
+.cart-table-header-item {
+    padding-right: 80px;
+}
+
+.blank {
+    width: 120px;
+}
+
+.cart-table-row {
+    display: flex;
+    padding: 30px 0;
+    justify-content: space-between;
+    border-bottom: 1.5px solid;
+    border-color: #ececec;
+    text-decoration: none;
+    color: #000;
+}
+
+.cart-table-row-item {
+    display: flex;
+    align-items: center;
+}
+
+.row-item-photo {
+    width: 80px;
+    height: 120px;
+    background-color: #c2c2c2;
+    border-radius: 5px;
+}
+
+.row-item-name {
+    margin-left: 45px;
+}
+
+.view-button {
+    margin-right: 15px;
+    padding: 16px 20px;
+    background-color: #0c2d48;
+    border-radius: 5px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.view-button:hover {
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.view-button:visited {
+    color: #fff;
+}
+
+.remove-button {
+    padding: 16px 20px;
+    border: 1px solid;
+    border-color: #0c2d48;
+    border-radius: 5px;
+    color: #0c2d48;
+}
+
+.remove-button:hover {
+    cursor: pointer;
+    background-color: #ececec;
+    transition: background-color 0.3s ease;
+}
+
+.total-table {
+    display: flex;
+    flex-direction: column;
+    margin-top: 80px;
+    padding: 30px 60px;
+    border: 2px solid;
+    border-color: #0c2d48;
+    border-radius: 5px;
+    color: #0c2d48;
+}
+
+.table-title {
+    font-size: 24px;
+    font-weight: 600;
+    align-self: center;
+}
+
+.table-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-bottom: 1px solid;
+    border-color: #0c2d48;
+}
+
+.table-item-title {
+    font-weight: 600;
+}
+
+.checkout-button {
+    align-self: center;
+    margin-top: 30px;
+    padding: 16px 20px;
+    background-color: #0c2d48;
+    border-radius: 5px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.checkout-button:hover {
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.checkout-button:visited {
+    color: #fff;
+}
