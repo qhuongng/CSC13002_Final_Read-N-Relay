@@ -1,173 +1,194 @@
 @font-face {
-  font-family: "Raleway";
-  src: url("../../../public/Raleway-VariableFont_wght.ttf") format("woff");
-  font-style: normal;
+    font-family: "Raleway";
+    src: url("../../../public/Raleway-VariableFont_wght.ttf") format("woff");
+    font-style: normal;
 }
 
 .header {
-  display: flex;
-  align-items: center;
-  height: 110px;
-  background-color: #ffffff;
-  border-color: rgba(12, 45, 72, 0.4);
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
+    display: flex;
+    align-items: center;
+    height: 110px;
+    background-color: #ffffff;
+    border-color: rgba(12, 45, 72, 0.4);
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
 }
 
 .header-content {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0 100px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 100px;
 }
 
 .header-content-centered {
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-  margin: 0 100px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin: 0 100px;
 }
 
 .header-logo {
-  width: 300px;
-  height: 20px;
-  background: url("../../../public/Logo-black.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  border: none;
+    width: 300px;
+    height: 20px;
+    background: url("../../../public/Logo-black.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: none;
 }
 
 .header-logo-centered {
-  margin: auto;
-  width: 300px;
-  height: 20px;
-  background: url("../../../public/Logo-black.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  border: none;
+    margin: auto;
+    width: 300px;
+    height: 20px;
+    background: url("../../../public/Logo-black.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: none;
 }
 
 .header-pages {
-  display: flex;
-  align-items: space-between;
-  gap: 48px;
+    display: flex;
+    align-items: space-between;
+    gap: 48px;
+}
+
+.header-pages a.active {
+    color: #145da0;
 }
 
 .header-page-each {
-  color: var(--Text2, #000);
-  text-align: center;
-  font-family: Raleway;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 24px;
-  text-decoration: none;
-  height: 24px;
+    color: var(--Text2, #000);
+    text-align: center;
+    font-family: Raleway;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    text-decoration: none;
+    height: 24px;
+    border-bottom: 1.5px transparent;
+    transition: border-bottom 0.3s ease;
 }
 
 .header-page-each:hover {
-  cursor: pointer;
-  border-bottom: 1.5px solid;
-  transform: transparent;
+    cursor: pointer;
+    border-bottom: 1.5px solid;
 }
 
 .header-search-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .header-users-container {
-  display: flex;
-  width: 150px;
-  height: 35px;
-  padding: 0px 30px;
-  justify-content: center;
-  align-items: center;
-  gap: 27px;
+    display: flex;
+    height: 35px;
+    padding: 0px 15px;
+    justify-content: center;
+    align-items: center;
+    gap: 27px;
 }
 
 .header-icon-user {
-  width: 26px;
-  height: 26px;
-  flex-shrink: 0;
-  background: url("../../../public/user.png");
-  background-size: cover;
-  border-radius: 50%;
-  overflow: hidden;
-  transition: background-color 0.3s ease, filter 0.3s ease;
+    width: 26px;
+    height: 26px;
+    flex-shrink: 0;
+    background: url("../../../public/user.png");
+    background-size: cover;
+    border-radius: 50%;
+    overflow: hidden;
+    transition: background-color 0.3s ease, filter 0.3s ease;
 }
 
 .header-icon-user:hover {
-  background-color: rgb(184, 184, 184);
-  transition: background-color 0.3s ease;
-  cursor: pointer;
-  filter: grayscale(100%);
+    background-color: #ececec;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    filter: grayscale(100%);
 }
 
 .header-icon-cart {
-  height: 28px;
-  width: 28px;
-  background: url("../../../public/cart_on.png");
-  background-size: cover;
-  border-radius: 50%;
-  overflow: hidden;
-  transition: background-color 0.3s ease, filter 0.3s ease;
+    height: 28px;
+    width: 28px;
+    background: url("../../../public/cart.png");
+    background-size: cover;
+    border-radius: 50%;
+    overflow: hidden;
+    transition: background-color 0.3s ease, filter 0.3s ease;
 }
 
 .header-icon-cart:hover {
-  background-color: rgb(184, 184, 184);
-  transition: background-color 0.3s ease;
-  cursor: pointer;
-  filter: grayscale(100%);
+    background-color: #ececec;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    filter: grayscale(100%);
+}
+
+.header-icon-add {
+    height: 28px;
+    width: 28px;
+    background: url("../../../public/plus.png");
+    background-size: cover;
+    border-radius: 50%;
+    overflow: hidden;
+    transition: background-color 0.3s ease, filter 0.3s ease;
+}
+
+.header-icon-add:hover {
+    background-color: #ececec;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    filter: grayscale(100%);
 }
 
 .header-search-box {
-  display: flex;
-  padding-left: 15px;
-  background-color: rgb(247, 247, 247);
-  border: none;
-  flex-direction: "column";
-  justify-content: "center";
-  color: var(--Text2, #000);
-  font-family: Raleway;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 18px;
+    display: flex;
+    padding-left: 15px;
+    background-color: rgb(247, 247, 247);
+    border: none;
+    flex-direction: "column";
+    justify-content: "center";
+    color: var(--Text2, #000);
+    font-family: Raleway;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 18px;
 }
 
 input[type="text"].header-search-box {
-  font-family: Raleway;
-  font-size: 15px;
-  font-style: normal;
-  line-height: 18px;
+    font-family: Raleway;
+    font-size: 15px;
+    font-style: normal;
+    line-height: 18px;
 }
 
 .header-search-box:focus {
-  outline: none;
+    outline: none;
 }
 
 .header-search-container {
-  background-color: rgb(247, 247, 247);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
-  height: 50px;
+    background-color: rgb(247, 247, 247);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    height: 50px;
 }
 
 .header-icon-search {
-  background-color: rgb(247, 247, 247);
-  width: 30px;
-  margin-top: 3px;
-  margin-right: 7px;
-  outline: none;
+    background-color: rgb(247, 247, 247);
+    width: 30px;
+    margin-top: 3px;
+    margin-right: 7px;
+    outline: none;
 }
 
 .header-icon-search:hover {
-  background-color: rgb(232, 232, 232);
-  cursor: pointer;
+    background-color: #ececec;
+    cursor: pointer;
 }
