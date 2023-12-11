@@ -6,7 +6,8 @@
 
 .cart-container {
     font-family: Raleway;
-    margin: 100px 100px;
+    padding: 100px 100px;
+    width: 100%;
 }
 
 .cart-table-header {
@@ -19,11 +20,7 @@
 }
 
 .cart-table-header-item {
-    padding-right: 80px;
-}
-
-.blank {
-    width: 120px;
+    width: 33%;
 }
 
 .cart-table-row {
@@ -38,7 +35,13 @@
 
 .cart-table-row-item {
     display: flex;
+    width: 33%;
     align-items: center;
+}
+
+.cart-button-group {
+    display: flex;
+    margin-left: auto;
 }
 
 .row-item-photo {

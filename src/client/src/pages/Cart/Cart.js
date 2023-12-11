@@ -12,10 +12,12 @@ const Cart = () => {
                 </div>
                 <div className="cart-table-row-item">30.000 VND</div>
                 <div className="cart-table-row-item">
-                    <Link to="/books/id" className="view-button">
-                        View product
-                    </Link>
-                    <div className="remove-button">Remove</div>
+                    <div className="cart-button-group">
+                        <Link to="/books/id" className="view-button">
+                            View product
+                        </Link>
+                        <div className="remove-button">Remove</div>
+                    </div>
                 </div>
             </div>
         ));
@@ -25,7 +27,7 @@ const Cart = () => {
         <div className="cart-container">
             <div className="cart-table">
                 <div className="cart-table-header">
-                    <div className="cart-table-header-item">Product</div>
+                    <div className="cart-table-header-item">Book</div>
                     <div className="cart-table-header-item">Price</div>
                     <div className="cart-table-header-item">
                         <div className="blank"></div>
