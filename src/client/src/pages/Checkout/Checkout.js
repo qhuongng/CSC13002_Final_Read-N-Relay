@@ -1,4 +1,5 @@
 import "./Checkout.css";
+import { Link } from "react-router-dom";
 
 const Checkout = () => {
     const spreadSmallCartItems = () => {
@@ -73,7 +74,9 @@ const Checkout = () => {
                         <label htmlFor="cod">Cash on delivery</label>
                     </div>
                 </div>
-                <div className="order-button">Place order</div>
+                <Link to="/" state={{ openPopup: true }} className="order-button">
+                    Place order
+                </Link>
             </div>
         </div>
     );

@@ -1,7 +1,7 @@
 import { FaSearch } from "react-icons/fa";
 import React, { Component } from "react";
 import { Link, NavLink } from "react-router-dom";
-import withRouter from "../../wrappers/HookWrapper";
+import withRouter from "../../utils/HookWrapper";
 
 import "./Header.css";
 
@@ -50,7 +50,7 @@ class Header extends Component {
                             All books
                         </NavLink>
                         {isLoggedIn ? (
-                            <Link to="/" className="header-page-each">
+                            <Link to="/login" className="header-page-each">
                                 Log out
                             </Link>
                         ) : (
@@ -79,7 +79,7 @@ class Header extends Component {
                         <div className="header-users-container">
                             <Link to="/add" className="header-icon-add"></Link>
                             <Link to="/cart" className="header-icon-cart"></Link>
-                            <Link to="/user" className="header-icon-user"></Link>
+                            <Link to="/user/profile" className="header-icon-user"></Link>
                         </div>
                     )}
                 </div>

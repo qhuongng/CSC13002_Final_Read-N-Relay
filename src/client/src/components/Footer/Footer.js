@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import withRouter from "../../wrappers/HookWrapper";
+import withRouter from "../../utils/HookWrapper";
 import "./Footer.css";
 
 class Footer extends Component {
@@ -37,8 +37,12 @@ class Footer extends Component {
                         <div className="footer-each">
                             <h2>Account</h2>
                             <div className="footer-each-more">
-                                <div className="footer-page-text">My account</div>
-                                <div className="footer-page-text">Cart</div>
+                                <Link className="footer-page-text" to="/user/profile">
+                                    My account
+                                </Link>
+                                <Link className="footer-page-text" to="/cart">
+                                    Cart
+                                </Link>
                                 <Link className="footer-page-text" to="/books">
                                     All books
                                 </Link>
