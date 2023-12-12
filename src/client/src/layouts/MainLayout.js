@@ -12,9 +12,10 @@ import Error404 from "../pages/Error404/Error404";
 import UserProfile from "../pages/User/UserProfile";
 import BooksSelling from "../pages/User/BooksSelling";
 import BooksPurchased from "../pages/User/BooksPurchased";
+import FavoriteBooks from "../pages/User/FavoriteBooks";
 import Cart from "../pages/Cart/Cart";
 import Checkout from "../pages/Checkout/Checkout";
-// import AddBook from "../pages/AddBook/AddBook";
+import AddBook from "../pages/AddBook/AddBook";
 
 const MainLayout = () => {
     return (
@@ -35,10 +36,11 @@ const MainLayout = () => {
                     <Route path="profile" element={<UserProfile />} />
                     <Route path="selling" element={<BooksSelling />} />
                     <Route path="purchased" element={<BooksPurchased />} />
+                    <Route path="favorites" element={<FavoriteBooks />} />
                 </Route>
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/checkout" element={<Checkout />} />
-                {/* <Route path="/add" element={<AddBook />} /> */}
+                <Route path="/add" element={<AddBook />} />
                 <Route path="*" element={<Error404 />} />
             </Routes>
             <Footer />
