@@ -1,0 +1,66 @@
+.dropdown {
+    margin: 0 auto;
+    z-index: 10000;
+    position: relative;
+}
+
+.dropdown,
+.dropdown * {
+    z-index: 10;
+}
+
+.dropdown .dropdown-btn {
+    cursor: pointer;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background: #ececec;
+    border-radius: 5px;
+    color: #757575;
+}
+
+.dropdown-content {
+    position: absolute;
+    /* top: 110%; */
+    left: 0;
+    width: 100%;
+    border-radius: 5px;
+    z-index: 9999;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.07);
+}
+
+.dropdown-content .item {
+    padding: 10px;
+    background: #fff;
+    cursor: pointer;
+    z-index: 10000;
+}
+
+.dropdown-content .item:hover {
+    background: #deeff5;
+}
+
+.caret-up {
+    width: 20px;
+    height: 20px;
+    background-image: url("../../../public/caret_up.png");
+    background-size: contain;
+}
+
+.caret-down {
+    width: 20px;
+    height: 20px;
+    background-image: url("../../../public/caret_down.png");
+    background-size: contain;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.01);
+}
