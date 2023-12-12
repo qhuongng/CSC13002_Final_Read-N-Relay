@@ -1,0 +1,64 @@
+{
+    "products": [
+        {
+            "id": 0,
+            "name": "Harry Potter full series",
+            "price": 200000,
+            "userId": 1,
+            "publishedAt": "12/12/2023",
+            "quantity": 1000,
+            "status": "available",
+            "image": "https://images.unsplash.com/photo-1606311698062-21c4f57cb27f?q=80&w=1958&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        },
+        {
+            "id": 1,
+            "name": "The Little Prince",
+            "price": 88000,
+            "userId": 1,
+            "publishedAt": "1/2/2023",
+            "quantity": 500,
+            "status": "available",
+            "image": "https://m.media-amazon.com/images/I/71OZY035QKL._AC_UF1000,1000_QL80_.jpg"
+        }
+    ],
+    "reviews": [
+        {
+            "id": 0,
+            "productId": 1,
+            "userId": 0,
+            "text": "The ending is so good. relieve all the negativity and grayness around the character. Whether your life is happy or not depends on your own perspective, not the influence of your surroundings. I want to cry when the main character finds what he needs. Now let's find a movie to watch. you should read it a lot."
+        },
+        {
+            "id": 1,
+            "productId": 1,
+            "userId": 1,
+            "text": "Packed securely, the book is not only cheap but also comes with bookcare. The box they packed for me was too big, but it's okay, the book is very beautiful, not bent anywhere, I haven't seen it yet. Cute shipper delivered on time, good service from the shop, 5 stars"
+        }
+    ],
+    "carts": [
+        {
+            "userId":0,
+            "productId":[0,1,2,3,4,5]
+        },
+        {
+            "userId":1,
+            "productId":[1,3,5,7,9]
+        }
+    ],
+    "users": [
+        {
+            "id": 0,
+            "name": "Alt F4",
+            "birth": "01/12/2023",
+            "email": "AltF4@gmail.com",
+            "password": "group02"
+        },
+        {
+            "id": 1,
+            "name": "Jennie Kim",
+            "birth": "10/10/2001",
+            "email": "iamgroot@gmail.com",
+            "password": "GrootGroot"
+        }
+    ]
+}
