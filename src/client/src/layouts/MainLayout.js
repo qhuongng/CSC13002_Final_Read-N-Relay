@@ -14,7 +14,7 @@ import BooksSelling from "../pages/User/BooksSelling";
 import BooksPurchased from "../pages/User/BooksPurchased";
 import Cart from "../pages/Cart/Cart";
 import Checkout from "../pages/Checkout/Checkout";
-import AddBook from "../pages/AddBook/AddBook";
+// import AddBook from "../pages/AddBook/AddBook";
 
 const MainLayout = () => {
     return (
@@ -38,7 +38,7 @@ const MainLayout = () => {
                 </Route>
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/checkout" element={<Checkout />} />
-                <Route path="/add" element={<AddBook />} />
+                {/* <Route path="/add" element={<AddBook />} /> */}
                 <Route path="*" element={<Error404 />} />
             </Routes>
             <Footer />
