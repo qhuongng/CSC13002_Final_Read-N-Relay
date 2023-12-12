@@ -292,7 +292,6 @@
 }
 
 .info-each-reco {
-    padding: 10px;
     display: flex;
     height: 171px;
     flex-shrink: 0;
@@ -348,7 +347,6 @@
 .info-product-reco-price-rate {
     display: flex;
     gap: 10px;
-    border-bottom: 2px solid #ffffff;
 }
 
 .info-product-reco-price {
