@@ -7,6 +7,7 @@ class Alert extends Component {
 
     constructor(props) {
         super(props);
+        console.log(this.props.type);
         this.state = {
             isActive: true,
         };
@@ -29,9 +30,15 @@ class Alert extends Component {
                     <div className={this.state.isActive ? "visible" : "hidden"}></div>
                     <div className="close-alert-button" onClick={() => this.hideAlert()}></div>
                     <div className="alert-message">{this.props.message}</div>
-                    <Link to="/user/purchased" className="view-purchase-button" onClick={() => this.hideAlert()}>
-                        View purchases
-                    </Link>
+                    {this.props.type == "order" ? (
+                        <Link to="/user/purchased" className="view-button" onClick={() => this.hideAlert()}>
+                            View purchases
+                        </Link>
+                    ) : (
+                        <Link to="/user/selling" className="view-button" onClick={() => this.hideAlert()}>
+                            View published books
+                        </Link>
+                    )}
                 </div>
             );
         }

@@ -72,7 +72,13 @@ const BookInfo = () => {
 
             <div className="info-review-reco">
                 <div className="info-review">
-                    <div className="info-review-title">Reviews</div>
+                    <div className="info-review-header">
+                        <div className="info-review-title">Reviews</div>
+                        <div className="review-form">
+                            <textarea name="book-description" placeholder="Start typing a review..."></textarea>
+                            <div className="review-button">Post</div>
+                        </div>
+                    </div>
                     <div className="info-review-container">{spreadComments()}</div>
                 </div>
 

@@ -21,27 +21,27 @@ const Checkout = () => {
                 <div className="form-title">Billing details</div>
                 <div className="billing-input-group">
                     <label>Name of receiver</label>
-                    <input type="text" required />
+                    <input type="text" placeholder="Name" required />
                 </div>
                 <div className="billing-input-group">
                     <label>Email</label>
-                    <input type="email" required />
+                    <input type="email" placeholder="Email" required />
                 </div>
                 <div className="billing-input-group">
                     <label>Phone number</label>
-                    <input type="email" required />
+                    <input type="text" placeholder="Phone number" required />
                 </div>
                 <div className="billing-input-group">
                     <label>City</label>
-                    <input type="text" required />
+                    <input type="text" placeholder="City" required />
                 </div>
                 <div className="billing-input-group">
                     <label>District</label>
-                    <input type="text" required />
+                    <input type="text" placeholder="District" required />
                 </div>
                 <div className="billing-input-group">
                     <label>Address</label>
-                    <input type="text" required />
+                    <input type="text" placeholder="Apartment no., street, ward,..." required />
                 </div>
             </div>
             <div className="small-cart-preview">
@@ -74,7 +74,7 @@ const Checkout = () => {
                         <label htmlFor="cod">Cash on delivery</label>
                     </div>
                 </div>
-                <Link to="/" state={{ openPopup: true }} className="order-button">
+                <Link to="/" state={{ openPopup: true, message: "Order(s) placed successfully.", type: "order" }} className="order-button">
                     Place order
                 </Link>
             </div>

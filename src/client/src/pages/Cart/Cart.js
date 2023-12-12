@@ -13,8 +13,8 @@ const Cart = () => {
                 <div className="cart-table-row-item">30.000 VND</div>
                 <div className="cart-table-row-item">
                     <div className="cart-button-group">
-                        <Link to="/books/id" className="view-button">
-                            View product
+                        <Link to="/books/id" className="view-book-button">
+                            View book info
                         </Link>
                         <div className="remove-button">Remove</div>
                     </div>

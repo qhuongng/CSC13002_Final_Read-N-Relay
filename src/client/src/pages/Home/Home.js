@@ -4,8 +4,10 @@ import withRouter from "../../utils/HookWrapper";
 import Alert from "../../components/Alert/Alert";
 
 const Home = ({ location }) => {
-    const { openPopup = false } = location.state || {};
-    console.log(location.state);
+    let { stateData = "" } = location.state || {};
+    const { openPopup = false } = stateData["openPopup"] || {};
+    const { message = "nomessage" } = stateData["message"] || {};
+    const { type = "notype" } = stateData["type"] || {};
 
     const spreadProducts = () => {
         const n = 4;
@@ -20,7 +22,7 @@ const Home = ({ location }) => {
 
     return (
         <div className="home-container">
-            {openPopup ? <Alert message="Order(s) placed successfully." /> : <></>}
+            {openPopup ? <Alert message={message} type={type} /> : <></>}
             <div className="top-banner">
                 <div className="top-banner-illust"></div>
                 <div className="top-banner-content">

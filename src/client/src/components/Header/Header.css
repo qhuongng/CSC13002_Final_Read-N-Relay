@@ -78,10 +78,17 @@
     border-bottom: 1.5px solid;
 }
 
+.header-right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 40%;
+}
+
 .header-search-container {
     display: flex;
-    justify-content: center;
     align-items: center;
+    margin-right: 30px;
 }
 
 .header-users-container {

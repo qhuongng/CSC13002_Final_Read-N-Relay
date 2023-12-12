@@ -55,7 +55,7 @@
     margin-left: 45px;
 }
 
-.view-button {
+.view-book-button {
     margin-right: 15px;
     padding: 16px 20px;
     background-color: #0c2d48;
@@ -64,7 +64,7 @@
     text-decoration: none;
 }
 
-.view-button:hover {
+.view-book-button:hover {
     cursor: pointer;
     opacity: 0.8;
     transition: opacity 0.3s ease;

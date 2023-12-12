@@ -26,6 +26,13 @@ const UserLayout = () => {
                             </NavLink>
                         </div>
                     </div>
+                    <div className="side-bar-section">
+                        <div className="section-heading">
+                            <NavLink to="/user/favorites" className={({ isActive }) => ["nav-link", isActive ? "active-nav-link" : null].filter(Boolean).join(" ")}>
+                                Favorite books
+                            </NavLink>
+                        </div>
+                    </div>
                 </div>
                 <div className="main-content">
                     <Outlet />

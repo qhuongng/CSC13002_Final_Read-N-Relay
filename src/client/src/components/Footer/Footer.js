@@ -60,7 +60,7 @@ class Footer extends Component {
                         </div>
 
                         <div className="footer-follow">
-                            <h2>Follow Us</h2>
+                            <h2>Follow us</h2>
                             <div className="footer-follow-more">
                                 <a href="https://www.facebook.com/dinhchhoang" target="_blank" rel="noopener noreferrer">
                                     <FaFacebook className="footer-icon" />
