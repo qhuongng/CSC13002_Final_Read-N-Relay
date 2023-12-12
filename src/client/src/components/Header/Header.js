@@ -60,9 +60,9 @@ class Header extends Component {
                         )}
                     </nav>
 
-                    <div className="header-search">
+                    <div className="header-right">
                         <div className="header-search-container">
-                            <input type="text" placeholder="Search by title, author, ISBN,..." value={this.state.searchValue} onChange={this.handleSearchChange} className="header-search-box" style={{ border: "None" }} />
+                            <input type="text" placeholder="Search for a book..." value={this.state.searchValue} onChange={this.handleSearchChange} className="header-search-box" style={{ border: "None" }} />
                             <button
                                 onClick={this.handleSearch}
                                 style={{
@@ -73,15 +73,15 @@ class Header extends Component {
                                 <FaSearch className="header-icon-search" />
                             </button>
                         </div>
-                    </div>
 
-                    {isLoggedIn && (
-                        <div className="header-users-container">
-                            <Link to="/add" className="header-icon-add"></Link>
-                            <Link to="/cart" className="header-icon-cart"></Link>
-                            <Link to="/user/profile" className="header-icon-user"></Link>
-                        </div>
-                    )}
+                        {isLoggedIn && (
+                            <div className="header-users-container">
+                                <Link to="/add" className="header-icon-add"></Link>
+                                <Link to="/cart" className="header-icon-cart"></Link>
+                                <Link to="/user/profile" className="header-icon-user"></Link>
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
         );
