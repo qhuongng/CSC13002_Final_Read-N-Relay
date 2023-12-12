@@ -50,7 +50,7 @@
     background-color: #ececec;
 }
 
-.view-purchase-button {
+.view-button {
     margin-top: 20px;
     align-self: flex-end;
     padding: 16px 20px;
@@ -60,12 +60,12 @@
     text-decoration: none;
 }
 
-.view-purchase-button:hover {
+.view-button:hover {
     cursor: pointer;
     opacity: 0.8;
     transition: opacity 0.3s ease;
 }
 
-.view-purchase-button:visited {
+.view-button:visited {
     color: #fff;
 }
