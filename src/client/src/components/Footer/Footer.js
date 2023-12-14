@@ -65,13 +65,13 @@ class Footer extends Component {
                                 <a href="https://www.facebook.com/dinhchhoang" target="_blank" rel="noopener noreferrer">
                                     <FaFacebook className="footer-icon" />
                                 </a>
-                                <a href="https://www.facebook.com/dinhchhoang" target="_blank" rel="noopener noreferrer">
+                                <a href="https://www.facebook.com/profile.php?id=100010256161509" target="_blank" rel="noopener noreferrer">
                                     <FaTwitter className="footer-icon" />
                                 </a>
-                                <a href="https://www.facebook.com/dinhchhoang" target="_blank" rel="noopener noreferrer">
+                                <a href="https://www.facebook.com/ngnqnhhng" target="_blank" rel="noopener noreferrer">
                                     <FaInstagram className="footer-icon" />
                                 </a>
-                                <a href="https://www.facebook.com/dinhchhoang" target="_blank" rel="noopener noreferrer">
+                                <a href="https://www.facebook.com/vu.ngoc.16752" target="_blank" rel="noopener noreferrer">
                                     <FaLinkedin className="footer-icon" />
                                 </a>
                             </div>
