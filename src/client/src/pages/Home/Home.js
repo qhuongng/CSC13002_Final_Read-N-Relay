@@ -4,10 +4,7 @@ import withRouter from "../../utils/HookWrapper";
 import Alert from "../../components/Alert/Alert";
 
 const Home = ({ location }) => {
-    let { stateData = "" } = location.state || {};
-    const { openPopup = false } = stateData["openPopup"] || {};
-    const { message = "nomessage" } = stateData["message"] || {};
-    const { type = "notype" } = stateData["type"] || {};
+    const { openPopup = false, message = "nomessage", type = "notype" } = location.state || {};
 
     const spreadProducts = () => {
         const n = 4;
@@ -22,7 +19,7 @@ const Home = ({ location }) => {
 
     return (
         <div className="home-container">
-            {openPopup ? <Alert message={message} type={type} /> : <></>}
+            {openPopup && <Alert message={message} type={type} />}
             <div className="top-banner">
                 <div className="top-banner-illust"></div>
                 <div className="top-banner-content">
