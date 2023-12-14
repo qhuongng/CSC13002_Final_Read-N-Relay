@@ -20,7 +20,7 @@
 
 .footer-content {
     display: flex;
-    width: 1171px;
+    width: 100%;
     justify-content: space-between;
 }
 
