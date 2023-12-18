@@ -5,6 +5,17 @@ import { FaHeart } from "react-icons/fa";
 
 const BookInfo = () => {
     const [checkStatus, setCheckStatus] = useState(true);
+    const [cart, setCart] = useState([]);
+
+    const addToCart = () => {
+        const newProduct = {
+            id:' ',
+            name:' ',
+            price:' ',
+            quantity:1, 
+        };
+        setCart([...cart, newProduct]);
+    };
 
     const spreadComments = () => {
         const n = 10;
