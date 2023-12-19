@@ -13,6 +13,7 @@ const BookInfo = () => {
   const [checkStatus, setCheckStatus] = useState([]);
   const [user, setUser]= useState(null);
   const [ReviewUser, setReviewUser]= useState([]);
+  const [booksMightLike, setBooksMightLike] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,15 +21,12 @@ const BookInfo = () => {
         // Fetch book details
         const books = await API.getBooksByAttributes({ id: id });
         setBookData(books[0]) // Assuming you want to display information for the first book
-        console.log(books)
         // Fetch reviews for the book
         const bookReviews = await API.getBookReviews(id);
         setReviews(bookReviews);
-        console.log(bookReviews)
         //Fetch book's user
         const users = await API.getUserProfileByAttributes({ id: books[0].userId });
         setUser(users); // Assuming you want to display information for the first book
-        console.log(users)
         //Fetch reviews' user
         const reviewUsers = []
         for(const Review of bookReviews) {
@@ -36,7 +34,9 @@ const BookInfo = () => {
             reviewUsers[Review.userId]=reviewUser[0]
         }
         setReviewUser(reviewUsers)
-        console.log(reviewUsers)
+        //Fetch Books Might Like
+        const booksMightLike =await API.getBooksByPage(2,5);
+        setBooksMightLike(booksMightLike);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -56,10 +56,12 @@ const BookInfo = () => {
   };
 
   const spreadReco = () => {
-    const n = 10;
-    return [...Array(n)].map((e, i) => (
-      <div className="info-each-reco" key={i}>
-        {/* Your existing recommendation content */}
+    return booksMightLike.map((book, index) => (
+      <div className="info-each-reco" key={index}>
+        {/*<img src={book.image} alt={book.name} className="reco-product-image" />*/}
+        <div className="reco-product-name">{book.name}</div>
+        <div className="reco-product-price">Date {book.price}</div>
+        {/* Add other book details as needed */}
       </div>
     ));
   };

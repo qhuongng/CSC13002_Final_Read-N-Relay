@@ -1,16 +1,34 @@
+import { useEffect, useState } from "react";
 import "./Cart.css";
+import * as API from "../../utils/API.js"
 import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
+
 
 const Cart = () => {
+    const {userId}=useParams();
+    const [carts,setCart] =useState([])
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            //Fetch cart
+            const CartBooks=await API.getUserCart({id : userId})
+            setCart(CartBooks)
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+        };
+        fetchData();
+    }, [userId]);
     const spreadCartItems = () => {
         const n = 2;
-        return [...Array(n)].map((e, i) => (
-            <div className="cart-table-row">
+        return carts.map((cart, index) => (
+            <div className="cart-table-row"key={index}>
                 <div className="cart-table-row-item">
-                    <div className="row-item-photo"></div>
-                    <div className="row-item-name">Book</div>
+                    <div className="row-item-photo">{/*<img src={cart.image} alt={cart.name} className="row-item-image" />*/}</div>
+                    <div className="row-item-name">{cart.name}</div>
                 </div>
-                <div className="cart-table-row-item">30.000 VND</div>
+                <div className="cart-table-row-item">{cart.price} VND</div>
                 <div className="cart-table-row-item">
                     <div className="cart-button-group">
                         <Link to="/books/id" className="view-book-button">
