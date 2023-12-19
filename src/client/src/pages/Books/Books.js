@@ -21,11 +21,6 @@ const Books = () => {
   }, []);
 
   const spreadProducts = () => {
-    if (books.length === 0) {
-      // Return a message or component indicating no books available
-      return <p>No books available</p>;
-    }
-
     return books.map((book, index) => (
       <Link to={`/books/${book.id}`} className="product" key={index}>
         <div className="product-photo">
