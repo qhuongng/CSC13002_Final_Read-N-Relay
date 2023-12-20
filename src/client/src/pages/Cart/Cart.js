@@ -2,28 +2,47 @@ import { useEffect, useState } from "react";
 import "./Cart.css";
 import * as API from "../../utils/API.js"
 import { Link } from "react-router-dom";
-import { useParams } from "react-router-dom";
 
 
 const Cart = () => {
-    const {userId}=useParams();
-    const [carts,setCart] =useState([])
+    const [carts, setCart] = useState([]);
+    const [CartProfile, setCartProfile] = useState(null);
+    
     useEffect(() => {
         const fetchData = async () => {
-          try {
-            //Fetch cart
-            const CartBooks=await API.getUserCart({id : userId})
-            setCart(CartBooks)
-          } catch (error) {
-            console.error('Error fetching data:', error);
-          }
+            try {
+                // Fetch CurrentUserId
+                const user = await API.getCurrentUser();
+
+                // Fetch CartProfile using userId
+                const CProfile = await API.getUserCartProfile(user[0].userId);
+                setCartProfile(CProfile);
+                console.log(CartProfile)
+
+                // Fetch Cart using userId
+                const cartBooks = await API.getUserCart(user[0].userId);
+                setCart(cartBooks);
+
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
         };
+
         fetchData();
-    }, [userId]);
+    }, []);
+    const handleRemove = (Id) => {
+        API.UpdateCartsByUserID(CartProfile[0].userId,CartProfile[0].productId.filter(item => item !== Id))
+        .then(() => {
+            // Reload the page after updating the backend
+            window.location.reload();
+        })
+        .catch((error) => {
+            console.error('Error removing item:', error);
+        });
+    };
     const spreadCartItems = () => {
-        const n = 2;
         return carts.map((cart, index) => (
-            <div className="cart-table-row"key={index}>
+            <div className="cart-table-row" key={index}>
                 <div className="cart-table-row-item">
                     <div className="row-item-photo">{/*<img src={cart.image} alt={cart.name} className="row-item-image" />*/}</div>
                     <div className="row-item-name">{cart.name}</div>
@@ -31,10 +50,13 @@ const Cart = () => {
                 <div className="cart-table-row-item">{cart.price} VND</div>
                 <div className="cart-table-row-item">
                     <div className="cart-button-group">
-                        <Link to="/books/id" className="view-book-button">
+                        <Link to={`/books/${cart.id}`} className="view-book-button">
                             View book info
                         </Link>
-                        <div className="remove-button">Remove</div>
+                        {/* Add the Remove button */}
+                        <div className="remove-button" onClick={() => handleRemove(cart.id)}>
+                            Remove
+                        </div>
                     </div>
                 </div>
             </div>

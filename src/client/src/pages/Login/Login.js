@@ -19,6 +19,7 @@ const Login = () => {
       if (userProfile && userProfile.length > 0) {
         // User authenticated, redirect to Home
         console.log("Login successful");
+        await API.UpdateCurrentUser(userProfile[0].id);
         navigate('/');
       } else {
         console.log("Invalid email or password");
@@ -30,7 +31,7 @@ const Login = () => {
       console.error("Error logging in:", error);
       setError("An error occurred. Please try again.");
     }
-  };
+};
 
   return (
     <div className="login-container">

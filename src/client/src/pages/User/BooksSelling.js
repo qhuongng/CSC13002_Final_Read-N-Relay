@@ -1,24 +1,25 @@
 import "./BooksSelling.css";
 import { Link } from "react-router-dom";
 import * as API from "../../utils/API.js"
-import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const BooksSelling = () => {
-    const {userId}=useParams();
     const [sellingbooks,setSellingBooks] =useState([])
     useEffect(() => {
         const fetchData = async () => {
           try {
-            //Fetch cart
-            const SellBooks=await API.getBooksByAttributes({userId : userId})
+            // Fetch CurrentUserId
+            const user = await API.getCurrentUser();
+
+            //Fetch SellBooks
+            const SellBooks=await API.getBooksByAttributes({userId : user[0].userId})
             setSellingBooks(SellBooks)
           } catch (error) {
             console.error('Error fetching data:', error);
           }
         };
         fetchData();
-    }, [userId]);
+    }, []);
     const spreadSaleItems = () => {
         return sellingbooks.map((book, index) => (
             <div className="sales-table-row"key={index}>
