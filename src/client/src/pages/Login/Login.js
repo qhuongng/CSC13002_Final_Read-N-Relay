@@ -1,24 +1,31 @@
 import React, { useState } from "react";
 import * as API from "../../utils/API.js";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
+import Alert from "../../components/Alert/Alert";
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
   const handleLogin = async () => {
+    setError("");
     try {
       const userProfile = await API.getUserProfileByAttributes({ email: email, password: password });
-  
+
       if (userProfile && userProfile.length > 0) {
         // User authenticated, redirect to Home
         console.log("Login successful");
-        
         await API.UpdateCurrentUser(userProfile[0].id);
+        navigate('/');
       } else {
         console.log("Invalid email or password");
+        setError("Invalid email or password");
+        setEmail("");
+        setPassword("");
       }
     } catch (error) {
       console.error("Error logging in:", error);
@@ -66,7 +73,8 @@ const Login = () => {
           <button className="login-button" onClick={handleLogin}>
             Log in
           </button>
-          {error && <div className="login-error">{error}</div>}
+          {error && <Alert message={error} type="notype" />}
+          {/* {error && <div className="login-error">{error}</div>} */}
           <div className="login-forgot-and-sign-up">
             <div className="login-link">Forgot password?</div>
           </div>

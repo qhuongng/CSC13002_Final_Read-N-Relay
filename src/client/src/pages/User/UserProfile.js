@@ -29,13 +29,9 @@ const UserProfile = () => {
                 <div className="profile-photo"></div>
             </div>
             <div className="info-group">
-                <div className="info-group-item">
-                    <label htmlFor="fname">First name</label>
-                    <input type="text" id="fname" placeholder="First name" required />
-                </div>
-                <div className="info-group-item">
-                    <label htmlFor="lname">Last name</label>
-                    <input type="text" id="lname" placeholder="Last name" required />
+                <div className="info-group-item-name">
+                    <label>Full name</label>
+                    <input type="text" id="fname" placeholder="Full name" required />
                 </div>
             </div>
             <div className="info-group">
