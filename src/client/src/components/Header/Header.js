@@ -74,7 +74,7 @@ class Header extends Component {
                             </button>
                         </div>
 
-                        {!isLoggedIn && (
+                        {isLoggedIn && (
                             <div className="header-users-container">
                                 <Link to="/add" className="header-icon-add"></Link>
                                 <Link to="/cart" className="header-icon-cart"></Link>

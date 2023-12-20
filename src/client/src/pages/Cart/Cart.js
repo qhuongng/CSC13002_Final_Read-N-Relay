@@ -7,38 +7,39 @@ import { Link } from "react-router-dom";
 const Cart = () => {
     const [carts, setCart] = useState([]);
     const [CartProfile, setCartProfile] = useState(null);
-    
+
+    const fetchData = async () => {
+        try {
+            // Fetch CurrentUserId
+            const user = await API.getCurrentUser();
+
+            // Fetch CartProfile using userId
+            const CProfile = await API.getUserCartProfile(user[0].userId);
+            setCartProfile(CProfile);
+            console.log(CartProfile)
+
+            // Fetch Cart using userId
+            const cartBooks = await API.getUserCart(user[0].userId);
+            setCart(cartBooks);
+
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
+
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                // Fetch CurrentUserId
-                const user = await API.getCurrentUser();
-
-                // Fetch CartProfile using userId
-                const CProfile = await API.getUserCartProfile(user[0].userId);
-                setCartProfile(CProfile);
-                console.log(CartProfile)
-
-                // Fetch Cart using userId
-                const cartBooks = await API.getUserCart(user[0].userId);
-                setCart(cartBooks);
-
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        };
-
         fetchData();
     }, []);
+
     const handleRemove = (Id) => {
-        API.UpdateCartsByUserID(CartProfile[0].userId,CartProfile[0].productId.filter(item => item !== Id))
-        .then(() => {
-            // Reload the page after updating the backend
-            window.location.reload();
-        })
-        .catch((error) => {
-            console.error('Error removing item:', error);
-        });
+        API.UpdateCartsByUserID(CartProfile[0].userId, CartProfile[0].productId.filter(item => item !== Id))
+            .then(() => {
+                // Reload the page after updating the backend
+                fetchData();
+            })
+            .catch((error) => {
+                console.error('Error removing item:', error);
+            });
     };
     const spreadCartItems = () => {
         return carts.map((cart, index) => (
