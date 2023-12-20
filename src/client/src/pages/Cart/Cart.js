@@ -6,16 +6,23 @@ import { Link } from "react-router-dom";
 
 const Cart = () => {
     const [carts, setCart] = useState([]);
-
+    const [CartProfile, setCartProfile] = useState(null);
+    
     useEffect(() => {
         const fetchData = async () => {
             try {
                 // Fetch CurrentUserId
                 const user = await API.getCurrentUser();
 
+                // Fetch CartProfile using userId
+                const CProfile = await API.getUserCartProfile(user[0].userId);
+                setCartProfile(CProfile);
+                console.log(CartProfile)
+
                 // Fetch Cart using userId
                 const cartBooks = await API.getUserCart(user[0].userId);
                 setCart(cartBooks);
+
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -23,6 +30,9 @@ const Cart = () => {
 
         fetchData();
     }, []);
+    const handleRemove = (Id) => {
+        API.UpdateCartsByUserID(CartProfile[0].userId,CartProfile[0].productId.filter(item => item !== Id))
+    };
     const spreadCartItems = () => {
         return carts.map((cart, index) => (
             <div className="cart-table-row"key={index}>
@@ -33,7 +43,7 @@ const Cart = () => {
                 <div className="cart-table-row-item">{cart.price} VND</div>
                 <div className="cart-table-row-item">
                     <div className="cart-button-group">
-                        <Link to="/books/id" className="view-book-button">
+                        <Link to={`/books/${cart.id}`} className="view-book-button">
                             View book info
                         </Link>
                         <div className="remove-button">Remove</div>

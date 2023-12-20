@@ -43,7 +43,6 @@ const Home = ({ location }) => {
     };
 
     const spreadProductsMightLike = () => {
-        const n = 4;
         return BooksMightLike.map((books, index) => (
             <Link to={`/books/${books.id}`} className="product"key={index}>
                 <div className="product-photo">{/*<img src={books.image} alt={books.name} className="product-image" />*/}</div>

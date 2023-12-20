@@ -108,7 +108,6 @@ export async function getUserCart(userId) {
   return axios.get(`${API_BASE_URL}/carts`, { params: { userId: userId } })
   .then((response) => {
     const data = response.data;
-    console.log(data)
     const result= getBooksFromListId(data[0].productId);
     return result
   })
