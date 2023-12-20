@@ -2,26 +2,28 @@ import { useEffect, useState } from "react";
 import "./Cart.css";
 import * as API from "../../utils/API.js"
 import { Link } from "react-router-dom";
-import { useParams } from "react-router-dom";
 
 
 const Cart = () => {
-    const {userId}=useParams();
-    const [carts,setCart] =useState([])
+    const [carts, setCart] = useState([]);
+
     useEffect(() => {
         const fetchData = async () => {
-          try {
-            //Fetch cart
-            const CartBooks=await API.getUserCart({id : userId})
-            setCart(CartBooks)
-          } catch (error) {
-            console.error('Error fetching data:', error);
-          }
+            try {
+                // Fetch CurrentUserId
+                const user = await API.getCurrentUser();
+
+                // Fetch Cart using userId
+                const cartBooks = await API.getUserCart(user[0].userId);
+                setCart(cartBooks);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
         };
+
         fetchData();
-    }, [userId]);
+    }, []);
     const spreadCartItems = () => {
-        const n = 2;
         return carts.map((cart, index) => (
             <div className="cart-table-row"key={index}>
                 <div className="cart-table-row-item">

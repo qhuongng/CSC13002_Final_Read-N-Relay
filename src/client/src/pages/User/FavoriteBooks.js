@@ -1,24 +1,25 @@
 import "./FavoriteBooks.css";
 import { Link } from "react-router-dom";
 import * as API from "../../utils/API.js"
-import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const FavoriteBooks = () => {
-    const {userId}=useParams();
     const [favorbooks,setFavorites] =useState([])
     useEffect(() => {
         const fetchData = async () => {
           try {
+            // Fetch CurrentUserId
+            const user = await API.getCurrentUser();
+
             //Fetch cart
-            const FavoriteBooks=await API.getUsersFavoritesBooks(userId)
+            const FavoriteBooks=await API.getUsersFavoritesBooks(user[0].userId)
             setFavorites(FavoriteBooks)
           } catch (error) {
             console.error('Error fetching data:', error);
           }
         };
         fetchData();
-    }, [userId]);
+    }, []);
     const spreadFavoriteItems = () => {
         return favorbooks.map((book, index) => (
             <div className="fav-table-row"key={index}>

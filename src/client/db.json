@@ -222,8 +222,8 @@
       ]
     },
     {
-      "id": 5,
-      "userId": 1,
+      "id": 1,
+      "userId": 5,
       "productId": [
         0
       ]
@@ -239,11 +239,17 @@
       ]
     },
     {
-      "id": 5,
-      "userId": 1,
+      "id": 1,
+      "userId": 5,
       "productId": [
         12
       ]
+    }
+  ],
+  "currentUser": [
+    {
+      "id": 0,
+      "userId": 0
     }
   ]
 }

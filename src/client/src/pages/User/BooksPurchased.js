@@ -1,24 +1,25 @@
 import "./BooksPurchased.css";
 import { Link } from "react-router-dom";
 import * as API from "../../utils/API.js"
-import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const BooksPurchased = () => {
-    const {userId}=useParams();
     const [orderbooks,setOrder] =useState([])
     useEffect(() => {
         const fetchData = async () => {
           try {
-            //Fetch cart
-            const OrderBooks=await API.getUserCart({id : userId})
+            // Fetch CurrentUserId
+            const user = await API.getCurrentUser();
+
+            //Fetch orders
+            const OrderBooks=await API.getUsersPurchasedBooks(user[0].userId)
             setOrder(OrderBooks)
           } catch (error) {
             console.error('Error fetching data:', error);
           }
         };
         fetchData();
-    }, [userId]);
+    }, []);
     const spreadPurchasedItems = () => {
         return orderbooks.map((book, index) => (
             <div className="bought-table-row"key={index}>

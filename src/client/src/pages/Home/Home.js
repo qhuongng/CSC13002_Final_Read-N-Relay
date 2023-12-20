@@ -4,17 +4,18 @@ import withRouter from "../../utils/HookWrapper";
 import Alert from "../../components/Alert/Alert";
 import { useState, useEffect } from "react";
 import * as API from "../../utils/API.js"
-import { useParams } from "react-router-dom";
 
 const Home = ({ location }) => {
-    const {userId}=useParams();
     const[recentlyPost,setRecentlyPost]=useState([]);
     const[BooksMightLike,setBooksMightLike]=useState([])
     useEffect(() => {
         const fetchData = async() => {
             try {
+                // Fetch CurrentUserId
+                const user = await API.getCurrentUser();
+
                 //Fetch recentlyPost
-                const RecentlyPostBooks=await API.getBooksByAttributes({userId : userId})
+                const RecentlyPostBooks=await API.getBooksByAttributes({userId : user[0].userId})
                 setRecentlyPost(RecentlyPostBooks)
 
                 //Fetch mightLike
@@ -25,7 +26,7 @@ const Home = ({ location }) => {
               }
         }
         fetchData();
-    }, [userId]);
+    }, []);
     const { openPopup = false, message = "nomessage", type = "notype" } = location.state || {};
 
     const spreadProductsRecentlyPost = () => {

@@ -94,9 +94,24 @@ export async function getUserProfileByAttributes({id, name, email, password, add
       throw error;
     });
   };
+
+export async function getCurrentUser() {
+  return axios.get(`${API_BASE_URL}/currentUser`)
+  .then((response) => response.data)
+  .catch((error) => {
+    console.error('Error fetching data:', error);
+    throw error;
+  });
+};
+
 export async function getUserCart(userId) {
   return axios.get(`${API_BASE_URL}/carts`, { params: { userId: userId } })
-  .then((response) => response.data)
+  .then((response) => {
+    const data = response.data;
+    console.log(data)
+    const result= getBooksFromListId(data[0].productId);
+    return result
+  })
   .catch((error) => {
     console.error('Error fetching data:', error);
     throw error;
@@ -182,6 +197,17 @@ export async function UpdateBooksByID({ id, name, price, userId, publishedAt, qu
 };
 // Done
 // Users
+export async function UpdateCurrentUser(userId) {
+  const body = {
+    userId
+  }
+  axios.patch(`${API_BASE_URL}/currentUser/0`, body)
+  .then((response) => response.data)
+  .catch((error) => {
+    console.error('Error updating data:', error);
+    throw error;
+  });
+};
 export async function UpdateUserProfileByID({ id, name, email, password, address }) {
   const body = {
     name,
