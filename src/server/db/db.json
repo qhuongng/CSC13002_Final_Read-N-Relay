@@ -226,5 +226,8 @@
             "userId":5,
             "productId":[12] 
         }
-    ]
+    ],
+    "currentUser":[{
+        "userId":0
+    }]
 }
