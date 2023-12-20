@@ -1,6 +1,24 @@
 import "./UserProfile.css";
+import * as API from "../../utils/API.js"
+import { useEffect, useState } from "react";
 
 const UserProfile = () => {
+    const [userProfile,setUserProfile] =useState(null)
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            //Fetch Current User
+            const user= await API.getCurrentUser();
+            
+            //Fetch cart
+            const Profile=await API.getUserProfileByAttributes({id: user[0].userId})
+            setUserProfile(Profile)
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+        };
+        fetchData();
+    }, []);
     return (
         <div className="profile-container">
             <div className="profile-photo-group">
@@ -11,13 +29,9 @@ const UserProfile = () => {
                 <div className="profile-photo"></div>
             </div>
             <div className="info-group">
-                <div className="info-group-item">
-                    <label htmlFor="fname">First name</label>
-                    <input type="text" id="fname" placeholder="First name" required />
-                </div>
-                <div className="info-group-item">
-                    <label htmlFor="lname">Last name</label>
-                    <input type="text" id="lname" placeholder="Last name" required />
+                <div className="info-group-item-name">
+                    <label>Full name</label>
+                    <input type="text" id="fname" placeholder="Full name" required />
                 </div>
             </div>
             <div className="info-group">

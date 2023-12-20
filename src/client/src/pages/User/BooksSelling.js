@@ -1,16 +1,33 @@
 import "./BooksSelling.css";
 import { Link } from "react-router-dom";
+import * as API from "../../utils/API.js"
+import { useEffect, useState } from "react";
 
 const BooksSelling = () => {
+    const [sellingbooks,setSellingBooks] =useState([])
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            // Fetch CurrentUserId
+            const user = await API.getCurrentUser();
+
+            //Fetch SellBooks
+            const SellBooks=await API.getBooksByAttributes({userId : user[0].userId})
+            setSellingBooks(SellBooks)
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+        };
+        fetchData();
+    }, []);
     const spreadSaleItems = () => {
-        const n = 4;
-        return [...Array(n)].map((e, i) => (
-            <div className="sales-table-row">
+        return sellingbooks.map((book, index) => (
+            <div className="sales-table-row"key={index}>
                 <div className="sales-table-row-item">
-                    <div className="sales-item-photo"></div>
-                    <div className="sales-item-name">Book</div>
+                    <div className="sales-item-photo">{/*<img src={book.image} alt={book.name} className="sales-item-image" />*/}</div>
+                    <div className="sales-item-name">{book.name}</div>
                 </div>
-                <div className="sales-table-row-item">30.000 VND</div>
+                <div className="sales-table-row-item">{book.price} VND</div>
                 <div className="sales-table-row-item">For sale</div>
                 <div className="sales-table-row-item">
                     <div className="sales-button-group">

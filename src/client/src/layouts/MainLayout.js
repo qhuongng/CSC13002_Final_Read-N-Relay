@@ -29,7 +29,7 @@ const MainLayout = () => {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/books" element={<Books />} />
-                <Route path="/books/id" element={<BookInfo />} />
+                <Route path="/books/:id" element={<BookInfo />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/user" element={<UserLayout />}>
