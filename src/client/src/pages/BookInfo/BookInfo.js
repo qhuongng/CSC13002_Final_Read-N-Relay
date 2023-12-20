@@ -60,7 +60,7 @@ const BookInfo = () => {
       <div className="info-each-reco" key={index}>
         {/*<img src={book.image} alt={book.name} className="reco-product-image" />*/}
         <div className="reco-product-name">{book.name}</div>
-        <div className="reco-product-price">Date {book.price}</div>
+        <div className="reco-product-price">{book.price}</div>
         {/* Add other book details as needed */}
       </div>
     ));
