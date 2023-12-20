@@ -32,10 +32,17 @@ const Cart = () => {
     }, []);
     const handleRemove = (Id) => {
         API.UpdateCartsByUserID(CartProfile[0].userId,CartProfile[0].productId.filter(item => item !== Id))
+        .then(() => {
+            // Reload the page after updating the backend
+            window.location.reload();
+        })
+        .catch((error) => {
+            console.error('Error removing item:', error);
+        });
     };
     const spreadCartItems = () => {
         return carts.map((cart, index) => (
-            <div className="cart-table-row"key={index}>
+            <div className="cart-table-row" key={index}>
                 <div className="cart-table-row-item">
                     <div className="row-item-photo">{/*<img src={cart.image} alt={cart.name} className="row-item-image" />*/}</div>
                     <div className="row-item-name">{cart.name}</div>
@@ -46,7 +53,10 @@ const Cart = () => {
                         <Link to={`/books/${cart.id}`} className="view-book-button">
                             View book info
                         </Link>
-                        <div className="remove-button">Remove</div>
+                        {/* Add the Remove button */}
+                        <div className="remove-button" onClick={() => handleRemove(cart.id)}>
+                            Remove
+                        </div>
                     </div>
                 </div>
             </div>

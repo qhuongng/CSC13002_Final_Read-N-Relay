@@ -1,23 +1,24 @@
 import "./UserProfile.css";
 import * as API from "../../utils/API.js"
-import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const UserProfile = () => {
-    const {userId}=useParams();
     const [userProfile,setUserProfile] =useState(null)
     useEffect(() => {
         const fetchData = async () => {
           try {
+            //Fetch Current User
+            const user= await API.getCurrentUser();
+            
             //Fetch cart
-            const Profile=await API.getUserProfileByAttributes({userId: userId})
+            const Profile=await API.getUserProfileByAttributes({id: user[0].userId})
             setUserProfile(Profile)
           } catch (error) {
             console.error('Error fetching data:', error);
           }
         };
         fetchData();
-    }, [userId]);
+    }, []);
     return (
         <div className="profile-container">
             <div className="profile-photo-group">
