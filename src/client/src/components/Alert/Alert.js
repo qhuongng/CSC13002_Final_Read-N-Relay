@@ -33,6 +33,8 @@ class Alert extends Component {
                         <Link to="/user/purchased" className="view-button" onClick={() => this.hideAlert()}>
                             View purchases
                         </Link>
+                    ) : this.props.type === "notype" ? (
+                        <></>
                     ) : (
                         <Link to="/user/selling" className="view-button" onClick={() => this.hideAlert()}>
                             View published books
