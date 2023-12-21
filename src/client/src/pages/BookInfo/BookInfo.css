@@ -55,7 +55,7 @@
 .info-product-line-split {
     width: 1px;
     height: 16px;
-    border-left: 1px solid #0c2d48;
+    border-left: 2px solid #0c2d48;
     opacity: 0.5;
 }
 
@@ -273,7 +273,7 @@
 }
 
 .info-user-comment {
-    color: var(--Text1, #7d8184);
+    color: var(--Text1, #595d5f);
     font-family: Raleway;
     font-size: 16px;
     font-style: normal;
@@ -290,21 +290,6 @@
     font-weight: 600;
     line-height: 24px; /* 100% */
     letter-spacing: 0.72px;
-}
-
-.info-user-photo {
-    display: flex;
-    width: 60px;
-    height: 60px;
-    flex-shrink: 0;
-    border-radius: 60px;
-    background-color: #c2c2c2;
-}
-
-.info-user-photo-container {
-    display: flex;
-    align-items: flex-start;
-    margin-top: 33px;
 }
 
 .info-reco {
@@ -470,8 +455,8 @@ button {
     gap: 12px;
 }
 
-.info-product-each-genre {
+.info-product-genre {
     font-family: Raleway;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--Button2, #0c2d48);
 }

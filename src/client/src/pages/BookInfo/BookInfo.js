@@ -48,9 +48,6 @@ const BookInfo = () => {
   const spreadComments = () => {
     return reviews.map((review, index) => (
       <div className="info-each-review" key={index}>
-        <div className="info-user-photo-container">
-          <div className="info-user-photo"></div>
-        </div>
         <div className="info-user-comment-name">
           <div className="info-user-name">{ReviewUser[review.userId]?.name}</div>
           <div className="info-user-comment">{review.text}</div>
@@ -79,15 +76,6 @@ const BookInfo = () => {
     ));
   };
 
-  const spreadGenres = () => {
-    return bookData.genres.map((genre, index) => (
-      <div className="info-product-genre">
-        <div className="info-product-each-genre">{genre}</div>
-        <div className="info-product-each-genre">{index < bookData.genres.length - 1 && "|"}</div>
-      </div>
-    ))
-  };
-
   return (
     <div className="info-container">
       {bookData && (
@@ -99,13 +87,14 @@ const BookInfo = () => {
           <div className="info-prodcut-container">
             <div className="info-product">
               <div className="info-product-name">{bookData.name}</div>
-              <div className="info-product-genre">{spreadGenres()}</div>
               <div className="info-product-rate-status">
-                <div className="info-product-rate">{reviews.length} Reviews</div>
+                <div className="info-product-genre">{reviews.length} Reviews</div>
                 <div className="info-product-line-split"></div>
-                <div className="info-product-status">
+                <div className="info-product-genre">
                   {checkStatus ? <div>For sale</div> : <div>Sold</div>}
                 </div>
+                <div className="info-product-line-split"></div>
+                <div className="info-product-genre">{bookData.genre}</div>
               </div>
 
               <div className="info-product-price">{bookData.price} VND</div>

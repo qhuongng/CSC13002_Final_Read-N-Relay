@@ -53,11 +53,7 @@
       "quantity": 15,
       "status": "available",
       "image": "https://images.unsplash.com/photo-1606311698062-21c4f57cb27f?q=80&w=1958&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "genres": [
-        "Mystery",
-        "Fantasy",
-        "Thriller"
-      ]
+      "genre": "Mystery"
     },
     {
       "id": 1,
@@ -68,10 +64,7 @@
       "quantity": 500,
       "status": "available",
       "image": "https://m.media-amazon.com/images/I/71OZY035QKL._AC_UF1000,1000_QL80_.jpg",
-      "genres": [
-        "Mystery",
-        "Self-help"
-      ]
+      "genre": "Mystery"
     },
     {
       "id": 2,
@@ -82,9 +75,7 @@
       "quantity": 500,
       "status": "available",
       "image": "https://cf.shopee.vn/file/405f1fa2de20ddfa852f87e42576b24e_tn",
-      "genres": [
-        "Self-help"
-      ]
+      "genre": "Self-help"
     },
     {
       "id": 3,
@@ -95,9 +86,7 @@
       "quantity": 10,
       "status": "available",
       "image": "https://sachnhanam.s3.ap-southeast-1.amazonaws.com/wp-content/uploads/20220419011941/275249391_489759975948245_4807283355582626488_n.jpg",
-      "genres": [
-        "Self-help"
-      ]
+      "genre": "Self-help"
     },
     {
       "id": 4,
@@ -108,11 +97,7 @@
       "quantity": 10000,
       "status": "available",
       "image": "https://cdn0.fahasa.com/media/catalog/product/i/m/image_180812.jpg",
-      "genres": [
-        "Horror",
-        "Action",
-        "Mystery"
-      ]
+      "genre": "Horror"
     },
     {
       "id": 5,
@@ -123,11 +108,7 @@
       "quantity": 2000,
       "status": "available",
       "image": "https://salt.tikicdn.com/ts/product/78/2a/21/714646c26f672b8819ade2d6c023e6e1.jpg",
-      "genres": [
-        "Horror",
-        "Action",
-        "Mystery"
-      ]
+      "genre": "Horror"
     },
     {
       "id": 6,
@@ -138,11 +119,7 @@
       "quantity": 150,
       "status": "available",
       "image": "https://product.hstatic.net/200000343865/product/99_9ec388c3762e4444bd99854f971a17c7_master.jpg",
-      "genres": [
-        "Comic",
-        "Action",
-        "Horror"
-      ]
+      "genre": "Comic"
     },
     {
       "id": 7,
@@ -153,12 +130,7 @@
       "quantity": 150,
       "status": "available",
       "image": "https://down-vn.img.susercontent.com/file/d8b0f26899f6931da1f0861b46aba03e",
-      "genres": [
-        "Action",
-        "Fantasy",
-        "Mystery",
-        "Thriller"
-      ]
+      "genre": "Action"
     },
     {
       "id": 8,
@@ -169,10 +141,7 @@
       "quantity": 150,
       "status": "available",
       "image": "https://salt.tikicdn.com/ts/product/e4/ca/af/a9523a72d66fa9507d2bfc5023e33eac.jpg",
-      "genres": [
-        "Fantasy",
-        "Self-help"
-      ]
+      "genre": "Fantasy"
     },
     {
       "id": 9,
@@ -183,11 +152,7 @@
       "quantity": 150,
       "status": "available",
       "image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1619211101i/46211592.jpg",
-      "genres": [
-        "Romance",
-        "Self-help",
-        "Thriller"
-      ]
+      "genre": "Romance"
     },
     {
       "id": 10,
@@ -198,9 +163,7 @@
       "quantity": 150,
       "status": "available",
       "image": "https://www.nxbtre.com.vn/Images/Book/nxbtre_full_02162019_031655.jpg",
-      "genres": [
-        "Romance"
-      ]
+      "genre": "Romance"
     },
     {
       "id": 11,
@@ -211,9 +174,7 @@
       "quantity": 150,
       "status": "available",
       "image": "https://m.media-amazon.com/images/I/71Jk3baRdnL._AC_UF1000,1000_QL80_.jpg",
-      "genres": [
-        "Fantasy"
-      ]
+      "genre": "Fantasy"
     }
   ],
   "reviews": [
