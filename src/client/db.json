@@ -256,12 +256,7 @@
     {
       "id": 1,
       "userId": 4,
-      "productId": [
-        1,
-        2,
-        3,
-        4
-      ]
+      "productId": []
     }
   ],
   "orders": [
@@ -301,7 +296,7 @@
   "currentUser": [
     {
       "id": 0,
-      "userId": 4
+      "userId": -1
     }
   ]
 }

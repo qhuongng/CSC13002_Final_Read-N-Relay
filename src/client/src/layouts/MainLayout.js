@@ -20,7 +20,7 @@ import AddBook from "../pages/AddBook/AddBook";
 const MainLayout = () => {
     return (
         <div>
-            <Header isLoggedIn={true} />
+            <Header />
             {/* cái bên dưới là dòng mặc định
                 dòng trên là tui truyền props cứng để test thêm route
                 <Header />
