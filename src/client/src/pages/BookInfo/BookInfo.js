@@ -11,16 +11,18 @@ const BookInfo = () => {
   const [bookData, setBookData] = useState(null);
   const [reviews, setReviews] = useState([]);
   const [checkStatus, setCheckStatus] = useState([]);
-    const [ReviewUser, setReviewUser]= useState([]);
+  const [ReviewUser, setReviewUser]= useState([]);
   const [booksMightLike, setBooksMightLike] = useState([]);
+  const [cart, setCart] = useState(null);
+  const [favor, setFavorites] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const user= await API.getCurrentUser();
         // Fetch book details
         const books = await API.getBooksByAttributes({ id: id });
         setBookData(books[0]) // Assuming you want to display information for the first book
-        console.log(bookData)
         // Fetch reviews for the book
         const bookReviews = await API.getBookReviews(id);
         setReviews(bookReviews);
@@ -34,6 +36,12 @@ const BookInfo = () => {
         //Fetch Books Might Like
         const booksMightLike =await API.getBooksByPage(2,5);
         setBooksMightLike(booksMightLike);
+        //Fetch Books Might Like
+        const cartBookP =await API.getUserCartProfile(user[0].id);
+        setCart(cartBookP);
+        //Fetch Books Might Like
+        const FavorBookP =await API.getUserFavoritesProfile(user[0].id);
+        setFavorites(FavorBookP);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -71,7 +79,26 @@ const BookInfo = () => {
       </div>
     ))
   };
-
+  const HandleAddToCart = async (bookId) =>{
+    try{
+      const productId=cart[0].productId;
+      productId.push(bookId)
+      await API.UpdateCartsByUserID(cart[0].id,productId);
+      console.log(productId)
+    } catch (error) {
+          console.error('Error updating carts:', error);
+      }
+  };
+  const HandleAddToFavor = async (bookId) =>{
+    try{
+      const productId=favor[0].productId;
+      productId.push(bookId)
+      await API.UpdateFavoritesByUserID(favor[0].id,productId);
+      console.log(productId)
+    } catch (error) {
+          console.error('Error updating favor:', error);
+      }
+  };
   return (
     <div className="info-container">
       {bookData && (
@@ -95,9 +122,9 @@ const BookInfo = () => {
                 <Link to="/checkout" className="info-buy">
                   Buy now
                 </Link>
-                <div className="info-add">Add to cart</div>
+                <div className="info-add" onClick={()=>{HandleAddToCart(bookData.id)}}>Add to cart</div>
                 <div className="info-like">
-                  <FaHeart className="info-like-icon" />
+                  <FaHeart className="info-like-icon" onClick={()=>{HandleAddToFavor(bookData.id)}}/>
                 </div>
               </div>
             </div>
