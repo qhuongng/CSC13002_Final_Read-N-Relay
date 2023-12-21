@@ -11,8 +11,7 @@ const BookInfo = () => {
   const [bookData, setBookData] = useState(null);
   const [reviews, setReviews] = useState([]);
   const [checkStatus, setCheckStatus] = useState([]);
-  const [user, setUser]= useState(null);
-  const [ReviewUser, setReviewUser]= useState([]);
+    const [ReviewUser, setReviewUser]= useState([]);
   const [booksMightLike, setBooksMightLike] = useState([]);
 
   useEffect(() => {
@@ -21,12 +20,10 @@ const BookInfo = () => {
         // Fetch book details
         const books = await API.getBooksByAttributes({ id: id });
         setBookData(books[0]) // Assuming you want to display information for the first book
+        console.log(bookData)
         // Fetch reviews for the book
         const bookReviews = await API.getBookReviews(id);
         setReviews(bookReviews);
-        //Fetch book's user
-        const users = await API.getUserProfileByAttributes({ id: books[0].userId });
-        setUser(users); // Assuming you want to display information for the first book
         //Fetch reviews' user
         const reviewUsers = []
         for(const Review of bookReviews) {
@@ -57,13 +54,22 @@ const BookInfo = () => {
 
   const spreadReco = () => {
     return booksMightLike.map((book, index) => (
-      <div className="info-each-reco" key={index}>
+      <Link to={`/books/${book.id}`} className="info-each-reco" key={index}>
         {/*<img src={book.image} alt={book.name} className="reco-product-image" />*/}
         <div className="reco-product-name">{book.name}</div>
         <div className="reco-product-price">{book.price}</div>
         {/* Add other book details as needed */}
-      </div>
+        </Link>
     ));
+  };
+
+  const spreadGenres = () => {
+    return bookData.genres.map((genre, index) => (
+      <div className="info-product-genre">
+        <div className="info-product-each-genre">{genre}</div>
+        <div className="info-product-each-genre">{index < bookData.genres.length - 1 && "|"}</div>
+      </div>
+    ))
   };
 
   return (
@@ -74,6 +80,7 @@ const BookInfo = () => {
           <div className="info-prodcut-container">
             <div className="info-product">
               <div className="info-product-name">{bookData.name}</div>
+              <div className="info-product-genre">{spreadGenres()}</div>
               <div className="info-product-rate-status">
                 <div className="info-product-rate">{reviews.length} Reviews</div>
                 <div className="info-product-line-split"></div>

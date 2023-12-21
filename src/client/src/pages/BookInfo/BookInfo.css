@@ -77,9 +77,9 @@
 .info-product-price {
     color: var(--Text2, #000);
     font-family: Raleway;
-    font-size: 24px;
+    font-size: 30px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 700;
     line-height: 24px; /* 100% */
     letter-spacing: 0.72px;
 }
@@ -463,4 +463,16 @@ button {
     transition: background-color 0.3s ease;
     background-color: #ececec;
     border-radius: 5px;
+}
+
+.info-product-genre {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+}
+
+.info-product-each-genre {
+    font-family: Raleway;
+    font-weight: 700;
+    color: var(--Button2, #0c2d48);
 }

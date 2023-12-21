@@ -10,7 +10,6 @@ const Books = () => {
     const fetchBooks = async () => {
       try {
         const booksData = await API.getAllBooks();
-        console.log('Books Data:', booksData);
         setBooks(booksData);
       } catch (error) {
         console.error('Error fetching books:', error);
