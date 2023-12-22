@@ -3,13 +3,22 @@ import "./Dropdown.css";
 
 const Dropdown = (props) => {
     const [isActive, setIsActive] = useState(false);
-    const [selected, setIsSelected] = useState("Select...");
+    const [selected, setSelected] = useState("Select...");
+
+    const handleItemClick = (item) => {
+        setSelected(item);
+        setIsActive(false);
+
+        // Call the callback function with the selected item
+        if (props.onItemSelected) {
+            props.onItemSelected(item);
+        }
+    };
+
     const dropdownOptions = props.array.map((item) => (
         <div
-            onClick={(e) => {
-                setIsSelected(e.target.textContent);
-                setIsActive(!isActive);
-            }}
+            key={item} // Adding a unique key for each item
+            onClick={() => handleItemClick(item)}
             className="item"
         >
             {item}
@@ -19,9 +28,7 @@ const Dropdown = (props) => {
     return (
         <div className="dropdown">
             <div
-                onClick={(e) => {
-                    setIsActive(!isActive);
-                }}
+                onClick={() => setIsActive(!isActive)}
                 className="dropdown-btn"
             >
                 {selected}

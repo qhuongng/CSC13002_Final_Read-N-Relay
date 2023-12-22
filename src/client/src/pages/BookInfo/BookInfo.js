@@ -4,7 +4,8 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
 import { useParams } from "react-router-dom";
-
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const BookInfo = () => {
   const { id } = useParams();
@@ -14,6 +15,8 @@ const BookInfo = () => {
   const [user, setUser] = useState(null);
   const [ReviewUser, setReviewUser] = useState([]);
   const [booksMightLike, setBooksMightLike] = useState([]);
+  const [successCart, setSuccessCart] = useState("");
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -48,6 +51,7 @@ const BookInfo = () => {
   const spreadComments = () => {
     return reviews.map((review, index) => (
       <div className="info-each-review" key={index}>
+
         <div className="info-user-comment-name">
           <div className="info-user-name">{ReviewUser[review.userId]?.name}</div>
           <div className="info-user-comment">{review.text}</div>
@@ -104,8 +108,10 @@ const BookInfo = () => {
                 <Link to="/checkout" className="info-buy">
                   Buy now
                 </Link>
-                <div className="info-add">Add to cart</div>
-                <div className="info-like">
+                <div className="info-add" onClick={handleAddToCart}>
+                  Add to cart
+                </div>
+                <div className="info-like" onClick={handelAddToFav}>
                   <FaHeart className="info-like-icon" />
                 </div>
               </div>

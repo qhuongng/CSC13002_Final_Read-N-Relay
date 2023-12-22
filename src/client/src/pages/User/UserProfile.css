@@ -25,6 +25,10 @@
     width: 100%;
 }
 
+.info-group-item-name {
+    width: 100%;
+}
+
 .password-group {
     display: flex;
     flex-direction: column;

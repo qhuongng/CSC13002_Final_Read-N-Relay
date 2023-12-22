@@ -12,9 +12,8 @@ const Login = () => {
   const [error, setError] = useState("");
 
   const handleLogin = async () => {
-
+    setError("");
     try {
-      setError("");
       const userProfile = await API.getUserProfileByAttributes({ email: email, password: password });
 
       if (userProfile && userProfile.length > 0) {

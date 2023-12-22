@@ -33,7 +33,7 @@ const Home = ({ location }) => {
         const n = 4;
         const limitedRecentlyPost = recentlyPost.slice(0, n);
 
-        return limitedRecentlyPost.map((books, index) => (
+      return limitedRecentlyPost.map((books, index) => (
             <Link to={`/books/${books.id}`} className="product" key={index}>
                 <div className="product-photo-container">
                     <img src={books.image} alt={books.name} className="product-photo" />
@@ -88,4 +88,4 @@ const Home = ({ location }) => {
     );
 };
 
-export default withRouter(Home);
+export default withRouter(Home)

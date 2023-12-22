@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import "./Cart.css";
-import * as API from "../../utils/API.js";
+import * as API from "../../utils/API.js"
+
 import { Link } from "react-router-dom";
+
 
 const Cart = () => {
     const [carts, setCart] = useState([]);
@@ -15,13 +17,15 @@ const Cart = () => {
             // Fetch CartProfile using userId
             const CProfile = await API.getUserCartProfile(user[0].userId);
             setCartProfile(CProfile);
-            console.log(CartProfile);
+            console.log(CartProfile)
+
 
             // Fetch Cart using userId
             const cartBooks = await API.getUserCart(user[0].userId);
             setCart(cartBooks);
         } catch (error) {
-            console.error("Error fetching data:", error);
+            console.error('Error fetching data:', error);
+
         }
     };
 
@@ -30,16 +34,14 @@ const Cart = () => {
     }, []);
 
     const handleRemove = (Id) => {
-        API.UpdateCartsByUserID(
-            CartProfile[0].userId,
-            CartProfile[0].productId.filter((item) => item !== Id)
-        )
+        API.UpdateCartsByUserID(CartProfile[0].userId, CartProfile[0].productId.filter(item => item !== Id))
+
             .then(() => {
                 // Reload the page after updating the backend
                 fetchData();
             })
             .catch((error) => {
-                console.error("Error removing item:", error);
+                console.error('Error removing item:', error);
             });
     };
     const spreadCartItems = () => {
