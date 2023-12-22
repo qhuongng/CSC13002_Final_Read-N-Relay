@@ -336,3 +336,83 @@ export async function signupUser(userData) {
     throw error; 
   }
 };
+
+export async function addtoCart({userId,productId}) {
+  try {
+    let carts = await fetch(`${API_BASE_URL}/carts`).then((response) => response.json());
+
+    const existingCart = carts.find((cart) => cart.userId === userId);
+
+    if (existingCart) {
+      if (!Array.isArray(existingCart.productId)) {
+        // If it's not an array, convert it to an array with the current productId
+        existingCart.productId = [existingCart.productId];
+      }
+      existingCart.productId.push(productId);
+      
+      await fetch(`${API_BASE_URL}/carts/${existingCart.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(existingCart),
+      });
+    } else {
+      const newCart = {
+        userId: userId,
+        productId: [productId],
+      };
+      await fetch(`${API_BASE_URL}/carts`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newCart),
+      });
+    }
+
+    return { success: true };
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+export async function addtoFavorite({userId,productId}) {
+  try {
+    let favorites = await fetch(`${API_BASE_URL}/favorites`).then((response) => response.json());
+
+    const existstingFav = favorites.find((cart) => cart.userId === userId);
+
+    if (existstingFav) {
+      if (!Array.isArray(existstingFav.productId)) {
+        // If it's not an array, convert it to an array with the current productId
+        existstingFav.productId = [existstingFav.productId];
+      }
+      existstingFav.productId.push(productId);
+      
+      await fetch(`${API_BASE_URL}/favorites/${existstingFav.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(existstingFav),
+      });
+    } else {
+      const newFav = {
+        userId: userId,
+        productId: [productId],
+      };
+      await fetch(`${API_BASE_URL}/favorites`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newFav),
+      });
+    }
+
+    return { success: true };
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};

@@ -21,6 +21,9 @@ const BooksPurchased = () => {
         fetchData();
     }, []);
     const spreadPurchasedItems = () => {
+        if (!orderbooks) {
+            return null; 
+        }
         return orderbooks.map((book, index) => (
             <div className="bought-table-row"key={index}>
                 <div className="bought-table-row-item">
@@ -29,7 +32,7 @@ const BooksPurchased = () => {
                 </div>
                 <div className="bought-table-row-item">{book.price} VND</div>
                 <div className="bought-table-row-item">
-                    <Link to="/books/id" className="bought-view-button">
+                    <Link to={`/books/${book.id}`} className="bought-view-button">
                         View info
                     </Link>
                 </div>

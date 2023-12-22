@@ -84,4 +84,4 @@ const Home = ({ location }) => {
     );
 };
 
-export default withRouter(Home);
+export default withRouter(Home)

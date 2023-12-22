@@ -21,6 +21,9 @@ const FavoriteBooks = () => {
         fetchData();
     }, []);
     const spreadFavoriteItems = () => {
+        if (!favorbooks) {
+            return null; 
+        }
         return favorbooks.map((book, index) => (
             <div className="fav-table-row"key={index}>
                 <div className="fav-table-row-item">

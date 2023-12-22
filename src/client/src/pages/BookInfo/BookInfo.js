@@ -4,16 +4,18 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
 import { useParams } from "react-router-dom";
-
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const BookInfo = () => {
   const { id } = useParams();
   const [bookData, setBookData] = useState(null);
   const [reviews, setReviews] = useState([]);
   const [checkStatus, setCheckStatus] = useState([]);
-  const [user, setUser]= useState(null);
-  const [ReviewUser, setReviewUser]= useState([]);
+  const [user, setUser] = useState(null);
+  const [ReviewUser, setReviewUser] = useState([]);
   const [booksMightLike, setBooksMightLike] = useState([]);
+  const [successCart, setSuccessCart] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,13 +31,13 @@ const BookInfo = () => {
         setUser(users); // Assuming you want to display information for the first book
         //Fetch reviews' user
         const reviewUsers = []
-        for(const Review of bookReviews) {
-            const reviewUser= await API.getUserProfileByAttributes({ id: Review.userId });
-            reviewUsers[Review.userId]=reviewUser[0]
+        for (const Review of bookReviews) {
+          const reviewUser = await API.getUserProfileByAttributes({ id: Review.userId });
+          reviewUsers[Review.userId] = reviewUser[0]
         }
         setReviewUser(reviewUsers)
         //Fetch Books Might Like
-        const booksMightLike =await API.getBooksByPage(2,5);
+        const booksMightLike = await API.getBooksByPage(2, 5);
         setBooksMightLike(booksMightLike);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -66,6 +68,39 @@ const BookInfo = () => {
     ));
   };
 
+  const handleAddToCart = async (e) => {
+    e.preventDefault();
+    try {
+      const user = await API.getCurrentUser();
+      const books = await API.getBooksByAttributes({ id: id });
+      const addedToCart = await API.addtoCart({
+        userId: user[0].userId,
+        productId: books[0].id
+      });
+      toast.success('Added to cart successfully!');
+      console.log('Added to cart:', addedToCart);
+    } catch (error) {
+      console.error('Error adding to cart:', error.message);
+    }
+  };
+
+  const handelAddToFav = async (e) => {
+    e.preventDefault();
+    try {
+      const user = await API.getCurrentUser();
+      const books = await API.getBooksByAttributes({ id: id });
+      const addedToCart = await API.addtoFavorite({
+        userId: user[0].userId,
+        productId: books[0].id
+      });
+      toast.success('Added to favorites successfully!');
+      console.log('Added to favorites:', addedToCart);
+    } catch (error) {
+      console.error('Error adding to favorites:', error.message);
+    }
+  };
+
+
   return (
     <div className="info-container">
       {bookData && (
@@ -88,8 +123,10 @@ const BookInfo = () => {
                 <Link to="/checkout" className="info-buy">
                   Buy now
                 </Link>
-                <div className="info-add">Add to cart</div>
-                <div className="info-like">
+                <div className="info-add" onClick={handleAddToCart}>
+                  Add to cart
+                </div>
+                <div className="info-like" onClick={handelAddToFav}>
                   <FaHeart className="info-like-icon" />
                 </div>
               </div>

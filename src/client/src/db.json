@@ -288,6 +288,27 @@
         3,
         4
       ]
+    },
+    {
+      "productId": [
+        1,
+        1,
+        1
+      ],
+      "userId": 1,
+      "id": 2
+    },
+    {
+      "productId": 1,
+      "userId": 1,
+      "id": 3
+    },
+    {
+      "userId": 2,
+      "productId": [
+        2
+      ],
+      "id": 4
     }
   ],
   "orders": [
@@ -322,12 +343,20 @@
       "productId": [
         12
       ]
+    },
+    {
+      "userId": 2,
+      "productId": [
+        2,
+        2
+      ],
+      "id": 2
     }
   ],
   "currentUser": [
     {
       "id": 0,
-      "userId": 1
+      "userId": 2
     }
   ]
 }
