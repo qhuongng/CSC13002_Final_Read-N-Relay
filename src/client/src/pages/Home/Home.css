@@ -112,9 +112,9 @@
     color: #fff;
 }
 
-.product-spread {
+.home-container .product-spread {
     display: flex;
-    justify-content: space-between;
+
     width: 100%;
 }
 
