@@ -2,7 +2,7 @@ import { FaSearch } from "react-icons/fa";
 import React, { Component } from "react";
 import { Link, NavLink } from "react-router-dom";
 import withRouter from "../../utils/HookWrapper";
-
+import * as API from "../../utils/API.js"
 import "./Header.css";
 
 class Header extends Component {
@@ -10,7 +10,46 @@ class Header extends Component {
         super(props);
         this.state = {
             searchValue: "",
+            isLoggedIn: false
         };
+    }
+
+    componentDidMount() {
+        this.fetchData();
+    }
+
+    componentDidUpdate(prevProps) {
+        // Kiểm tra nếu location thay đổi (navigate đến trang khác)
+        if (this.props.location.pathname === "/" && prevProps.location.pathname === "/login") {
+            if (this.props.location !== prevProps.location) {
+                console.log(this.props.location)
+                console.log(prevProps.location)
+                this.fetchData();
+            }
+        }
+    }
+
+    fetchData = async () => {
+        try {
+            // Fetch CurrentUserId
+            const user = await API.getCurrentUser();
+            // Do something with user data if needed
+            if (user[0].userId !== -1)
+                this.setState({ isLoggedIn: true });
+            else
+                this.setState({ isLoggedIn: false });
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
+
+    handleLogOut = async () => {
+        try {
+            await API.UpdateCurrentUser(-1);
+            this.fetchData();
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
     }
 
     handleSearchChange = (event) => {
@@ -24,8 +63,8 @@ class Header extends Component {
     };
 
     render() {
-        const { isLoggedIn } = this.props;
         const location = this.props.location.pathname;
+        const isLoggedIn = this.state.isLoggedIn
 
         if (location === "/login" || location === "/signup") {
             return (
@@ -50,7 +89,7 @@ class Header extends Component {
                             All books
                         </NavLink>
                         {isLoggedIn ? (
-                            <Link to="/login" className="header-page-each">
+                            <Link to="/login" className="header-page-each" onClick={this.handleLogOut}>
                                 Log out
                             </Link>
                         ) : (

@@ -12,8 +12,9 @@ const Login = () => {
   const [error, setError] = useState("");
 
   const handleLogin = async () => {
-    setError("");
+
     try {
+      setError("");
       const userProfile = await API.getUserProfileByAttributes({ email: email, password: password });
 
       if (userProfile && userProfile.length > 0) {
@@ -31,7 +32,7 @@ const Login = () => {
       console.error("Error logging in:", error);
       setError("An error occurred. Please try again.");
     }
-};
+  };
 
   return (
     <div className="login-container">
