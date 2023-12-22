@@ -175,6 +175,18 @@
       "status": "available",
       "image": "https://m.media-amazon.com/images/I/71Jk3baRdnL._AC_UF1000,1000_QL80_.jpg",
       "genre": "Fantasy"
+    },
+    {
+      "userId": 2,
+      "name": "A Study In Scarlet",
+      "price": 70000,
+      "status": "available",
+      "description": "ooo",
+      "genres": "Mystery",
+      "quantity": 1,
+      "author": "Arthur Conan Doyle",
+      "image": "https://m.media-amazon.com/images/I/61UUJglXDhL._AC_UF1000,1000_QL80_.jpg",
+      "id": 12
     }
   ],
   "reviews": [
@@ -218,6 +230,11 @@
       "id": 1,
       "userId": 4,
       "productId": []
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "productId": []
     }
   ],
   "orders": [
@@ -257,7 +274,7 @@
   "currentUser": [
     {
       "id": 0,
-      "userId": -1
+      "userId": 2
     }
   ]
 }
