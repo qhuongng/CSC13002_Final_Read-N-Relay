@@ -31,7 +31,7 @@ const Login = () => {
       console.error("Error logging in:", error);
       setError("An error occurred. Please try again.");
     }
-};
+  };
 
   return (
     <div className="login-container">

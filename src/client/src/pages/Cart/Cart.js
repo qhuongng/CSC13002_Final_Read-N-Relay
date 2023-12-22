@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./Cart.css";
 import * as API from "../../utils/API.js"
+
 import { Link } from "react-router-dom";
 
 
@@ -18,12 +19,13 @@ const Cart = () => {
             setCartProfile(CProfile);
             console.log(CartProfile)
 
+
             // Fetch Cart using userId
             const cartBooks = await API.getUserCart(user[0].userId);
             setCart(cartBooks);
-
         } catch (error) {
             console.error('Error fetching data:', error);
+
         }
     };
 
@@ -33,6 +35,7 @@ const Cart = () => {
 
     const handleRemove = (Id) => {
         API.UpdateCartsByUserID(CartProfile[0].userId, CartProfile[0].productId.filter(item => item !== Id))
+
             .then(() => {
                 // Reload the page after updating the backend
                 fetchData();
@@ -45,7 +48,9 @@ const Cart = () => {
         return carts.map((cart, index) => (
             <div className="cart-table-row" key={index}>
                 <div className="cart-table-row-item">
-                    <div className="row-item-photo">{/*<img src={cart.image} alt={cart.name} className="row-item-image" />*/}</div>
+                    <div className="row-item-photo-container">
+                        <img src={cart.image} alt={cart.name} className="row-item-photo" />
+                    </div>
                     <div className="row-item-name">{cart.name}</div>
                 </div>
                 <div className="cart-table-row-item">{cart.price} VND</div>

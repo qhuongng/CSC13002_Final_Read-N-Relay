@@ -69,15 +69,9 @@ const UserProfile = () => {
         }
         else console.log("Wrong Password!")
       };
+  
     return (
         <div className="profile-container">
-            <div className="profile-photo-group">
-                <div className="edit-overlay">
-                    <div className="overlay-icon"></div>
-                    <div className="overlay-bg"></div>
-                </div>
-                <div className="profile-photo"></div>
-            </div>
             <div className="info-group">
                 <div className="info-group-item-name">
                     <label>Full name</label>

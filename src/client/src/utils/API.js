@@ -303,6 +303,7 @@ export async function UpdateFavoritesByUserID(userId, productId) {
 };
 // Done
 
+
 //------------------------------------------------ ADD part ------------------------------------------------
 
 // Add a new book

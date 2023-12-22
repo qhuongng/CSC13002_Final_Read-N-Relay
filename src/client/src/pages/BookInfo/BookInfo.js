@@ -17,6 +17,7 @@ const BookInfo = () => {
   const [booksMightLike, setBooksMightLike] = useState([]);
   const [successCart, setSuccessCart] = useState("");
 
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -50,8 +51,11 @@ const BookInfo = () => {
   const spreadComments = () => {
     return reviews.map((review, index) => (
       <div className="info-each-review" key={index}>
-        <div className="review-user">{ReviewUser[review.userId]?.name}</div>
-        <div className="review-content">{review.text}</div>
+
+        <div className="info-user-comment-name">
+          <div className="info-user-name">{ReviewUser[review.userId]?.name}</div>
+          <div className="info-user-comment">{review.text}</div>
+        </div>
         {/* Add other review details as needed */}
       </div>
     ));
@@ -59,65 +63,46 @@ const BookInfo = () => {
 
   const spreadReco = () => {
     return booksMightLike.map((book, index) => (
-      <div className="info-each-reco" key={index}>
-        {/*<img src={book.image} alt={book.name} className="reco-product-image" />*/}
-        <div className="reco-product-name">{book.name}</div>
-        <div className="reco-product-price">{book.price}</div>
+      <Link to={`/books/${book.id}`} className="info-each-reco" key={index}>
+        <div className="info-product-reco-photo-container">
+          <img src={book.image} alt={book.name} className="info-product-reco-photo" />
+        </div>
+        <div className="info-product-reco">
+          <div className="info-product-reco-name">{book.name}</div>
+          <div className="info-product-reco-des">Tụi em không còn thời gian để viết description nên thầy thông cảm cho tụi em nha, em cảm ơn ạ !</div>
+          <div className="info-product-reco-price-rate">
+            <div className="info-product-reco-price">{book.price} VND</div>
+            <div className="info-product-reco-rate">(35 reviews)</div>
+          </div>
+        </div>
         {/* Add other book details as needed */}
-      </div>
+      </Link>
     ));
   };
-
-  const handleAddToCart = async (e) => {
-    e.preventDefault();
-    try {
-      const user = await API.getCurrentUser();
-      const books = await API.getBooksByAttributes({ id: id });
-      const addedToCart = await API.addtoCart({
-        userId: user[0].userId,
-        productId: books[0].id
-      });
-      toast.success('Added to cart successfully!');
-      console.log('Added to cart:', addedToCart);
-    } catch (error) {
-      console.error('Error adding to cart:', error.message);
-    }
-  };
-
-  const handelAddToFav = async (e) => {
-    e.preventDefault();
-    try {
-      const user = await API.getCurrentUser();
-      const books = await API.getBooksByAttributes({ id: id });
-      const addedToCart = await API.addtoFavorite({
-        userId: user[0].userId,
-        productId: books[0].id
-      });
-      toast.success('Added to favorites successfully!');
-      console.log('Added to favorites:', addedToCart);
-    } catch (error) {
-      console.error('Error adding to favorites:', error.message);
-    }
-  };
-
 
   return (
     <div className="info-container">
       {bookData && (
         <div className="info-product-full">
-          <div className="info-image">{/*<img src={bookData.image} alt={bookData.name} />*/} </div>
+          <div className="info-image-container">
+            <img src={bookData.image} alt={bookData.name} className="info-image" />
+          </div>
+
           <div className="info-prodcut-container">
             <div className="info-product">
               <div className="info-product-name">{bookData.name}</div>
               <div className="info-product-rate-status">
-                <div className="info-product-rate">{reviews.length} Reviews</div>
+                <div className="info-product-genre">{reviews.length} Reviews</div>
                 <div className="info-product-line-split"></div>
-                <div className="info-product-status">
+                <div className="info-product-genre">
                   {checkStatus ? <div>For sale</div> : <div>Sold</div>}
                 </div>
+                <div className="info-product-line-split"></div>
+                <div className="info-product-genre">{bookData.genre}</div>
               </div>
+
               <div className="info-product-price">{bookData.price} VND</div>
-              <div className="info-des">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</div>
+              <div className="info-des">Want to instantly capture readers? No matter who you are or what genre your book falls into—nothing beats getting engrossed in a book description that leaves a reader wanting more. Short and long book descriptions both serve a purpose—to make you and your book look good. Before you start writing, here are a few things you need to know.</div>
               <div className="info-line"></div>
               <div className="info-access">
                 <Link to="/checkout" className="info-buy">

@@ -18,22 +18,24 @@
     gap: 111px;
 }
 
-.info-image {
-    display: flex;
-    border-radius: 5px;
+.info-image-container {
     width: 500px;
     height: 500px;
-    padding: 142px 111px 143px 111px;
-    justify-content: center;
+    display: flex;
     align-items: center;
-    flex-shrink: 0;
-    background-color: #c2c2c2;
+    justify-content: center;
+    background-color: #f6f5f5;
+}
+
+.info-image {
+    height: 300px;
+    width: auto;
 }
 
 .info-product-name {
     color: var(--Text2, #000);
     font-family: Raleway;
-    font-size: 36px;
+    font-size: 30px;
     font-style: normal;
     font-weight: 600;
     line-height: 24px; /* 100% */
@@ -53,7 +55,7 @@
 .info-product-line-split {
     width: 1px;
     height: 16px;
-    border-left: 1px solid #0c2d48;
+    border-left: 2px solid #0c2d48;
     opacity: 0.5;
 }
 
@@ -77,21 +79,11 @@
 .info-product-price {
     color: var(--Text2, #000);
     font-family: Raleway;
-    font-size: 24px;
+    font-size: 30px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 700;
     line-height: 24px; /* 100% */
     letter-spacing: 0.72px;
-}
-
-.info-des {
-    color: #000;
-    font-family: Raleway;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 21px; /* 150% */
-    width: 373px;
 }
 
 .info-product {
@@ -104,10 +96,11 @@
 .info-des {
     color: #000;
     font-family: Raleway;
-    font-size: 14px;
+    font-size: 15px;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 600;
     line-height: 21px; /* 150% */
+    width: 373px;
 }
 
 .info-line {
@@ -133,6 +126,7 @@
     font-family: Raleway;
     font-size: 16px;
     font-style: normal;
+    font-weight: 600;
     line-height: 24px; /* 150% */
     border-width: 0;
     text-decoration: none;
@@ -149,11 +143,12 @@
     align-items: center;
     gap: 10px;
     border-radius: 4px;
-    border: 1px solid #0c2d48;
+    border: 2px solid #0c2d48;
     color: #0c2d48;
     font-family: Raleway;
     font-size: 16px;
     font-style: normal;
+    font-weight: 800;
     line-height: 24px;
 }
 
@@ -166,7 +161,7 @@
     align-items: center;
     font-size: 20px;
     border-radius: 4px;
-    border: 1px solid #0c2d48;
+    border: 2px solid #0c2d48;
 }
 
 .info-access {
@@ -274,12 +269,13 @@
     flex-direction: column;
     gap: 10px;
     justify-content: center;
+    font-size: 20px;
 }
 
 .info-user-comment {
-    color: var(--Text1, #7d8184);
+    color: var(--Text1, #595d5f);
     font-family: Raleway;
-    font-size: 18px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: 26px; /* 130% */
@@ -294,21 +290,6 @@
     font-weight: 600;
     line-height: 24px; /* 100% */
     letter-spacing: 0.72px;
-}
-
-.info-user-photo {
-    display: flex;
-    width: 60px;
-    height: 60px;
-    flex-shrink: 0;
-    border-radius: 60px;
-    background-color: #c2c2c2;
-}
-
-.info-user-photo-container {
-    display: flex;
-    align-items: flex-start;
-    margin-top: 33px;
 }
 
 .info-reco {
@@ -347,11 +328,14 @@
     justify-content: center;
     gap: 20px;
     border: 2px solid #ffffff;
+    color: black;
+    text-decoration: none;
 }
 
 .info-product-reco-photo-container {
     background-color: #f6f5f5;
     width: 150px;
+    height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -359,7 +343,7 @@
 }
 
 .info-product-reco-photo {
-    width: 82px;
+    width: auto;
     height: 129px;
     background-color: #c2c2c2;
 }
@@ -378,7 +362,7 @@
     font-family: Raleway;
     font-size: 16px;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 700;
     line-height: 24px;
 }
 
@@ -463,4 +447,16 @@ button {
     transition: background-color 0.3s ease;
     background-color: #ececec;
     border-radius: 5px;
+}
+
+.info-product-genre {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+}
+
+.info-product-genre {
+    font-family: Raleway;
+    font-weight: 600;
+    color: var(--Button2, #0c2d48);
 }
