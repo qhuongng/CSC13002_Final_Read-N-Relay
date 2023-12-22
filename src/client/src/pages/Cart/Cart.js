@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 const Cart = () => {
     const [carts, setCart] = useState([]);
     const [CartProfile, setCartProfile] = useState(null);
-
+    const [TPrice, setTPrice] = useState(null)
     const fetchData = async () => {
         try {
             // Fetch CurrentUserId
@@ -32,6 +32,20 @@ const Cart = () => {
     useEffect(() => {
         fetchData();
     }, []);
+
+    useEffect(() => {
+        const Total = TotalPrice();
+        setTPrice(Total);
+    }, [carts]); // useEffect để tính toán tổng giá trị khi carts thay đổi
+
+
+    const TotalPrice = () => {
+        let Money = 0;
+        for (const Item of carts) {
+            Money = Money + Item.price;
+        }
+        return Money;
+    };
 
     const handleRemove = (Id) => {
         API.UpdateCartsByUserID(CartProfile[0].userId, CartProfile[0].productId.filter(item => item !== Id))
@@ -85,7 +99,7 @@ const Cart = () => {
                 <div className="table-title">Cart total</div>
                 <div className="table-item">
                     <div className="table-item-title">Subtotal</div>
-                    <div className="table-item-value">60.000VND</div>
+                    <div className="table-item-value">{TPrice}VND</div>
                 </div>
                 <div className="table-item">
                     <div className="table-item-title">Shipping</div>
@@ -93,7 +107,7 @@ const Cart = () => {
                 </div>
                 <div className="table-item">
                     <div className="table-item-title">Total</div>
-                    <div className="table-item-value">70.000VND</div>
+                    <div className="table-item-value">{TPrice + 10000}VND</div>
                 </div>
                 <Link to="/checkout" className="checkout-button">
                     Proceed to checkout

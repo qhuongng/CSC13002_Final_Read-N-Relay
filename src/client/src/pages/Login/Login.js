@@ -12,19 +12,27 @@ const Login = () => {
   const [error, setError] = useState("");
 
   const handleLogin = async () => {
+    const regex = /\w+@gmail\.com/;
     setError("");
     try {
       const userProfile = await API.getUserProfileByAttributes({ email: email, password: password });
-
-      if (userProfile && userProfile.length > 0) {
+      if (password === '') {
+        console.log("Please fill in all fields !");
+        setError("Please fill in all fields !");
+      }
+      else if (!regex.test(email)) {
+        console.log("Invalid email format !");
+        setError("Invalid email format !");
+        setEmail("");
+      }
+      else if (userProfile && userProfile.length > 0) {
         // User authenticated, redirect to Home
-        console.log("Login successful");
+        console.log("Login successful !");
         await API.UpdateCurrentUser(userProfile[0].id);
         navigate('/');
       } else {
-        console.log("Invalid email or password");
-        setError("Invalid email or password");
-        setEmail("");
+        console.log("Invalid email or password !");
+        setError("Invalid email or password !");
         setPassword("");
       }
     } catch (error) {

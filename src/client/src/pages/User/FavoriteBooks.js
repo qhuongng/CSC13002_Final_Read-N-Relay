@@ -31,7 +31,7 @@ const FavoriteBooks = () => {
                 </div>
                 <div className="fav-table-row-item">{book.price} VND</div>
                 <div className="fav-table-row-item">
-                    <Link to="/books/id" className="fav-view-button">
+                    <Link to={`/books/${book.id}`} className="fav-view-button">
                         View info
                     </Link>
                 </div>
