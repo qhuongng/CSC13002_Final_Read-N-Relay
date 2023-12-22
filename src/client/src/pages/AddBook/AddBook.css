@@ -51,24 +51,29 @@
     border-radius: 0 0 5px 5px;
 }
 
-.book-overlay-icon {
-    width: 25px;
+.book-overlay-text {
+    width: 100%;
     height: 25px;
     position: absolute;
-    bottom: 12px;
-    right: 45%;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-image: url("../../../public/edit.png");
+    bottom: 8px;
+    left: 31%;
+    color: #fff;
     z-index: 999;
 }
 
-.add-book-photo {
+.add-book-photo-container {
     position: absolute;
     width: 100%;
     height: 100%;
     background-color: #c2c2c2;
     border-radius: 5px;
+    overflow: hidden;
+}
+
+.add-book-photo {
+    position: absolute;
+    width: 100%;
+    min-height: 100%;
 }
 
 .add-book-form {
@@ -76,6 +81,12 @@
     width: 65%;
     flex-direction: column;
     gap: 30px;
+}
+
+.add-book-form p.hint {
+    color: #9a9a9a;
+    font-size: 14px;
+    margin-top: 10px;
 }
 
 .price-input {

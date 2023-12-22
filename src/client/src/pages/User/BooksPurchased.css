@@ -46,11 +46,17 @@
     margin-left: auto;
 }
 
-.bought-item-photo {
-    width: 60px;
-    height: 90px;
+.bought-item-photo-container {
+    width: 40%;
+    height: 100px;
     background-color: #c2c2c2;
     border-radius: 5px;
+    overflow: hidden;
+}
+
+.bought-item-photo {
+    width: 100%;
+    min-height: 100%;
 }
 
 .bought-item-name {
