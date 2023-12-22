@@ -386,7 +386,7 @@
     font-family: Raleway;
     font-size: 16px;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 700;
     line-height: 24px; /* 150% */
 }
 
@@ -453,10 +453,25 @@ button {
     display: flex;
     flex-direction: row;
     gap: 12px;
-}
-
-.info-product-genre {
     font-family: Raleway;
     font-weight: 600;
     color: var(--Button2, #0c2d48);
+}
+
+.info-product-sale {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    font-family: Raleway;
+    font-weight: 800;
+    color: var(--Button2, #00ff37); 
+}
+
+.info-product-sold {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    font-family: Raleway;
+    font-weight: 800;
+    color: var(--Button2, #ff0000); 
 }

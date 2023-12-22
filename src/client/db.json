@@ -65,6 +65,12 @@
       "email": "xam@gmail.com",
       "password": "123",
       "id": 9
+    },
+    {
+      "name": "ABC",
+      "email": "A@gmail.com",
+      "password": "123",
+      "id": 10
     }
   ],
   "products": [
@@ -84,7 +90,7 @@
       "price": 88000,
       "userId": 1,
       "publishedAt": "10/02/2023",
-      "status": "available",
+      "status": "sold",
       "image": "https://m.media-amazon.com/images/I/71OZY035QKL._AC_UF1000,1000_QL80_.jpg",
       "genre": "Mystery"
     },
@@ -229,7 +235,12 @@
     {
       "id": 1,
       "userId": 4,
-      "productId": []
+      "productId": [
+        11,
+        11,
+        1,
+        1
+      ]
     },
     {
       "id": 2,
@@ -291,12 +302,26 @@
         6
       ],
       "id": 2
+    },
+    {
+      "userId": 4,
+      "productId": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "id": 3
     }
   ],
   "currentUser": [
     {
       "id": 0,
-      "userId": -1
+      "userId": 4
     }
   ]
 }
