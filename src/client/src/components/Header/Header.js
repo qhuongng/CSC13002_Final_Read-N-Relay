@@ -18,12 +18,23 @@ class Header extends Component {
         this.fetchData();
     }
 
+    componentDidUpdate(prevProps) {
+        // Kiểm tra nếu location thay đổi (navigate đến trang khác)
+        if (this.props.location.pathname === "/" && prevProps.location.pathname === "/login") {
+            if (this.props.location !== prevProps.location) {
+                console.log(this.props.location)
+                console.log(prevProps.location)
+                this.fetchData();
+            }
+        }
+    }
+
     fetchData = async () => {
         try {
             // Fetch CurrentUserId
             const user = await API.getCurrentUser();
             // Do something with user data if needed
-            if (user[0].userId !== "-1")
+            if (user[0].userId !== -1)
                 this.setState({ isLoggedIn: true });
             else
                 this.setState({ isLoggedIn: false });
