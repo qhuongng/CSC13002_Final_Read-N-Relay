@@ -1,40 +1,34 @@
 import "./UserProfile.css";
-import * as API from "../../utils/API.js"
+import * as API from "../../utils/API.js";
 import { useEffect, useState } from "react";
 
 const UserProfile = () => {
-    const [userProfile,setUserProfile] =useState(null)
+    const [userProfile, setUserProfile] = useState(null);
     useEffect(() => {
         const fetchData = async () => {
-          try {
-            //Fetch Current User
-            const user= await API.getCurrentUser();
-            
-            //Fetch cart
-            const Profile=await API.getUserProfileByAttributes({id: user[0].userId})
-            setUserProfile(Profile)
-          } catch (error) {
-            console.error('Error fetching data:', error);
-          }
+            try {
+                //Fetch Current User
+                const user = await API.getCurrentUser();
+
+                // Fetch cart
+                const Profile = await API.getUserProfileByAttributes({ id: user[0].userId });
+                setUserProfile(Profile);
+                console.log(user);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
         };
+
         fetchData();
     }, []);
+
     return (
         <div className="profile-container">
-            <div className="profile-photo-group">
-                <div className="edit-overlay">
-                    <div className="overlay-icon"></div>
-                    <div className="overlay-bg"></div>
-                </div>
-                <div className="profile-photo"></div>
-            </div>
             <div className="info-group">
-                <div className="info-group-item-name">
+                <div className="info-group-item">
                     <label>Full name</label>
                     <input type="text" id="fname" placeholder="Full name" required />
                 </div>
-            </div>
-            <div className="info-group">
                 <div className="info-group-item">
                     <label htmlFor="email">Email</label>
                     <input type="email" id="email" placeholder="Email" required />
