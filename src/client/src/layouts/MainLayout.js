@@ -16,6 +16,7 @@ import FavoriteBooks from "../pages/User/FavoriteBooks";
 import Cart from "../pages/Cart/Cart";
 import Checkout from "../pages/Checkout/Checkout";
 import AddBook from "../pages/AddBook/AddBook";
+import ResultSearchPage from "../pages/ResultSearchPage/ResultSearchPage";
 
 const MainLayout = () => {
     return (
@@ -32,6 +33,7 @@ const MainLayout = () => {
                 <Route path="/books/:id" element={<BookInfo />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/search" element={<ResultSearchPage />} />
                 <Route path="/user" element={<UserLayout />}>
                     <Route path="profile" element={<UserProfile />} />
                     <Route path="selling" element={<BooksSelling />} />

@@ -1,11 +1,13 @@
 import { FaSearch } from "react-icons/fa";
 import React, { Component } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import withRouter from "../../utils/HookWrapper";
 import * as API from "../../utils/API.js"
 import "./Header.css";
 
 class Header extends Component {
+    navigate = useNavigate();
+
     constructor(props) {
         super(props);
         this.state = {
@@ -57,9 +59,8 @@ class Header extends Component {
     };
 
     handleSearch = () => {
-        // Implement your search logic here
         console.log("Searching for:", this.state.searchValue);
-        // You can add additional logic here, such as making an API call or updating state.
+        this.navigate('/search')
     };
 
     render() {
