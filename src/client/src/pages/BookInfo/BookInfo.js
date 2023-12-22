@@ -4,10 +4,8 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
 import { useParams } from "react-router-dom";
-import { toast } from "react-toastify";
-import handleAddToCart from "../../utils/API.js";
-import handelAddToFav from "../../utils/API.js";
-import "react-toastify/dist/ReactToastify.css";
+import Alert from "../../components/Alert/Alert";
+
 
 const BookInfo = () => {
     const { id } = useParams();
@@ -17,7 +15,9 @@ const BookInfo = () => {
     const [user, setUser] = useState(null);
     const [ReviewUser, setReviewUser] = useState([]);
     const [booksMightLike, setBooksMightLike] = useState([]);
-    const [successCart, setSuccessCart] = useState("");
+    const [cartAlert, setcartAlert] = useState("");
+    const [favAlert, setfavAlert] = useState("");
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -80,6 +80,43 @@ const BookInfo = () => {
         ));
     };
 
+    const handleAddToCart = async (e) => {
+        setcartAlert("");
+        e.preventDefault();
+        try {
+            const user = await API.getCurrentUser();
+            const books = await API.getBooksByAttributes({ id: id });
+            const addedToCart = await API.addtoCart({
+                userId: user[0].userId,
+                productId: books[0].id
+            });
+            setcartAlert('Added to cart successfully !');
+            console.log('Added to cart:', addedToCart);
+        } catch (error) {
+            setcartAlert('Error adding to cart');
+            console.error('Error adding to cart:', error.message);
+        }
+    };
+
+    const handelAddToFav = async (e) => {
+        setfavAlert("");
+        e.preventDefault();
+        try {
+            const user = await API.getCurrentUser();
+            const books = await API.getBooksByAttributes({ id: id });
+            const addedToCart = await API.addtoFavorite({
+                userId: user[0].userId,
+                productId: books[0].id
+            });
+            setfavAlert('Added to favorites successfully !');
+            console.log('Added to favorites:', addedToCart);
+        } catch (error) {
+            setfavAlert('Error adding to favorites !');
+            console.error('Error adding to favorites:', error.message);
+        }
+    };
+
+
     return (
         <div className="info-container">
             {bookData && (
@@ -109,9 +146,11 @@ const BookInfo = () => {
                                 <div className="info-add" onClick={handleAddToCart}>
                                     Add to cart
                                 </div>
+                                {cartAlert && <Alert message={cartAlert} type="notype" />}
                                 <div className="info-like" onClick={handelAddToFav}>
                                     <FaHeart className="info-like-icon" />
                                 </div>
+                                {favAlert && <Alert message={favAlert} type="notype" />}
                             </div>
                         </div>
                         <div className="info-shop"></div>

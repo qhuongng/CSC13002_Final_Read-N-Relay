@@ -14,11 +14,10 @@ const AddBook = () => {
     const [formData, setFormData] = useState({
         title: "",
         author: "",
-        genres: "",
+        genre: "",
         description: "",
         price: "",
-        image: "",
-        quantity: 1,
+        image: ""
     });
 
     useEffect(() => {}, []);
@@ -43,8 +42,7 @@ const AddBook = () => {
                 price: parseFloat(formData.price), // convert to float num
                 status: "available",
                 description: formData.description,
-                genres: formData.genre,
-                quantity: formData.quantity,
+                genre: formData.genre,
                 author: formData.author,
                 image: imgUrl,
             });
