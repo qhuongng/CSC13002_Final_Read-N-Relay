@@ -4,9 +4,8 @@ import { Link } from "react-router-dom";
 import Dropdown from "../../components/Dropdown/Dropdown";
 import axios from "axios";
 import * as API from "../../utils/API.js";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import Alert from "../../components/Alert/Alert";
 
 const AddBook = () => {
     const navigate = useNavigate();
@@ -19,6 +18,7 @@ const AddBook = () => {
         price: "",
         image: ""
     });
+    const [addAlert, setAddAlert] = useState("");
 
     useEffect(() => {}, []);
 
@@ -33,6 +33,7 @@ const AddBook = () => {
     };
 
     const handleSubmit = async (e) => {
+        setAddAlert("");
         e.preventDefault();
         try {
             const user = await API.getCurrentUser();
@@ -47,12 +48,12 @@ const AddBook = () => {
                 image: imgUrl,
             });
             // pop up notification
-            toast.success("Book added successfully");
+            setAddAlert('Added book successfully !');
             // navigate to home page
             navigate("/");
         } catch (error) {
             console.error("Error adding book:", error);
-            toast.error("Error adding book");
+            setAddAlert('Error adding book !');
         }
     };
 
@@ -121,7 +122,7 @@ const AddBook = () => {
                 <button onClick={handleSubmit} className="publish-button">
                     Publish
                 </button>
-                <ToastContainer />
+                {addAlert && <Alert message={addAlert} type="notype" />}
             </div>
         </div>
     );
