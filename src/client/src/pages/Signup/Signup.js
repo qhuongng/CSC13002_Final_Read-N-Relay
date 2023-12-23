@@ -6,7 +6,6 @@ import * as API from "../../utils/API.js";
 import { useNavigate } from 'react-router-dom';
 import Alert from "../../components/Alert/Alert";
 
-
 const Signup = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
