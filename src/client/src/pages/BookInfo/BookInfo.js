@@ -1,7 +1,7 @@
 import "./BookInfo.css";
 import * as API from "../../utils/API.js";
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import Alert from "../../components/Alert/Alert";
@@ -11,41 +11,48 @@ const BookInfo = () => {
     const { id } = useParams();
     const [bookData, setBookData] = useState(null);
     const [reviews, setReviews] = useState([]);
-    const [checkStatus, setCheckStatus] = useState([]);
+    const [checkStatus, setCheckStatus] = useState();
     const [user, setUser] = useState(null);
     const [ReviewUser, setReviewUser] = useState([]);
     const [booksMightLike, setBooksMightLike] = useState([]);
     const [cartAlert, setcartAlert] = useState("");
     const [favAlert, setfavAlert] = useState("");
+    const navigate = useNavigate();
+
+    const fetchData = async () => {
+        try {
+            // Fetch book details
+            const books = await API.getBooksByAttributes({ id: id });
+            setBookData(books[0]); // Assuming you want to display information for the first book
+            // Fetch reviews for the book
+            const bookReviews = await API.getBookReviews(id);
+            setReviews(bookReviews);
+            //Fetch book's user
+            const users = await API.getUserProfileByAttributes({ id: books[0].userId });
+            setUser(users); // Assuming you want to display information for the first book
+            //Fetch reviews' user
+            const reviewUsers = [];
+            for (const Review of bookReviews) {
+                const reviewUser = await API.getUserProfileByAttributes({ id: Review.userId });
+                reviewUsers[Review.userId] = reviewUser[0];
+            }
+            setReviewUser(reviewUsers);
+            //Fetch Books Might Like
+            const booksMightLike = await API.getBooksByPage(2, 5);
+            setBooksMightLike(booksMightLike);
+
+            if (bookData && bookData.status === "available") {
+                setCheckStatus(true);
+            } else {
+                setCheckStatus(false);
+            }
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    };
 
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                // Fetch book details
-                const books = await API.getBooksByAttributes({ id: id });
-                setBookData(books[0]); // Assuming you want to display information for the first book
-                // Fetch reviews for the book
-                const bookReviews = await API.getBookReviews(id);
-                setReviews(bookReviews);
-                //Fetch book's user
-                const users = await API.getUserProfileByAttributes({ id: books[0].userId });
-                setUser(users); // Assuming you want to display information for the first book
-                //Fetch reviews' user
-                const reviewUsers = [];
-                for (const Review of bookReviews) {
-                    const reviewUser = await API.getUserProfileByAttributes({ id: Review.userId });
-                    reviewUsers[Review.userId] = reviewUser[0];
-                }
-                setReviewUser(reviewUsers);
-                //Fetch Books Might Like
-                const booksMightLike = await API.getBooksByPage(2, 5);
-                setBooksMightLike(booksMightLike);
-            } catch (error) {
-                console.error("Error fetching data:", error);
-            }
-        };
-
         fetchData();
     }, [id]);
 
@@ -98,6 +105,23 @@ const BookInfo = () => {
         }
     };
 
+    const handleBuyNow = async (e) => {
+        setcartAlert("");
+        e.preventDefault();
+        try {
+            const user = await API.getCurrentUser();
+            const books = await API.getBooksByAttributes({ id: id });
+            const addedToCart = await API.addtoCart({
+                userId: user[0].userId,
+                productId: books[0].id
+            });
+            navigate('/checkout');
+        } catch (error) {
+            setcartAlert('Error buying now');
+            console.error('Error buying now', error.message);
+        }
+    };
+
     const handelAddToFav = async (e) => {
         setfavAlert("");
         e.preventDefault();
@@ -131,7 +155,7 @@ const BookInfo = () => {
                             <div className="info-product-rate-status">
                                 <div className="info-product-genre">{reviews.length} Reviews</div>
                                 <div className="info-product-line-split"></div>
-                                <div className="info-product-genre">{checkStatus ? <div>For sale</div> : <div>Sold</div>}</div>
+                                {checkStatus ? <div className="info-product-sale">For sale</div> : <div className="info-product-sold">Sold</div>}
                                 <div className="info-product-line-split"></div>
                                 <div className="info-product-genre">{bookData.genre}</div>
                             </div>
@@ -140,9 +164,9 @@ const BookInfo = () => {
                             <div className="info-des">Want to instantly capture readers? No matter who you are or what genre your book falls into—nothing beats getting engrossed in a book description that leaves a reader wanting more. Short and long book descriptions both serve a purpose—to make you and your book look good. Before you start writing, here are a few things you need to know.</div>
                             <div className="info-line"></div>
                             <div className="info-access">
-                                <Link to="/checkout" className="info-buy">
+                                <div className="info-buy" onClick={handleBuyNow}>
                                     Buy now
-                                </Link>
+                                </div>
                                 <div className="info-add" onClick={handleAddToCart}>
                                     Add to cart
                                 </div>
@@ -153,7 +177,6 @@ const BookInfo = () => {
                                 {favAlert && <Alert message={favAlert} type="notype" />}
                             </div>
                         </div>
-                        <div className="info-shop"></div>
                     </div>
                 </div>
             )}

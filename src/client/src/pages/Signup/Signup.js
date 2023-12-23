@@ -40,7 +40,7 @@ const Signup = () => {
     e.preventDefault();
 
     // kiểm tra định dạng email 
-    const regex =/\w+@gmail\.com/;
+    const regex = /\w+@gmail\.com/;
     const isValidEmail = regex.test(formData.Email);
     if (!isValidEmail) {
       setErrorMessage('Invalid email format !');
@@ -60,15 +60,15 @@ const Signup = () => {
           setErrorMessage('Password do not match !');
           return;
         }
-        else{
+        else {
           // kiểm tra có field nào để trống không
           for (const key in formData) {
             if (formData[key] === '') {
-              setErrorMessage('Please fill in all fields!');
+              setErrorMessage('Please fill in all fields !');
               return;
             }
           }
-        
+
         }
       }
 

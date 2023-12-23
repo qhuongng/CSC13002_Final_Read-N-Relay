@@ -5,30 +5,45 @@ import { useState, useEffect } from "react";
 
 
 const Checkout = () => {
-    const [carts,setCart]=useState([])
-    const [orders,setOrders]=useState(null)
+    const [carts, setCart] = useState([])
+    const [orders, setOrders] = useState(null)
+    const [TPrice, setTPrice] = useState(null)
 
-    useEffect(()=>{
-        const fetchData = async () =>{
+    const fetchData = async () => {
         // Fetch CurrentUserId
         const user = await API.getCurrentUser();
 
         // Fetch Orders using userId
         const orderP = await API.getUserOrdersProfile(user[0].userId);
         setOrders(orderP);
-        
+
         // Fetch Cart using userId
         const cartBooks = await API.getUserCart(user[0].userId);
         setCart(cartBooks);
+    }
 
-        }
+    useEffect(() => {
         fetchData();
-    },[]);
+    }, []);
+
+    useEffect(() => {
+        const Total = TotalPrice();
+        setTPrice(Total);
+    }, [carts]);
+
+    const TotalPrice = () => {
+        let Money = 0;
+        for (const Item of carts) {
+            Money = Money + Item.price;
+        }
+        return Money;
+    };
+
     const spreadSmallCartItems = () => {
         return carts.map((cart, index) => (
             <div className="small-cart-row" key={index}>
                 <div className="cart-row-item">
-                    <div className="item-photo">{/*<img src={cart.image} alt={cart.name} className="row-item-image" />*/}</div>
+                    <img src={cart.image} alt={cart.name} className="item-photo" />
                     <div className="item-name">{cart.name}</div>
                 </div>
                 <div className="cart-row-item">{cart.price} VND</div>
@@ -37,23 +52,21 @@ const Checkout = () => {
     };
     const HandleCheckOut = async () => {
         try {
-          for (const cartItem of carts) {
-            // Đối với mỗi phần tử trong carts, cập nhật số lượng sách
-            const updatedQuantity = cartItem.quantity - 1;
-      
-            // Sử dụng API để cập nhật số lượng sách
-            await API.UpdateBooksByID({id:cartItem.id,quantity: updatedQuantity });
+            for (const cartItem of carts) {
 
-            // Thêm Orders
-            const listOfIds = orders[0].productId.concat(carts.map(item => item.id));
-            await API.UpdateOrdersByUserID(orders[0].userId, listOfIds);
-          }
-      
-          // Đặt các bước xử lý khác ở đây nếu cần thiết sau khi đã cập nhật xong
+                // Sử dụng API để cập nhật số lượng sách
+                await API.UpdateBooksByID({ id: cartItem.id, status: "sold" });
+
+                // Thêm Orders
+                const listOfIds = orders[0].productId.concat(carts.map(item => item.id));
+                await API.UpdateOrdersByUserID(orders[0].userId, listOfIds);
+            }
+
+            // Đặt các bước xử lý khác ở đây nếu cần thiết sau khi đã cập nhật xong
         } catch (error) {
-          console.error('Error updating books:', error);
+            console.error('Error updating books:', error);
         }
-      };
+    };
     return (
         <div className="checkout-container">
             <div className="billing-form">
@@ -88,15 +101,15 @@ const Checkout = () => {
                 <div className="small-total-table">
                     <div className="small-total-item">
                         <div>Subtotal</div>
-                        <div>60.000VND</div>
+                        <div>{TPrice}VND</div>
                     </div>
                     <div className="small-total-item">
                         <div>Shipping</div>
-                        <div>10.000VND</div>
+                        <div>10000VND</div>
                     </div>
                     <div className="small-total-item">
                         <div>Total</div>
-                        <div>70.000VND</div>
+                        <div>{TPrice + 10000}VND</div>
                     </div>
                 </div>
                 <div className="payment-option">
@@ -113,7 +126,7 @@ const Checkout = () => {
                         <label htmlFor="cod">Cash on delivery</label>
                     </div>
                 </div>
-                <Link to="/" state={{ openPopup: true, message: "Order(s) placed successfully.", type: "order" }} className="order-button" onClick={()=>{HandleCheckOut()}}>
+                <Link to="/" state={{ openPopup: true, message: "Order(s) placed successfully.", type: "order" }} className="order-button" onClick={() => { HandleCheckOut() }}>
                     Place order
                 </Link>
             </div>
