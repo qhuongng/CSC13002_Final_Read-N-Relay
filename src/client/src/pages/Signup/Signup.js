@@ -39,36 +39,34 @@ const Signup = () => {
     setErrorMessage("");
     e.preventDefault();
 
-    // kiểm tra định dạng email 
-    const regex = /\w+@gmail\.com/;
-    const isValidEmail = regex.test(formData.Email);
-    if (!isValidEmail) {
-      setErrorMessage('Invalid email format !');
-      return;
-    }
-    else {
-      // kiểm tra sự tồn tại của email
-      const emailCheck = await checkEmailExists(formData.Email);
-      if (emailCheck) {
-        setErrorMessage('User already exists !');
+    // kiểm tra có field nào để trống không
+    for (const key in formData) {
+      if (formData[key] === '') {
+        setErrorMessage('Please fill in all fields !');
         return;
       }
       else {
-        // kiểm tra xem password và repeat password có match không
-        setErrorMessage("");
-        if (formData.Password != formData.RepeatPassword) {
-          setErrorMessage('Password do not match !');
+        // kiểm tra định dạng email 
+        const regex = /\w+@gmail\.com/;
+        const isValidEmail = regex.test(formData.Email);
+        if (!isValidEmail) {
+          setErrorMessage('Invalid email format !');
           return;
         }
-        else {
-          // kiểm tra có field nào để trống không
-          for (const key in formData) {
-            if (formData[key] === '') {
-              setErrorMessage('Please fill in all fields !');
+        else {  // kiểm tra sự tồn tại của email
+          const emailCheck = await checkEmailExists(formData.Email);
+          if (emailCheck) {
+            setErrorMessage('User already exists !');
+            return;
+          }
+          else {
+            // kiểm tra xem password và repeat password có match không
+            setErrorMessage("");
+            if (formData.Password != formData.RepeatPassword) {
+              setErrorMessage('Password do not match !');
               return;
             }
           }
-
         }
       }
 
