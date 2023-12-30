@@ -36,54 +36,65 @@ const Signup = () => {
 
 
   const handleSubmit = async (e) => {
-    setErrorMessage("");
     e.preventDefault();
+    setErrorMessage("");
+    console.log(formData)
 
     // kiểm tra có field nào để trống không
-    for (const key in formData) {
-      if (formData[key] === '') {
-        setErrorMessage('Please fill in all fields !');
+    var checkEmpty = false;
+    for (var key in formData) {
+      if (formData[key] === "") {
+        console.log('not fill in all');
+        checkEmpty = true;
+        break;
+      }
+    }
+    if (checkEmpty == true) {
+      setErrorMessage('Please fill in all fields !');
+      return;
+    }
+    else {
+      // kiểm tra định dạng email 
+      const regex = /\w+@gmail\.com/;
+      const isValidEmail = regex.test(formData.Email);
+      if (!isValidEmail) {
+        setErrorMessage('Invalid email format !');
         return;
       }
       else {
-        // kiểm tra định dạng email 
-        const regex = /\w+@gmail\.com/;
-        const isValidEmail = regex.test(formData.Email);
-        if (!isValidEmail) {
-          setErrorMessage('Invalid email format !');
+        // kiểm tra sự tồn tại của email
+        const emailCheck = await checkEmailExists(formData.Email);
+        if (emailCheck) {
+          setErrorMessage('User already exists !');
           return;
         }
-        else {  // kiểm tra sự tồn tại của email
-          const emailCheck = await checkEmailExists(formData.Email);
-          if (emailCheck) {
-            setErrorMessage('User already exists !');
+        else {
+          // kiểm tra xem password và repeat password có match không
+          if (formData.Password != formData.RepeatPassword) {
+            setErrorMessage('Password do not match !');
             return;
           }
           else {
-            // kiểm tra xem password và repeat password có match không
-            setErrorMessage("");
-            if (formData.Password != formData.RepeatPassword) {
-              setErrorMessage('Password do not match !');
-              return;
+            // pass tất cả đk -> sign up
+            try {
+              const response = await API.signupUser({
+                name: formData.Name,
+                email: formData.Email,
+                password: formData.Password
+              });
+
+              console.log('User signed up successfully:', response);
+              // navigate to login page
+              navigate("/login");
+
+            } catch (error) {
+              console.error('Error signing up user:', error);
             }
           }
         }
       }
-
-      try {
-        const response = await API.signupUser({
-          name: formData.Name,
-          email: formData.Email,
-          password: formData.Password
-        });
-
-        console.log('User signed up successfully:', response);
-        navigate("/login");
-
-      } catch (error) {
-        console.error('Error signing up user:', error);
-      }
     }
+    setErrorMessage('');
   };
 
   return (

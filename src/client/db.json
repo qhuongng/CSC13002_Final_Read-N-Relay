@@ -71,6 +71,12 @@
       "email": "A@gmail.com",
       "password": "123",
       "id": 10
+    },
+    {
+      "name": "1234",
+      "email": "123@gmail.com",
+      "password": "123",
+      "id": 11
     }
   ],
   "products": [
@@ -193,28 +199,6 @@
       "status": "available",
       "image": "https://m.media-amazon.com/images/I/71Jk3baRdnL._AC_UF1000,1000_QL80_.jpg",
       "genre": "Fantasy"
-    },
-    {
-      "userId": 1,
-      "name": "hi hey",
-      "price": 1,
-      "status": "available",
-      "description": "a",
-      "genre": "Biography",
-      "author": "a",
-      "image": "",
-      "id": 12
-    },
-    {
-      "userId": 1,
-      "name": "aádfasf",
-      "price": 12,
-      "status": "available",
-      "description": "sdfasd",
-      "genre": "Action",
-      "author": "ádfa",
-      "image": "",
-      "id": 13
     }
   ],
   "reviews": [
@@ -222,25 +206,25 @@
       "id": 0,
       "productId": 0,
       "userId": 1,
-      "text": "The ending is so good. relieve all the negativity and grayness around the character. Whether your life is happy or not depends on your own perspective, not the influence of your surroundings. I want to cry when the main character finds what he needs. Now let's find a movie to watch. you should read it a lot."
+      "text": "Cái kết hay quá! Giải tỏa mọi tiêu cực, u ám xung quanh nhân vật. Tôi muốn khóc khi biết rằng mình đã đọc hết quyển sách này. Các bạn rất nên đọc thử bộ này nhé."
     },
     {
       "id": 1,
       "productId": 0,
       "userId": 2,
-      "text": "Packed securely, the book is not only cheap but also comes with bookcare. The box they packed for me was too big, but it's okay, the book is very beautiful, not bent anywhere, I haven't seen it yet. Cute shipper delivered on time, good service from the shop, 5 stars"
+      "text": "Dù là người lớn hay vẫn còn bé dại, hãy một lần đọc cuốn này đii. Chúng ta sẽ được lên chuyến tàu tìm về quá khứ, tìm về những kí ức tuổi thơ đáng nhớ và học được thật nhiều bài học về tình yêu thương."
     },
     {
       "id": 2,
       "productId": 1,
       "userId": 3,
-      "text": "Shop đóng gói cẩn thận, giao hàng đúng theo thời gian dự kiến. cảm ơn shop!"
+      "text": "Sách hay, nội dung ý nghĩa và không lan man, đáng để đọc nhé. Nội dung vừa dễ thương vừa sâu sắc, tôi nghĩ nó phù hợp với mọi độ tuổi"
     },
     {
       "id": 2,
       "productId": 2,
       "userId": 4,
-      "text": "Sách mới và được bọc rất cẩn thận. Chống shock đầy đủ, hộp carton dày dặn chứ không như những lần mua hàng được cảnh báo của các bạn mình đã đặt trước đó. Hoàn toàn hài lòng nha !"
+      "text": "Sách nội dung hay, tôi rất thích, tôi dường như tìm thấy bản thân mình trong nhân vật. Tôi nghĩ sách này rất phù hợp với các bạn trẻ. Những mẩu chuyện vừa hài hước và ý nghĩa lắm."
     }
   ],
   "carts": [
@@ -272,13 +256,18 @@
     {
       "userId": 1,
       "productId": [
-        1,
-        1,
-        5,
-        0,
+        18,
         6
       ],
       "id": 3
+    },
+    {
+      "userId": -1,
+      "productId": [
+        2,
+        2
+      ],
+      "id": 4
     }
   ],
   "orders": [
@@ -321,6 +310,7 @@
         1,
         5,
         0,
+        6,
         6
       ],
       "id": 2
@@ -344,7 +334,6 @@
     {
       "id": 0,
       "userId": 1
-
     }
   ]
 }

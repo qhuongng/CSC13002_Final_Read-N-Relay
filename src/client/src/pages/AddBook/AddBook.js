@@ -20,7 +20,7 @@ const AddBook = () => {
     });
     const [addAlert, setAddAlert] = useState("");
 
-    useEffect(() => {}, []);
+    useEffect(() => { }, []);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -32,13 +32,51 @@ const AddBook = () => {
         setFormData({ ...formData, genre: selectedItem });
     };
 
+
     const handleSubmit = async (e) => {
         setAddAlert("");
+        formData.image = imgUrl;
         e.preventDefault();
         try {
-            const user = await API.getCurrentUser();
+            const currentUser = await API.getCurrentUser();
+            // check img
+            console.log(formData.image);
+            // kiểm tra có fill đầy đủ thông tin không
+            var checkEmpty = false;
+            for (const key in formData) {
+                if (formData[key] === '') {
+                    checkEmpty = true;
+                    break;
+                }
+            }
+            // không fill đủ thông tin
+            if (checkEmpty == true) {
+                setAddAlert('Please fill in all fields !');
+                return;
+            }
+            // kiểm tra giới hạn độ dài description
+            if (formData.description.length > 300) {
+                setAddAlert('Description should not exceed 300 words!');
+                return;
+            }
+
+            // kiểm tra xem người dùng này đã post sách này chưa ? cùng tên cùng giá
+            const book = await axios.get(`${API.API_BASE_URL}/products`, {
+                params: {
+                    userId: currentUser[0].userId,
+                    name: formData.title,
+                    price: formData.price
+                }
+            });
+            if (book.status === 200 && book.data && book.data.length > 0)
+            {
+                setAddAlert('This book already exists!');
+                return;
+            }
+
+            // post book
             const response = await API.addBook({
-                userId: user[0].userId,
+                userId: currentUser[0].userId,
                 name: formData.title,
                 price: parseFloat(formData.price), // convert to float num
                 status: "available",
@@ -63,7 +101,7 @@ const AddBook = () => {
         try {
             var proxyUrl = "http://localhost:8080/";
             const apiKey = process.env.REACT_APP_IMAGE_API_KEY;
-            const apiUrl = `https://serpapi.com/search.json?q=${formData.title}.replace(/ /g, "+")}+cover&engine=google_images&ijn=0&key=${apiKey}`;
+            const apiUrl = `https://serpapi.com/search.json?q=${formData.title.replace(/ /g, "+")}+cover&engine=google_images&ijn=0&key=${apiKey}`;
 
             const response = await fetch(proxyUrl + apiUrl);
             const data = await response.json();
