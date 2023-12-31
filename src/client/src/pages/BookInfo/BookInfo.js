@@ -41,11 +41,12 @@ const BookInfo = () => {
             const booksMightLike = await API.getBooksByPage(2, 5);
             setBooksMightLike(booksMightLike);
 
-            if (bookData && bookData.status === "available") {
+            if (books[0].status.toString() == "available") {
                 setCheckStatus(true);
             } else {
                 setCheckStatus(false);
             }
+            console.log(bookData)
         } catch (error) {
             console.error("Error fetching data:", error);
         }
