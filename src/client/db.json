@@ -39,44 +39,8 @@
       "id": 5,
       "name": "Groot Groot",
       "email": "groot@gmail.com",
-      "password": "iamgroot",
+      "password": "groot",
       "address": "01 Nguyễn Văn Cừ, quận 1, TP HCM"
-    },
-    {
-      "name": "HONDA BR-V",
-      "email": "abc@gmail,com",
-      "password": "123",
-      "id": 6
-    },
-    {
-      "name": "a",
-      "email": "slaysquad@gmail.com",
-      "password": "123",
-      "id": 7
-    },
-    {
-      "name": "fasdfa",
-      "email": "slaysquad@gmail.com",
-      "password": "1234",
-      "id": 8
-    },
-    {
-      "name": "ai",
-      "email": "xam@gmail.com",
-      "password": "123",
-      "id": 9
-    },
-    {
-      "name": "ABC",
-      "email": "A@gmail.com",
-      "password": "123",
-      "id": 10
-    },
-    {
-      "name": "1234",
-      "email": "123@gmail.com",
-      "password": "123",
-      "id": 11
     }
   ],
   "products": [
@@ -88,7 +52,8 @@
       "publishedAt": "12/12/2023",
       "status": "available",
       "image": "https://images.unsplash.com/photo-1606311698062-21c4f57cb27f?q=80&w=1958&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "genre": "Mystery"
+      "genre": "Mystery",
+      "description":"Harry Potter là một loạt tiểu thuyết huyền bí gồm bảy phần của nhà văn Anh Quốc J. K. Rowling. Bộ truyện viết về những cuộc phiêu lưu phù thủy của cậu bé Harry Potter cùng hai người bạn thân là Ron Weasley và Hermione Granger, lấy bối cảnh tại Trường Phù thủy và Pháp sư Hogwarts ở nước Anh"
     },
     {
       "id": 1,
@@ -98,7 +63,8 @@
       "publishedAt": "10/02/2023",
       "status": "sold",
       "image": "https://m.media-amazon.com/images/I/71OZY035QKL._AC_UF1000,1000_QL80_.jpg",
-      "genre": "Mystery"
+      "genre": "Mystery",
+      "description":"Người kể chuyện bắt đầu câu chuyện bằng một cuộc thảo luận về bản chất của người lớn và về việc họ không thể nhận ra được “những điều quan trọng”. Để xác định xem một người lớn có sáng suốt như một đứa trẻ không, ông cho họ xem một bức tranh vẽ một con rắn nuốt một con voi. Người lớn luôn đưa ra câu trả lời rằng bức tranh vẽ một cái nón, và vì vậy ông biết rằng chỉ có thể nói với họ về những điều “hợp lý”, thay vì những điều huyền ảo viễn vông."
     },
     {
       "id": 2,
@@ -108,7 +74,8 @@
       "publishedAt": "10/04/2023",
       "status": "available",
       "image": "https://cf.shopee.vn/file/405f1fa2de20ddfa852f87e42576b24e_tn",
-      "genre": "Self-help"
+      "genre": "Self-help",
+      "description":"Sinh động, hài hước, hấp dẫn, từng trang viết của Nhật ký chú bé nhút nhát đã dẫn dắt người đọc đi từ bất ngờ này đến bất ngờ khác qua mỗi ngày cậu bé Greg lớn lên. Bạn đọc chắc chắn sẽ phải cười phá lên khi chứng kiến những rắc rối liên tiếp, những trò đùa tinh quái nhưng hết sức thông minh của cậu"
     },
     {
       "id": 3,
@@ -118,7 +85,8 @@
       "publishedAt": "10/6/2023",
       "status": "available",
       "image": "https://sachnhanam.s3.ap-southeast-1.amazonaws.com/wp-content/uploads/20220419011941/275249391_489759975948245_4807283355582626488_n.jpg",
-      "genre": "Self-help"
+      "genre": "Self-help",
+      "description":"Câu chuyện xoanh quanh Zézé, sắp đến tuổi lên sáu. Zézé sinh ra trong một gia đình đông con không mấy khá giả. Còn chi tiết phía sau thì hãy đọc để biết thêm..."
     },
     {
       "id": 4,
@@ -128,7 +96,8 @@
       "publishedAt": "25/5/2023",
       "status": "available",
       "image": "https://cdn0.fahasa.com/media/catalog/product/i/m/image_180812.jpg",
-      "genre": "Horror"
+      "genre": "Horror",
+      "description":"Sự im lặng của bầy cừu hội tụ đầy đủ những yếu tố làm nên một cuốn tiểu thuyết trinh thám kinh dị xuất sắc nhất: không một dấu vết lúng túng trong những chi tiết thuộc lĩnh vực chuyên môn, với các tình tiết giật gân"
     },
     {
       "id": 5,
@@ -138,7 +107,8 @@
       "publishedAt": "30/9/2023",
       "status": "available",
       "image": "https://salt.tikicdn.com/ts/product/78/2a/21/714646c26f672b8819ade2d6c023e6e1.jpg",
-      "genre": "Horror"
+      "genre": "Horror",
+      "description":"Rồng đỏ không có được vẻ sắc lạnh rợn người mà thu hút khó cưỡng của Hannibal, nhưng ở hắn có thứ nhân tính méo mó vừa gây sợ hãi vừa gợi nên những trắc ẩn đau lòng. Là một sự pha trộn khôn ngoan của thuật loại suy, tính hồi hộp của hành động và nỗi kinh hoàng"
     },
     {
       "id": 6,
@@ -148,7 +118,8 @@
       "publishedAt": "10/10/2023",
       "status": "available",
       "image": "https://product.hstatic.net/200000343865/product/99_9ec388c3762e4444bd99854f971a17c7_master.jpg",
-      "genre": "Comic"
+      "genre": "Comic",
+      "description":"Truyện xoay quanh một cậu thám tử trung học có tên là Kudo Shinichi trong lúc đang điều tra một Tổ chức Áo đen bí ẩn đã bị ép phải uống một loại thuốc độc có thể gây chết người. May mắn là đã sống sót nhưng cơ thể thì lại bị teo nhỏ như một đứa bé 6-7 tuổi"
     },
     {
       "id": 7,
@@ -158,7 +129,8 @@
       "publishedAt": "10/12/2023",
       "status": "available",
       "image": "https://down-vn.img.susercontent.com/file/d8b0f26899f6931da1f0861b46aba03e",
-      "genre": "Action"
+      "genre": "Action",
+      "description":"Nhân vật Sherlock Holmes từ lâu đã trở thành nguồn cảm hứng cho hàng trăm, hàng ngàn tác phẩm ở nhiều loại hình nghệ thuật khác: từ âm nhạc, ca kịch đến điện ảnh… Bộ sách Sherlock Holmes toàn tập (boxset trọn bộ 3 tập) một lần nữa mang đến cho người đọc cơ hội được nhìn ngắm, ngưỡng mộ và đánh giá nhân vật độc đáo của nhà văn tài năng Conan Doyle"
     },
     {
       "id": 8,
@@ -168,7 +140,8 @@
       "publishedAt": "22/2/2023",
       "status": "available",
       "image": "https://salt.tikicdn.com/ts/product/e4/ca/af/a9523a72d66fa9507d2bfc5023e33eac.jpg",
-      "genre": "Fantasy"
+      "genre": "Fantasy",
+      "description":"Cuốn cẩm nang hướng dẫn về cách sống sót ở nơi hoang dã và chuẩn bị mọi thảm họa."
     },
     {
       "id": 9,
@@ -178,7 +151,8 @@
       "publishedAt": "1/1/2023",
       "status": "available",
       "image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1619211101i/46211592.jpg",
-      "genre": "Romance"
+      "genre": "Romance",
+      "description":"Bạn đang đọc truyện Tớ Thích Cậu Hơn Cả Harvard của tác giả Lan Rùa. Nội dung cuốn sách xoay quanh những câu chuyện giản dị trong cuộc sống hàng ngày, nhưng đích thực không kém phần đáng yêu của cặp đôi Thu và Khôi."
     },
     {
       "id": 10,
@@ -188,7 +162,8 @@
       "publishedAt": "14/1/2023",
       "status": "available",
       "image": "https://www.nxbtre.com.vn/Images/Book/nxbtre_full_02162019_031655.jpg",
-      "genre": "Romance"
+      "genre": "Romance",
+      "description":"Mắt biếc kể về cuộc đời của nhân vật chính tên Ngạn. Ngạn sinh ra và lớn lên ở một ngôi làng tên là làng Đo Đo. Lớn lên cùng với Ngạn là cô bạn hàng xóm có đôi mắt tuyệt đẹp tên là Hà Lan. Tuổi thơ của Ngạn và Hà Lan gắn bó với bao nhiêu kỉ niệm...Tình bạn trẻ thơ dần dần biến thành tình yêu thầm lặng của Ngạn dành cho Hà Lan"
     },
     {
       "id": 11,
@@ -198,29 +173,8 @@
       "publishedAt": "14/12/2023",
       "status": "available",
       "image": "https://m.media-amazon.com/images/I/71Jk3baRdnL._AC_UF1000,1000_QL80_.jpg",
-      "genre": "Fantasy"
-    },
-    {
-      "userId": 4,
-      "name": "Đắc nhân tâm",
-      "price": 40000,
-      "status": "available",
-      "description": "Giáo dục con người.",
-      "genre": "Self-help",
-      "author": "Dale Carnegie",
-      "image": "https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/61-MrjewYAL._AC_UF1000,1000_QL80_.jpg",
-      "id": 12
-    },
-    {
-      "userId": 4,
-      "name": "Toán lớp 1 - cánh diều tuổi thơ",
-      "price": 20000,
-      "status": "available",
-      "description": "Hay",
-      "genre": "Action",
-      "author": "Nhà xuất bản",
-      "image": "https://bizweb.dktcdn.net/100/445/986/products/toan-1-canh-dieu-23b7fdf1-f297-42f7-99aa-02501a34628b.jpg?v=1686221451933",
-      "id": 13
+      "genre": "Fantasy",
+      "description":"The Godfather là câu chuyện kể về một gia đình Mafia gốc Ý, hoạt động trên đất Mỹ , được cai quản bởi một ông trùm Mafia to lớn, có thực lực mạnh nhất trong đội ngũ Mafia ở New York có tên là Vito Corleone."
     }
   ],
   "reviews": [
@@ -228,19 +182,19 @@
       "id": 0,
       "productId": 0,
       "userId": 1,
-      "text": "Cái kết hay quá! Giải tỏa mọi tiêu cực, u ám xung quanh nhân vật. Tôi muốn khóc khi biết rằng mình đã đọc hết quyển sách này. Các bạn rất nên đọc thử bộ này nhé."
+      "text": "Cái kết hay quá! Giải tỏa mọi tiêu cực, u ám xung quanh nhân vật. Tôi muốn khóc khi biết rằng mình đã đọc hết quyển sách này. Các bạn rất nên đọc thử bộ này nhé. May mắn vì mua được bộ này với giá tốt"
     },
     {
       "id": 1,
       "productId": 0,
       "userId": 2,
-      "text": "Dù là người lớn hay vẫn còn bé dại, hãy một lần đọc cuốn này đii. Chúng ta sẽ được lên chuyến tàu tìm về quá khứ, tìm về những kí ức tuổi thơ đáng nhớ và học được thật nhiều bài học về tình yêu thương."
+      "text": "Dù là người lớn hay vẫn còn bé dại, hãy một lần đọc cuốn này đii. Chúng ta sẽ được lên chuyến tàu tìm về quá khứ, tìm về những kí ức tuổi thơ đáng nhớ và học được thật nhiều bài học về tình yêu thương"
     },
     {
       "id": 2,
       "productId": 1,
       "userId": 3,
-      "text": "Sách hay, nội dung ý nghĩa và không lan man, đáng để đọc nhé. Nội dung vừa dễ thương vừa sâu sắc, tôi nghĩ nó phù hợp với mọi độ tuổi"
+      "text": "Sách hay, nội dung ý nghĩa và không lan man, đáng để đọc nhé. Nội dung vừa dễ thương vừa sâu sắc, tôi nghĩ nó phù hợp với mọi độ tuổi !"
     },
     {
       "id": 2,
@@ -261,36 +215,11 @@
       ]
     },
     {
-      "id": 1,
-      "userId": 4,
+      "userId": 5,
       "productId": [
-        11,
-        11,
-        1,
-        1,
-        12
-      ]
-    },
-    {
-      "id": 2,
-      "userId": 2,
-      "productId": []
-    },
-    {
-      "userId": 1,
-      "productId": [
-        18,
-        6
+        0
       ],
-      "id": 3
-    },
-    {
-      "userId": -1,
-      "productId": [
-        2,
-        2
-      ],
-      "id": 4
+      "id": 5
     }
   ],
   "orders": [
@@ -325,38 +254,12 @@
       "productId": [
         12
       ]
-    },
-    {
-      "userId": 1,
-      "productId": [
-        1,
-        1,
-        5,
-        0,
-        6,
-        6
-      ],
-      "id": 2
-    },
-    {
-      "userId": 4,
-      "productId": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1
-      ],
-      "id": 3
     }
   ],
   "currentUser": [
     {
       "id": 0,
-      "userId": 4
+      "userId": 5
     }
   ]
 }

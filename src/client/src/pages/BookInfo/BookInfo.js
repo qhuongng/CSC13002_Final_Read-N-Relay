@@ -77,7 +77,7 @@ const BookInfo = () => {
                 </div>
                 <div className="info-product-reco">
                     <div className="info-product-reco-name">{book.name}</div>
-                    <div className="info-product-reco-des">Tụi em không còn thời gian để viết description nên thầy thông cảm cho tụi em nha, em cảm ơn ạ !</div>
+                    <div className="info-product-reco-des">{book.description}</div>
                     <div className="info-product-reco-price-rate">
                         <div className="info-product-reco-price">{book.price} VND</div>
                         <div className="info-product-reco-rate">(35 reviews)</div>
@@ -162,7 +162,7 @@ const BookInfo = () => {
                             </div>
 
                             <div className="info-product-price">{bookData.price} VND</div>
-                            <div className="info-des">Want to instantly capture readers? No matter who you are or what genre your book falls into—nothing beats getting engrossed in a book description that leaves a reader wanting more. Short and long book descriptions both serve a purpose—to make you and your book look good. Before you start writing, here are a few things you need to know.</div>
+                            <div className="info-des">{bookData.description}</div>
                             <div className="info-line"></div>
                             <div className="info-access">
                                 <div className="info-buy" onClick={handleBuyNow}>
