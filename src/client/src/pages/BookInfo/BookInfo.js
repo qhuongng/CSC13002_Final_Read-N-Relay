@@ -17,6 +17,7 @@ const BookInfo = () => {
     const [booksMightLike, setBooksMightLike] = useState([]);
     const [cartAlert, setcartAlert] = useState("");
     const [favAlert, setfavAlert] = useState("");
+    const [checkFav, setFav] = useState();
     const navigate = useNavigate();
 
     const fetchData = async () => {
@@ -46,7 +47,16 @@ const BookInfo = () => {
             } else {
                 setCheckStatus(false);
             }
-            console.log(bookData)
+
+            const user = await API.getCurrentUser();
+            const listFav = await API.getUsersFavoritesBooks(user[0].userId);
+
+
+
+            console.log(id);
+            console.log(listFav);
+            console.log(checkFav)
+
         } catch (error) {
             console.error("Error fetching data:", error);
         }
