@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export default axios.create({
-  baseURL:'http://localhost:3030'
+  baseURL: 'http://localhost:3030'
 });
 
 export const API_BASE_URL = 'http://localhost:3030';
@@ -71,20 +71,20 @@ export async function getBooksByAttributes({ id, name, price, userId, publishedA
 // Reviews
 export async function getBookReviews(productId) {
   return axios.get(`${API_BASE_URL}/reviews`, { params: { productId: productId } })
-  .then((response) => response.data)
-  .catch((error) => {
-    console.error('Error fetching data:', error);
-    throw error;
-  });
+    .then((response) => response.data)
+    .catch((error) => {
+      console.error('Error fetching data:', error);
+      throw error;
+    });
 };
 // Done
 // Carts
-export async function getUserProfileByAttributes({id, name, email, password, address}) {
+export async function getUserProfileByAttributes({ id, name, email, password, address }) {
   const params = {
     id,
     'name_like': name,
-    email, 
-    password, 
+    email,
+    password,
     address
   };
 
@@ -97,7 +97,7 @@ export async function getUserProfileByAttributes({id, name, email, password, add
       console.error('Error fetching data:', error);
       throw error;
     });
-  };
+};
 
 // export async function getCurrentUser() {
 //   return axios.get(`${API_BASE_URL}/currentUser`)
@@ -120,24 +120,24 @@ export async function getCurrentUser() {
 
 export async function getUserCart(userId) {
   return axios.get(`${API_BASE_URL}/carts`, { params: { userId: userId } })
-  .then((response) => {
-    const data = response.data;
-    const result= getBooksFromListId(data[0].productId);
-    return result
-  })
-  .catch((error) => {
-    console.error('Error fetching data:', error);
-    throw error;
-  });
+    .then((response) => {
+      const data = response.data;
+      const result = getBooksFromListId(data[0].productId);
+      return result
+    })
+    .catch((error) => {
+      console.error('Error fetching data:', error);
+      throw error;
+    });
 };
 // Done
 export async function getUserCartProfile(userId) {
   return axios.get(`${API_BASE_URL}/carts`, { params: { userId: userId } })
-  .then((response) => response.data)
-  .catch((error) => {
-    console.error('Error fetching data:', error);
-    throw error;
-  });
+    .then((response) => response.data)
+    .catch((error) => {
+      console.error('Error fetching data:', error);
+      throw error;
+    });
 };
 // Done
 // Orders
@@ -156,11 +156,11 @@ export async function getUsersPurchasedBooks(userId) {
 // Done
 export async function getUserOrdersProfile(userId) {
   return axios.get(`${API_BASE_URL}/orders`, { params: { userId: userId } })
-  .then((response) => response.data)
-  .catch((error) => {
-    console.error('Error fetching data:', error);
-    throw error;
-  });
+    .then((response) => response.data)
+    .catch((error) => {
+      console.error('Error fetching data:', error);
+      throw error;
+    });
 };
 // Done
 // Favorites
@@ -179,11 +179,11 @@ export async function getUsersFavoritesBooks(userId) {
 // Done
 export async function getUserFavoritesProfile(userId) {
   return axios.get(`${API_BASE_URL}/favorites`, { params: { userId: userId } })
-  .then((response) => response.data)
-  .catch((error) => {
-    console.error('Error fetching data:', error);
-    throw error;
-  });
+    .then((response) => response.data)
+    .catch((error) => {
+      console.error('Error fetching data:', error);
+      throw error;
+    });
 };
 // Done
 // Update Part
@@ -202,11 +202,11 @@ export async function UpdateBooksByID({ id, name, price, userId, publishedAt, qu
   Object.keys(body).forEach((key) => body[key] === undefined && delete body[key]);
 
   axios.patch(`${API_BASE_URL}/products/${id}`, body)
-  .then((response) => response.data)
-  .catch((error) => {
-    console.error('Error updating data:', error);
-    throw error;
-  });
+    .then((response) => response.data)
+    .catch((error) => {
+      console.error('Error updating data:', error);
+      throw error;
+    });
 };
 // Done
 // Users
@@ -215,11 +215,11 @@ export async function UpdateCurrentUser(userId) {
     userId
   }
   axios.patch(`${API_BASE_URL}/currentUser/0`, body)
-  .then((response) => response.data)
-  .catch((error) => {
-    console.error('Error updating data:', error);
-    throw error;
-  });
+    .then((response) => response.data)
+    .catch((error) => {
+      console.error('Error updating data:', error);
+      throw error;
+    });
 };
 
 export async function UpdateUserProfileByID({ id, name, email, password, address }) {
@@ -233,11 +233,11 @@ export async function UpdateUserProfileByID({ id, name, email, password, address
   Object.keys(body).forEach((key) => body[key] === undefined && delete body[key]);
 
   axios.patch(`${API_BASE_URL}/users/${id}`, body)
-  .then((response) => response.data)
-  .catch((error) => {
-    console.error('Error updating data:', error);
-    throw error;
-  });
+    .then((response) => response.data)
+    .catch((error) => {
+      console.error('Error updating data:', error);
+      throw error;
+    });
 };
 // Done
 // Reviews
@@ -251,25 +251,25 @@ export async function UpdateUserReviewByID({ id, productId, userId, text }) {
   Object.keys(body).forEach((key) => body[key] === undefined && delete body[key]);
 
   axios.patch(`${API_BASE_URL}/reviews/${id}`, body)
-  .then((response) => response.data)
-  .catch((error) => {
-    console.error('Error updating data:', error);
-    throw error;
-  });
+    .then((response) => response.data)
+    .catch((error) => {
+      console.error('Error updating data:', error);
+      throw error;
+    });
 };
 // Done
 // Carts
-export async function UpdateCartsByUserID(userId, productId){
+export async function UpdateCartsByUserID(userId, productId) {
   const body = {
     productId
   };
   const CartInfo = await getUserCartProfile(userId);
   axios.patch(`${API_BASE_URL}/carts/${CartInfo[0].id}`, body)
-  .then((response) => response.data)
-  .catch((error) => {
-    console.error('Error updating data:', error);
-    throw error;
-  });
+    .then((response) => response.data)
+    .catch((error) => {
+      console.error('Error updating data:', error);
+      throw error;
+    });
 };
 // Done
 // Orders
@@ -280,11 +280,11 @@ export async function UpdateOrdersByUserID(userId, productId) {
 
   const OrderInfo = await getUserOrdersProfile(userId);
   axios.patch(`${API_BASE_URL}/orders/${OrderInfo[0].id}`, body)
-  .then((response) => response.data)
-  .catch((error) => {
-    console.error('Error updating data:', error);
-    throw error;
-  });
+    .then((response) => response.data)
+    .catch((error) => {
+      console.error('Error updating data:', error);
+      throw error;
+    });
 };
 // Done
 // Favorites
@@ -295,11 +295,11 @@ export async function UpdateFavoritesByUserID(userId, productId) {
 
   const FavoriteInfo = await getUserCartProfile(userId);
   axios.patch(`${API_BASE_URL}/favorites/${FavoriteInfo[0].id}`, body)
-  .then((response) => response.data)
-  .catch((error) => {
-    console.error('Error updating data:', error);
-    throw error;
-  });
+    .then((response) => response.data)
+    .catch((error) => {
+      console.error('Error updating data:', error);
+      throw error;
+    });
 };
 // Done
 
@@ -313,7 +313,7 @@ export async function addBook(bookData) {
     return response.data;
   } catch (error) {
     console.error('Error adding book:', error);
-    throw error; 
+    throw error;
   }
 };
 
@@ -323,7 +323,7 @@ export async function editBookQuantity(bookData) {
     return response.data;
   } catch (error) {
     console.error('Error adding book:', error);
-    throw error; 
+    throw error;
   }
 };
 
@@ -334,11 +334,11 @@ export async function signupUser(userData) {
     return response.data;
   } catch (error) {
     console.error('Error adding user:', error);
-    throw error; 
+    throw error;
   }
 };
 
-export async function addtoCart({userId,productId}) {
+export async function addtoCart({ userId, productId }) {
   try {
     let carts = await fetch(`${API_BASE_URL}/carts`).then((response) => response.json());
 
@@ -350,7 +350,7 @@ export async function addtoCart({userId,productId}) {
         existingCart.productId = [existingCart.productId];
       }
       existingCart.productId.push(productId);
-      
+
       await fetch(`${API_BASE_URL}/carts/${existingCart.id}`, {
         method: 'PUT',
         headers: {
@@ -378,7 +378,7 @@ export async function addtoCart({userId,productId}) {
   }
 };
 
-export async function addtoFavorite({userId,productId}) {
+export async function addtoFavorite({ userId, productId }) {
   try {
     let favorites = await fetch(`${API_BASE_URL}/favorites`).then((response) => response.json());
 
@@ -390,7 +390,7 @@ export async function addtoFavorite({userId,productId}) {
         existstingFav.productId = [existstingFav.productId];
       }
       existstingFav.productId.push(productId);
-      
+
       await fetch(`${API_BASE_URL}/favorites/${existstingFav.id}`, {
         method: 'PUT',
         headers: {
@@ -417,3 +417,42 @@ export async function addtoFavorite({userId,productId}) {
     throw new Error(error.message);
   }
 };
+
+
+export async function addReview({ userId, productId, text }) {
+  try {
+    let reviews = await fetch(`${API_BASE_URL}/reviews`).then((response) => response.json());
+
+    // kiểm tra xem user đã post review về product đó hay chưa ?
+    const existingPost = reviews.find((reviewPost) => reviewPost.userId == userId && reviewPost.productId == productId);
+
+    if (existingPost) {
+      // update text mới nhất 
+      existingPost.text = text;
+      await fetch(`${API_BASE_URL}/reviews/${existingPost.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(existingPost),
+      });
+    }
+    else {
+      const newReview = {
+        userId: userId,
+        productId: productId,
+        text: text
+      };
+      await fetch(`${API_BASE_URL}/reviews`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newReview),
+      });
+    }
+    return { success: true };
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}

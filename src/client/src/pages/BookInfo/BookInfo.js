@@ -17,7 +17,9 @@ const BookInfo = () => {
     const [booksMightLike, setBooksMightLike] = useState([]);
     const [cartAlert, setcartAlert] = useState("");
     const [favAlert, setfavAlert] = useState("");
+    const [reviewAlert, setreviewAlert] = useState("");
     const navigate = useNavigate();
+    const [reviewText, setReviewText] = useState('');
 
     const fetchData = async () => {
         try {
@@ -41,7 +43,7 @@ const BookInfo = () => {
             const booksMightLike = await API.getBooksByPage(2, 5);
             setBooksMightLike(booksMightLike);
 
-            if (bookData && bookData.status === "available") {
+            if (bookData && bookData.status == "available") {
                 setCheckStatus(true);
             } else {
                 setCheckStatus(false);
@@ -140,6 +142,32 @@ const BookInfo = () => {
         }
     };
 
+    const handleInputReview = (e) => {
+        setReviewText(e.target.value);
+    }
+
+    const handleAddReview = async (e) => {
+        setreviewAlert("");
+        e.preventDefault();
+        try {
+            const user = await API.getCurrentUser();
+            const books = await API.getBooksByAttributes({ id: id });
+            const response = await API.addReview({
+                userId: user[0].userId,
+                productId: books[0].id,
+                text: reviewText
+            });
+            setreviewAlert('Post review successfully !');
+            console.log('Post a reviews:', response);
+            // đặt lại giá trị review sau khi post thành công
+            setReviewText('');
+            // Sau khi gửi thành công, gọi lại fetchData để tải lại đánh giá mới nhất
+            fetchData();
+        } catch (error) {
+            setreviewAlert('Error posting a new reviews !');
+            console.error('Error posting a new reviews: ', error.message);
+        }
+    }
 
     return (
         <div className="info-container">
@@ -186,8 +214,9 @@ const BookInfo = () => {
                     <div className="info-review-header">
                         <div className="info-review-title">Reviews</div>
                         <div className="review-form">
-                            <textarea name="book-description" placeholder="Start typing a review..."></textarea>
-                            <div className="review-button">Post</div>
+                            <textarea name="book-description" placeholder="Start typing a review..." value={reviewText} onChange={handleInputReview}></textarea>
+                            <div className="review-button" onClick={handleAddReview}>Post</div>
+                            {reviewAlert && <Alert message={reviewAlert} type="notype" />}
                         </div>
                     </div>
                     <div className="info-review-container">{spreadComments()}</div>
