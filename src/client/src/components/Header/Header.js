@@ -12,8 +12,6 @@ class Header extends Component {
         this.state = {
             searchValue: "",
             isLoggedIn: false,
-            searchData:[],
-            showSuggestions: false
         };
     }
 
@@ -57,24 +55,12 @@ class Header extends Component {
 
     handleSearchChange = (event) => {
         this.setState({ searchValue: event.target.value});
-        if(this.state.searchValue != "")
-            this.setState({showSuggestions: true });
-        else this.setState({showSuggestions: false });
     };
 
     handleSearch = async () => {
         // Implement your search logic here
         console.log("Searching for:", this.state.searchValue);
         // You can add additional logic here, such as making an API call or updating state.
-        if (this.state.showSuggestions) {
-            try {
-                const search = await API.getBooksByAttributes({ name: this.state.searchValue });
-                console.log(search);
-                this.setState({ searchData : search })
-            } catch (error) {
-                console.error('Error fetching search data:', error);
-            }
-        }
     };
     
 
@@ -121,7 +107,7 @@ class Header extends Component {
                             <Link
                                 to={{
                                     pathname: "/search",
-                                    search: `?searchData=${encodeURIComponent(JSON.stringify(this.state.searchData))}`
+                                    search: `?searchName=${encodeURIComponent(this.state.searchValue)}`
                                 }}
                             >
                             <button

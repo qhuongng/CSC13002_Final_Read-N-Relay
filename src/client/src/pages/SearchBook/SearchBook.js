@@ -2,16 +2,28 @@ import "./SearchBook.css";
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
+import * as API from "../../utils/API.js";
 
 const SearchBook = () => {
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
-    const searchDataParam = searchParams.get("searchData");
-    const searchData = searchDataParam ? JSON.parse(decodeURIComponent(searchDataParam)) : null;
+    const searchName = searchParams.get("searchName");
+    const [books,setBooks]=useState([])
 
+    useEffect(()=>{
+        const fetchdata= async ()=>{
+
+            const SearchData=await API.getBooksByAttributes({name: searchName})
+            setBooks(SearchData);
+            console.log(searchName);
+
+        }
+        fetchdata(); 
+    },[searchName]);
+    
     const spreadProducts = () => {
-        console.log(searchData)
-        return searchData.map((book, index) => (
+        console.log(books)
+        return books.map((book, index) => (
             <Link to={`/books/${book.id}`} className="product" key={index}>
                 <div className="product-photo-container">
                     <img className="product-photo" src={book.image} alt={book.name} />

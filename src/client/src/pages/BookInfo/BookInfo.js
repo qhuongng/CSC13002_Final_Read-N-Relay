@@ -51,9 +51,15 @@ const BookInfo = () => {
             const user = await API.getCurrentUser();
             const listFav = await API.getUserFavoritesProfile(user[0].userId);
 
-            if(listFav&&listFav[0].productId.includes(id))
+            if(listFav&&listFav[0].productId.includes(Number(id)))
+            {
+                console.log("Already Liked!")
                 setFav(true)
-            else setFav(false)
+            }
+            else{ 
+                console.log("Not Liked Yet!")
+                setFav(false)
+            }
 
         } catch (error) {
             console.error("Error fetching data:", error);
@@ -137,15 +143,29 @@ const BookInfo = () => {
         try {
             const user = await API.getCurrentUser();
             const books = await API.getBooksByAttributes({ id: id });
-            const addedToCart = await API.addtoFavorite({
-                userId: user[0].userId,
-                productId: books[0].id
-            });
-            setfavAlert('Added to favorites successfully !');
-            console.log('Added to favorites:', addedToCart);
+            if(!checkFav)
+            {
+                const addedToFav = await API.addtoFavorite({
+                    userId: user[0].userId,
+                    productId: books[0].id
+                });
+                setfavAlert('Added to favorites successfully !');
+                console.log('Added to favorites:', addedToFav);
+                setFav(true)
+            }
+            else 
+            {
+                const RemoveFromFav = await API.UpdateFavoriteList({
+                    userId: user[0].userId,
+                    productIdToRemove: books[0].id
+                });
+                setfavAlert('Remove from favorites successfully !');
+                console.log('Remove from favorites:', RemoveFromFav);
+                setFav(false)
+            }
         } catch (error) {
-            setfavAlert('Error adding to favorites !');
-            console.error('Error adding to favorites:', error.message);
+            setfavAlert('Error handling favorites !');
+            console.error('Error handling favorites:', error.message);
         }
     };
 
