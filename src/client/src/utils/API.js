@@ -271,21 +271,66 @@ export async function UpdateCartsByUserID(userId, productId) {
       throw error;
     });
 };
+
 // Done
 // Orders
-export async function UpdateOrdersByUserID(userId, productId) {
-  const body = {
-    productId
-  };
+// export async function UpdateOrdersByUserID(userId, productId) {
+//   const body = {
+//     productId
+//   };
 
-  const OrderInfo = await getUserOrdersProfile(userId);
-  axios.patch(`${API_BASE_URL}/orders/${OrderInfo[0].id}`, body)
-    .then((response) => response.data)
-    .catch((error) => {
-      console.error('Error updating data:', error);
-      throw error;
-    });
+//   const OrderInfo = await getUserOrdersProfile(userId);
+//   axios.patch(`${API_BASE_URL}/orders/${OrderInfo[0].id}`, body)
+//     .then((response) => response.data)
+//     .catch((error) => {
+//       console.error('Error updating data:', error);
+//       throw error;
+//     });
+// };
+
+// hàm này có vẻ mng k xử lí productId dưới dạng 1 list, mình cần check xem list tồn tại chưa ? push : create new productId list
+// tui cmt hàm trên với code hàm mới ở đây
+export async function UpdateOrdersByUserID(userId, productId) {
+  try {
+    let response = await fetch(`${API_BASE_URL}/orders`).then((response) => response.json());
+
+    const order = response.find((ord) => ord.userId === userId);
+
+    // nếu ng dùng đã có trong orders 
+    if (order) {
+      if (!Array.isArray(order.productId)) {
+        // If it's not an array, convert it to an array with the current productId
+        order.productId = [order.productId];
+      }
+      order.productId.push(productId);
+
+      await fetch(`${API_BASE_URL}/orders/${order.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(order),
+      });
+    } else {
+      const neword = {
+        userId: userId,
+        productId: [productId],
+      };
+      await fetch(`${API_BASE_URL}/orders`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(neword),
+      });
+    }
+
+    return { success: true };
+  } catch (error) {
+    throw new Error(error.message);
+  }
 };
+
 // Done
 // Favorites
 export async function UpdateFavoritesByUserID(userId, productId) {
@@ -302,9 +347,6 @@ export async function UpdateFavoritesByUserID(userId, productId) {
     });
 };
 // Done
-
-
-//------------------------------------------------ ADD part ------------------------------------------------
 
 // Add a new book
 export async function addBook(bookData) {
@@ -455,4 +497,27 @@ export async function addReview({ userId, productId, text }) {
   } catch (error) {
     throw new Error(error.message);
   }
-}
+};
+
+export async function DeleteBook({ productId, userId }) {
+  try {
+    let books = await fetch(`${API_BASE_URL}/products`).then((response) => response.json());
+
+    // kiểm tra xem có tồn tại book cần xóa không ?
+    const existingBook = books.find((book) => book.id == productId && book.userId == userId);
+
+    if (existingBook) {
+      // Gọi API DELETE để xóa cuốn sách
+      await fetch(`${API_BASE_URL}/products/${productId}`, {
+        method: 'DELETE'
+      });
+      return { success: true };
+    } else {
+      // sách k tồn tại
+      return { success: false, message: 'This book is not available' };
+    }
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+

@@ -50,7 +50,7 @@
       "price": 500000,
       "userId": 0,
       "publishedAt": "12/12/2023",
-      "status": "available",
+      "status": "sold",
       "image": "https://images.unsplash.com/photo-1606311698062-21c4f57cb27f?q=80&w=1958&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "genre": "Mystery",
       "description": "Harry Potter là một loạt tiểu thuyết huyền bí gồm bảy phần của nhà văn Anh Quốc J. K. Rowling. Bộ truyện viết về những cuộc phiêu lưu phù thủy của cậu bé Harry Potter cùng hai người bạn thân là Ron Weasley và Hermione Granger, lấy bối cảnh tại Trường Phù thủy và Pháp sư Hogwarts ở nước Anh"
@@ -61,7 +61,7 @@
       "price": 88000,
       "userId": 1,
       "publishedAt": "10/02/2023",
-      "status": "sold",
+      "status": "available",
       "image": "https://m.media-amazon.com/images/I/71OZY035QKL._AC_UF1000,1000_QL80_.jpg",
       "genre": "Mystery",
       "description": "Người kể chuyện bắt đầu câu chuyện bằng một cuộc thảo luận về bản chất của người lớn và về việc họ không thể nhận ra được “những điều quan trọng”. Để xác định xem một người lớn có sáng suốt như một đứa trẻ không, ông cho họ xem một bức tranh vẽ một con rắn nuốt một con voi. Người lớn luôn đưa ra câu trả lời rằng bức tranh vẽ một cái nón, và vì vậy ông biết rằng chỉ có thể nói với họ về những điều “hợp lý”, thay vì những điều huyền ảo viễn vông."
@@ -105,7 +105,7 @@
       "price": 108000,
       "userId": 0,
       "publishedAt": "30/9/2023",
-      "status": "available",
+      "status": "sold",
       "image": "https://salt.tikicdn.com/ts/product/78/2a/21/714646c26f672b8819ade2d6c023e6e1.jpg",
       "genre": "Horror",
       "description": "Rồng đỏ không có được vẻ sắc lạnh rợn người mà thu hút khó cưỡng của Hannibal, nhưng ở hắn có thứ nhân tính méo mó vừa gây sợ hãi vừa gợi nên những trắc ẩn đau lòng. Là một sự pha trộn khôn ngoan của thuật loại suy, tính hồi hộp của hành động và nỗi kinh hoàng"
@@ -116,7 +116,7 @@
       "price": 23750,
       "userId": 0,
       "publishedAt": "10/10/2023",
-      "status": "available",
+      "status": "sold",
       "image": "https://product.hstatic.net/200000343865/product/99_9ec388c3762e4444bd99854f971a17c7_master.jpg",
       "genre": "Comic",
       "description": "Truyện xoay quanh một cậu thám tử trung học có tên là Kudo Shinichi trong lúc đang điều tra một Tổ chức Áo đen bí ẩn đã bị ép phải uống một loại thuốc độc có thể gây chết người. May mắn là đã sống sót nhưng cơ thể thì lại bị teo nhỏ như một đứa bé 6-7 tuổi"
@@ -127,7 +127,7 @@
       "price": 300000,
       "userId": 0,
       "publishedAt": "10/12/2023",
-      "status": "available",
+      "status": "sold",
       "image": "https://down-vn.img.susercontent.com/file/d8b0f26899f6931da1f0861b46aba03e",
       "genre": "Action",
       "description": "Nhân vật Sherlock Holmes từ lâu đã trở thành nguồn cảm hứng cho hàng trăm, hàng ngàn tác phẩm ở nhiều loại hình nghệ thuật khác: từ âm nhạc, ca kịch đến điện ảnh… Bộ sách Sherlock Holmes toàn tập (boxset trọn bộ 3 tập) một lần nữa mang đến cho người đọc cơ hội được nhìn ngắm, ngưỡng mộ và đánh giá nhân vật độc đáo của nhà văn tài năng Conan Doyle"
@@ -205,7 +205,7 @@
     {
       "userId": 1,
       "productId": 6,
-      "text": "rất hay nhé",
+      "text": "Truyện rất hay nhé, tuy hài nhưng được cái ko vui",
       "id": 3
     },
     {
@@ -216,16 +216,6 @@
     }
   ],
   "carts": [
-    {
-      "id": 0,
-      "userId": 0,
-      "productId": [
-        1,
-        2,
-        3,
-        4
-      ]
-    },
     {
       "userId": 5,
       "productId": [
@@ -243,14 +233,6 @@
   ],
   "orders": [
     {
-      "id": 0,
-      "userId": 0,
-      "productId": [
-        1,
-        3
-      ]
-    },
-    {
       "id": 1,
       "userId": 5,
       "productId": [
@@ -258,30 +240,7 @@
       ]
     }
   ],
-  "favorites": [
-    {
-      "id": 0,
-      "userId": 0,
-      "productId": [
-        10,
-        11
-      ]
-    },
-    {
-      "id": 1,
-      "userId": 5,
-      "productId": [
-        12
-      ]
-    },
-    {
-      "userId": 1,
-      "productId": [
-        6
-      ],
-      "id": 2
-    }
-  ],
+  "favorites": [],
   "currentUser": [
     {
       "id": 0,

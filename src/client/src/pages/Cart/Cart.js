@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
 import "./Cart.css";
 import * as API from "../../utils/API.js"
-
+import Alert from "../../components/Alert/Alert";
 import { Link } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
     const [carts, setCart] = useState([]);
     const [CartProfile, setCartProfile] = useState(null);
     const [TPrice, setTPrice] = useState(null)
+    const [alert,SetAlert]=useState("");
+    const navigate = useNavigate();
+
     const fetchData = async () => {
         try {
             // Fetch CurrentUserId
@@ -19,13 +22,11 @@ const Cart = () => {
             setCartProfile(CProfile);
             console.log(CartProfile)
 
-
             // Fetch Cart using userId
             const cartBooks = await API.getUserCart(user[0].userId);
             setCart(cartBooks);
         } catch (error) {
             console.error('Error fetching data:', error);
-
         }
     };
 
@@ -58,6 +59,7 @@ const Cart = () => {
                 console.error('Error removing item:', error);
             });
     };
+    
     const spreadCartItems = () => {
         return carts.map((cart, index) => (
             <div className="cart-table-row" key={index}>
@@ -82,6 +84,19 @@ const Cart = () => {
             </div>
         ));
     };
+
+    const handleCheckout = async (e)=>{
+        SetAlert("");
+        e.preventDefault();
+        // cart trống
+        if(carts.length == 0){
+            SetAlert("Cannot checkout with an empty cart!");
+        }
+        else{
+            console.log(carts[0]);
+            navigate("/checkout");
+        }
+    }
 
     return (
         <div className="cart-container">
@@ -109,9 +124,10 @@ const Cart = () => {
                     <div className="table-item-title">Total</div>
                     <div className="table-item-value">{TPrice + 10000}VND</div>
                 </div>
-                <Link to="/checkout" className="checkout-button">
+                <button onClick={handleCheckout} className="checkout-button">
                     Proceed to checkout
-                </Link>
+                </button>
+                {alert && <Alert message={alert} type="notype" />}
             </div>
         </div>
     );
