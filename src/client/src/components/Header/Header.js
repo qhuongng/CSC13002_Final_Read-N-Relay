@@ -6,11 +6,14 @@ import * as API from "../../utils/API.js"
 import "./Header.css";
 
 class Header extends Component {
+    
     constructor(props) {
         super(props);
         this.state = {
             searchValue: "",
-            isLoggedIn: false
+            isLoggedIn: false,
+            searchData:[],
+            showSuggestions: false
         };
     }
 
@@ -53,14 +56,27 @@ class Header extends Component {
     }
 
     handleSearchChange = (event) => {
-        this.setState({ searchValue: event.target.value });
+        this.setState({ searchValue: event.target.value});
+        if(this.state.searchValue != "")
+            this.setState({showSuggestions: true });
+        else this.setState({showSuggestions: false });
     };
 
-    handleSearch = () => {
+    handleSearch = async () => {
         // Implement your search logic here
         console.log("Searching for:", this.state.searchValue);
         // You can add additional logic here, such as making an API call or updating state.
+        if (this.state.showSuggestions) {
+            try {
+                const search = await API.getBooksByAttributes({ name: this.state.searchValue });
+                console.log(search);
+                this.setState({ searchData : search })
+            } catch (error) {
+                console.error('Error fetching search data:', error);
+            }
+        }
     };
+    
 
     render() {
         const location = this.props.location.pathname;
@@ -102,15 +118,22 @@ class Header extends Component {
                     <div className="header-right">
                         <div className="header-search-container">
                             <input type="text" placeholder="Search for a book..." value={this.state.searchValue} onChange={this.handleSearchChange} className="header-search-box" style={{ border: "None" }} />
+                            <Link
+                                to={{
+                                    pathname: "/search",
+                                    search: `?searchData=${encodeURIComponent(JSON.stringify(this.state.searchData))}`
+                                }}
+                            >
                             <button
                                 onClick={this.handleSearch}
                                 style={{
                                     border: "None",
-                                    backgroundColor: "rgb(247, 247, 247)",
+                                    backgroundColor: "rgb(247, 247, 247)"
                                 }}
                             >
                                 <FaSearch className="header-icon-search" />
                             </button>
+                            </Link>
                         </div>
 
                         {isLoggedIn && (

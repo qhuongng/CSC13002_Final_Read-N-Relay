@@ -49,13 +49,11 @@ const BookInfo = () => {
             }
 
             const user = await API.getCurrentUser();
-            const listFav = await API.getUsersFavoritesBooks(user[0].userId);
+            const listFav = await API.getUserFavoritesProfile(user[0].userId);
 
-
-
-            console.log(id);
-            console.log(listFav);
-            console.log(checkFav)
+            if(listFav&&listFav[0].productId.includes(id))
+                setFav(true)
+            else setFav(false)
 
         } catch (error) {
             console.error("Error fetching data:", error);
