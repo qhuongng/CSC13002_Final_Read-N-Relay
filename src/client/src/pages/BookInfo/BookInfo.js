@@ -11,8 +11,6 @@ const BookInfo = () => {
     const { id } = useParams();
     const [bookData, setBookData] = useState(null);
     const [reviews, setReviews] = useState([]);
-    const [checkStatus, setCheckStatus] = useState();
-    const [user, setUser] = useState(null);
     const [ReviewUser, setReviewUser] = useState([]);
     const [booksMightLike, setBooksMightLike] = useState([]);
     const [cartAlert, setcartAlert] = useState("");
@@ -28,9 +26,6 @@ const BookInfo = () => {
             // Fetch reviews for the book
             const bookReviews = await API.getBookReviews(id);
             setReviews(bookReviews);
-            //Fetch book's user
-            const users = await API.getUserProfileByAttributes({ id: books[0].userId });
-            setUser(users); // Assuming you want to display information for the first book
             //Fetch reviews' user
             const reviewUsers = [];
             for (const Review of bookReviews) {
@@ -42,21 +37,15 @@ const BookInfo = () => {
             const booksMightLike = await API.getBooksByPage(2, 5);
             setBooksMightLike(booksMightLike);
 
-            if (books[0].status.toString() == "available") {
-                setCheckStatus(true);
-            } else {
-                setCheckStatus(false);
-            }
-
             const user = await API.getCurrentUser();
+
             const listFav = await API.getUserFavoritesProfile(user[0].userId);
 
-            if(listFav&&listFav[0].productId.includes(Number(id)))
-            {
+            if (listFav && listFav[0].productId.includes(Number(id))) {
                 console.log("Already Liked!")
                 setFav(true)
             }
-            else{ 
+            else {
                 console.log("Not Liked Yet!")
                 setFav(false)
             }
@@ -66,7 +55,13 @@ const BookInfo = () => {
         }
     };
 
-
+    const checkStatus = async () => {
+        if (bookData.status.toString() == "available") {
+            return true;
+        } else {
+            return false;
+        };
+    }
     useEffect(() => {
         fetchData();
     }, [id]);
@@ -143,8 +138,7 @@ const BookInfo = () => {
         try {
             const user = await API.getCurrentUser();
             const books = await API.getBooksByAttributes({ id: id });
-            if(!checkFav)
-            {
+            if (!checkFav) {
                 const addedToFav = await API.addtoFavorite({
                     userId: user[0].userId,
                     productId: books[0].id
@@ -153,8 +147,7 @@ const BookInfo = () => {
                 console.log('Added to favorites:', addedToFav);
                 setFav(true)
             }
-            else 
-            {
+            else {
                 const RemoveFromFav = await API.UpdateFavoriteList({
                     userId: user[0].userId,
                     productIdToRemove: books[0].id
@@ -184,7 +177,7 @@ const BookInfo = () => {
                             <div className="info-product-rate-status">
                                 <div className="info-product-genre">{reviews.length} Reviews</div>
                                 <div className="info-product-line-split"></div>
-                                {checkStatus ? <div className="info-product-sale">For sale</div> : <div className="info-product-sold">Sold</div>}
+                                {checkStatus() ? <div className="info-product-sale">For sale</div> : <div className="info-product-sold">Sold</div>}
                                 <div className="info-product-line-split"></div>
                                 <div className="info-product-genre">{bookData.genre}</div>
                             </div>
@@ -201,7 +194,7 @@ const BookInfo = () => {
                                 </div>
                                 {cartAlert && <Alert message={cartAlert} type="notype" />}
                                 <div className="info-like" onClick={handelAddToFav}>
-                                    <FaHeart className="info-like-icon" />
+                                    {checkFav ? <FaHeart className="info-like-icon" /> : <FaHeart className="info-like-icon-dont" />}
                                 </div>
                                 {favAlert && <Alert message={favAlert} type="notype" />}
                             </div>

@@ -442,7 +442,26 @@ button {
 .info-like:hover {
     transition: color 0.3s ease;
     cursor: pointer;
-    color: #ff0000;
+}
+
+.info-like-icon {
+    color: red;
+}
+
+.info-like-icon:hover {
+    transition: color 0.3s ease;
+    cursor: pointer;
+    opacity: 0.4;
+}
+
+.info-like-icon-dont {
+    color: black;
+}
+
+.info-like-icon-dont:hover {
+    transition: color 0.3s ease;
+    cursor: pointer;
+    opacity: 0.4;
 }
 
 .info-each-reco:hover {
