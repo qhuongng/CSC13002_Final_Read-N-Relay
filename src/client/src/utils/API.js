@@ -520,25 +520,12 @@ export async function DeleteBook({ productId, userId }) {
   }
 };
 
-//------------------------------------------------ DELETE part ------------------------------------------------
-export async function DeleteBook({ productId, userId }) {
-  try {
-    const response = await axios.delete(`${API_BASE_URL}/books/${productId}`, {
-      data: { userId: userId }
-    });
-    return response.data;
-  } catch (error) {
-    console.error('Error delete book', error);
-    throw error;
-  }
-}
-
-export async function UpdateFavoriteList({productIdToRemove, userId }) {
+export async function UpdateFavoriteList({ productIdToRemove, userId }) {
   try {
     // lấy dữ liệu favorites
-    const response = await fetch(`${API_BASE_URL}/favorites?userId=${userId}`); 
+    const response = await fetch(`${API_BASE_URL}/favorites?userId=${userId}`);
     if (!response.ok) {
-        throw new Error('Error get favorites list');
+      throw new Error('Error get favorites list');
     }
 
     const favorites = await response.json();
@@ -546,30 +533,30 @@ export async function UpdateFavoriteList({productIdToRemove, userId }) {
     // cập nhật favorites
     const updatedFavorites = favorites.map(favorite => {
       if (favorite.userId === userId) {
-          const updatedProductIds = favorite.productId.filter(productId => productId !== productIdToRemove);
-          return {
-              ...favorite,
-              productId: updatedProductIds
-          };
+        const updatedProductIds = favorite.productId.filter(productId => productId !== productIdToRemove);
+        return {
+          ...favorite,
+          productId: updatedProductIds
+        };
       }
       return favorite;
     });
     console.log(updatedFavorites)
     const updateRequest = await fetch(`${API_BASE_URL}/favorites/${updatedFavorites[0].id}`, {
-        method: 'PUT', 
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(updatedFavorites)
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(updatedFavorites)
     });
 
     if (!updateRequest.ok) {
-        throw new Error('Error update fav list');
+      throw new Error('Error update fav list');
     }
 
     return updatedFavorites;
-} catch (error) {
+  } catch (error) {
     console.error('Error', error);
     throw error;
-}
+  }
 };

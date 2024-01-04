@@ -213,6 +213,12 @@
       "productId": 5,
       "text": "hahahah rất hay, rất kịch tích và cuốn hút, các bạn phải đọc thử nhé",
       "id": 4
+    },
+    {
+      "userId": 4,
+      "productId": 4,
+      "text": "Hi",
+      "id": 5
     }
   ],
   "carts": [
@@ -229,6 +235,13 @@
         6
       ],
       "id": 6
+    },
+    {
+      "userId": 4,
+      "productId": [
+        1
+      ],
+      "id": 7
     }
   ],
   "orders": [
@@ -240,11 +253,28 @@
       ]
     }
   ],
-  "favorites": [],
+  "favorites": [
+    {
+      "0": {
+        "userId": 4,
+        "productId": [],
+        "id": 1
+      },
+      "id": 1
+    },
+    {
+      "0": {
+        "userId": 4,
+        "productId": [],
+        "id": 2
+      },
+      "id": 2
+    }
+  ],
   "currentUser": [
     {
       "id": 0,
-      "userId": 1
+      "userId": 4
     }
   ]
 }
