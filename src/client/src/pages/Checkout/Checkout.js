@@ -136,14 +136,6 @@ const Checkout = () => {
                     <input type="text" placeholder="Phone number" required value={phoneNumber} onChange={handlePhoneNumberChange} />
                 </div>
                 <div className="billing-input-group">
-                    <label>City</label>
-                    <input type="text" placeholder="City" required />
-                </div>
-                <div className="billing-input-group">
-                    <label>District</label>
-                    <input type="text" placeholder="District" required />
-                </div>
-                <div className="billing-input-group">
                     <label>Address</label>
                     <input type="text" placeholder="Apartment no., street, ward,..." required value={address} onChange={handleAddressChange} />
                 </div>

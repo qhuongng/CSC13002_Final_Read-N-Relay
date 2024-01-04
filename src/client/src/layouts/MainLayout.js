@@ -8,6 +8,7 @@ import Signup from "../pages/Signup/Signup";
 import Login from "../pages/Login/Login";
 import Books from "../pages/Books/Books";
 import BookInfo from "../pages/BookInfo/BookInfo";
+import SearchBook from "../pages/SearchBook/SearchBook"
 import Error404 from "../pages/Error404/Error404";
 import UserProfile from "../pages/User/UserProfile";
 import BooksSelling from "../pages/User/BooksSelling";
@@ -30,6 +31,7 @@ const MainLayout = () => {
                 <Route path="/" element={<Home />} />
                 <Route path="/books" element={<Books />} />
                 <Route path="/books/:id" element={<BookInfo />} />
+                <Route path="/search" element={<SearchBook />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/user" element={<UserLayout />}>

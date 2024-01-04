@@ -6,11 +6,12 @@ import * as API from "../../utils/API.js"
 import "./Header.css";
 
 class Header extends Component {
+    
     constructor(props) {
         super(props);
         this.state = {
             searchValue: "",
-            isLoggedIn: false
+            isLoggedIn: false,
         };
     }
 
@@ -53,14 +54,15 @@ class Header extends Component {
     }
 
     handleSearchChange = (event) => {
-        this.setState({ searchValue: event.target.value });
+        this.setState({ searchValue: event.target.value});
     };
 
-    handleSearch = () => {
+    handleSearch = async () => {
         // Implement your search logic here
         console.log("Searching for:", this.state.searchValue);
         // You can add additional logic here, such as making an API call or updating state.
     };
+    
 
     render() {
         const location = this.props.location.pathname;
@@ -102,15 +104,22 @@ class Header extends Component {
                     <div className="header-right">
                         <div className="header-search-container">
                             <input type="text" placeholder="Search for a book..." value={this.state.searchValue} onChange={this.handleSearchChange} className="header-search-box" style={{ border: "None" }} />
+                            <Link
+                                to={{
+                                    pathname: "/search",
+                                    search: `?searchName=${encodeURIComponent(this.state.searchValue)}`
+                                }}
+                            >
                             <button
                                 onClick={this.handleSearch}
                                 style={{
                                     border: "None",
-                                    backgroundColor: "rgb(247, 247, 247)",
+                                    backgroundColor: "rgb(247, 247, 247)"
                                 }}
                             >
                                 <FaSearch className="header-icon-search" />
                             </button>
+                            </Link>
                         </div>
 
                         {isLoggedIn && (

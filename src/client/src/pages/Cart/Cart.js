@@ -118,7 +118,7 @@ const Cart = () => {
                 </div>
                 <div className="table-item">
                     <div className="table-item-title">Shipping</div>
-                    <div className="table-item-value">10.000VND</div>
+                    <div className="table-item-value">10000VND</div>
                 </div>
                 <div className="table-item">
                     <div className="table-item-title">Total</div>

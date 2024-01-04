@@ -11,13 +11,12 @@ const BookInfo = () => {
     const { id } = useParams();
     const [bookData, setBookData] = useState(null);
     const [reviews, setReviews] = useState([]);
-    const [checkStatus, setCheckStatus] = useState();
-    const [user, setUser] = useState(null);
     const [ReviewUser, setReviewUser] = useState([]);
     const [booksMightLike, setBooksMightLike] = useState([]);
     const [cartAlert, setcartAlert] = useState("");
     const [favAlert, setfavAlert] = useState("");
     const [reviewAlert, setreviewAlert] = useState("");
+    const [checkFav, setFav] = useState();
     const navigate = useNavigate();
     const [reviewText, setReviewText] = useState('');
 
@@ -29,9 +28,6 @@ const BookInfo = () => {
             // Fetch reviews for the book
             const bookReviews = await API.getBookReviews(id);
             setReviews(bookReviews);
-            //Fetch book's user
-            const users = await API.getUserProfileByAttributes({ id: books[0].userId });
-            setUser(users); // Assuming you want to display information for the first book
             //Fetch reviews' user
             const reviewUsers = [];
             for (const Review of bookReviews) {
@@ -42,18 +38,31 @@ const BookInfo = () => {
             //Fetch Books Might Like
             const booksMightLike = await API.getBooksByPage(2, 5);
             setBooksMightLike(booksMightLike);
+            const user = await API.getCurrentUser();
 
-            if (bookData && bookData.status == "available") {
-                setCheckStatus(true);
-            } else {
-                setCheckStatus(false);
+            const listFav = await API.getUserFavoritesProfile(user[0].userId);
+
+            if (listFav && listFav[0].productId.includes(Number(id))) {
+                console.log("Already Liked!")
+                setFav(true)
             }
+            else {
+                console.log("Not Liked Yet!")
+                setFav(false)
+            }
+
         } catch (error) {
             console.error("Error fetching data:", error);
         }
     };
 
-
+    const checkStatus = async () => {
+        if (bookData.status.toString() == "available") {
+            return true;
+        } else {
+            return false;
+        };
+    }
     useEffect(() => {
         fetchData();
     }, [id]);
@@ -78,7 +87,7 @@ const BookInfo = () => {
                 </div>
                 <div className="info-product-reco">
                     <div className="info-product-reco-name">{book.name}</div>
-                    <div className="info-product-reco-des">Tụi em không còn thời gian để viết description nên thầy thông cảm cho tụi em nha, em cảm ơn ạ !</div>
+                    <div className="info-product-reco-des">{book.description}</div>
                     <div className="info-product-reco-price-rate">
                         <div className="info-product-reco-price">{book.price} VND</div>
                         <div className="info-product-reco-rate">(35 reviews)</div>
@@ -130,15 +139,27 @@ const BookInfo = () => {
         try {
             const user = await API.getCurrentUser();
             const books = await API.getBooksByAttributes({ id: id });
-            const addedToCart = await API.addtoFavorite({
-                userId: user[0].userId,
-                productId: books[0].id
-            });
-            setfavAlert('Added to favorites successfully !');
-            console.log('Added to favorites:', addedToCart);
+            if (!checkFav) {
+                const addedToFav = await API.addtoFavorite({
+                    userId: user[0].userId,
+                    productId: books[0].id
+                });
+                setfavAlert('Added to favorites successfully !');
+                console.log('Added to favorites:', addedToFav);
+                setFav(true)
+            }
+            else {
+                const RemoveFromFav = await API.UpdateFavoriteList({
+                    userId: user[0].userId,
+                    productIdToRemove: books[0].id
+                });
+                setfavAlert('Remove from favorites successfully !');
+                console.log('Remove from favorites:', RemoveFromFav);
+                setFav(false)
+            }
         } catch (error) {
-            setfavAlert('Error adding to favorites !');
-            console.error('Error adding to favorites:', error.message);
+            setfavAlert('Error handling favorites !');
+            console.error('Error handling favorites:', error.message);
         }
     };
 
@@ -183,13 +204,13 @@ const BookInfo = () => {
                             <div className="info-product-rate-status">
                                 <div className="info-product-genre">{reviews.length} Reviews</div>
                                 <div className="info-product-line-split"></div>
-                                {checkStatus ? <div className="info-product-sale">For sale</div> : <div className="info-product-sold">Sold</div>}
+                                {checkStatus() ? <div className="info-product-sale">For sale</div> : <div className="info-product-sold">Sold</div>}
                                 <div className="info-product-line-split"></div>
                                 <div className="info-product-genre">{bookData.genre}</div>
                             </div>
 
                             <div className="info-product-price">{bookData.price} VND</div>
-                            <div className="info-des">Want to instantly capture readers? No matter who you are or what genre your book falls into—nothing beats getting engrossed in a book description that leaves a reader wanting more. Short and long book descriptions both serve a purpose—to make you and your book look good. Before you start writing, here are a few things you need to know.</div>
+                            <div className="info-des">{bookData.description}</div>
                             <div className="info-line"></div>
                             <div className="info-access">
                                 <div className="info-buy" onClick={handleBuyNow}>
@@ -200,7 +221,7 @@ const BookInfo = () => {
                                 </div>
                                 {cartAlert && <Alert message={cartAlert} type="notype" />}
                                 <div className="info-like" onClick={handelAddToFav}>
-                                    <FaHeart className="info-like-icon" />
+                                    {checkFav ? <FaHeart className="info-like-icon" /> : <FaHeart className="info-like-icon-dont" />}
                                 </div>
                                 {favAlert && <Alert message={favAlert} type="notype" />}
                             </div>
