@@ -34,11 +34,14 @@ const Checkout = () => {
         // Fetch Orders using userId
         const orderP = await API.getUserOrdersProfile(user[0].userId);
         setOrders(orderP);
-        console.log(orderP);
+        //console.log(orderP);
 
         // Fetch Cart using userId
         const cartBooks = await API.getUserCart(user[0].userId);
         setCart(cartBooks);
+
+        // init tickCheck status
+        setTickCheck(false);
     }
 
     useEffect(() => {
@@ -70,6 +73,7 @@ const Checkout = () => {
         ));
     };
 
+
     const HandleCheckOut = async (e) => {
         SetAlert("");
         e.preventDefault();
@@ -77,6 +81,18 @@ const Checkout = () => {
             // not fill vào all fields
             if (!name || !email || !address || !phoneNumber) {
                 SetAlert("Please fill in all fields!");
+                return;
+            }
+            // chưa chọn phương thức thanh toán
+            if (tickCheck != true) {
+                SetAlert("Please choose payment method!");
+                return;
+            }
+            // kiểm tra sdt, bắt đầu bằng 0 và có 10 số
+            const regex = /^0\d{9}$/;
+            const isValidPhoneNumber = regex.test(phoneNumber);
+            if (!isValidPhoneNumber) {
+                SetAlert('Invalid phone number!');
                 return;
             }
             // có sp đã sold
@@ -87,15 +103,16 @@ const Checkout = () => {
                 }
                 // Sử dụng API để cập nhật số lượng sách
                 await API.UpdateBooksByID({ id: cartItem.id, status: "sold" });
+
+                // update Orders
+                await API.UpdateOrdersByUserID(userProfile[0].id, cartItem.id);
             }
 
-            // update Orders
-            await API.UpdateOrdersByUserID(userProfile[0].id, carts.productId);
-
+            // delete carts
+            await API.UpdateCartsByUserID(userProfile[0].id, []);
             // navigate về home
             navigate("/");
 
-            // Đặt các bước xử lý khác ở đây nếu cần thiết sau khi đã cập nhật xong
         } catch (error) {
             console.error('Error updating books:', error);
         }
@@ -117,6 +134,9 @@ const Checkout = () => {
         const newName = e.target.value;
         setPhoneNumber(newName); // Update the input value as the user types
     };
+    const handleTick = (e) => {
+        setTickCheck(true);
+    }
 
 
     return (
@@ -157,7 +177,7 @@ const Checkout = () => {
                     </div>
                 </div>
                 <div className="payment-option">
-                    <div className="option-group">
+                    <div className="option-group" onClick={handleTick}>
                         <input type="radio" name="payment" id="card" />
                         <label htmlFor="card">Credit/Debit card</label>
                         <div className="card-img-group">
@@ -165,9 +185,9 @@ const Checkout = () => {
                             <div className="mastercard"></div>
                         </div>
                     </div>
-                    <div className="option-group">
+                    <div className="option-group" onClick={handleTick}>
                         <input type="radio" name="payment" id="cod" />
-                        <label htmlFor="cod">Cash on delivery</label>
+                        <label htmlFor="cod">Cash on delivery </label>
                     </div>
                 </div>
                 <button className="order-button" onClick={HandleCheckOut}>

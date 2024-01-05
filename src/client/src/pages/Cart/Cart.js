@@ -25,6 +25,7 @@ const Cart = () => {
             // Fetch Cart using userId
             const cartBooks = await API.getUserCart(user[0].userId);
             setCart(cartBooks);
+            console.log("when fetch cart dt: ",cartBooks);
         } catch (error) {
             console.error('Error fetching data:', error);
         }
@@ -88,6 +89,7 @@ const Cart = () => {
     const handleCheckout = async (e)=>{
         SetAlert("");
         e.preventDefault();
+        console.log("After press chekcout button:",carts);
         // cart trống
         if(carts.length == 0){
             SetAlert("Cannot checkout with an empty cart!");

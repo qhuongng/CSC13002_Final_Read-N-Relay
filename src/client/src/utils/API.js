@@ -291,6 +291,7 @@ export async function UpdateCartsByUserID(userId, productId) {
 // hàm này có vẻ mng k xử lí productId dưới dạng 1 list, mình cần check xem list tồn tại chưa ? push : create new productId list
 // tui cmt hàm trên với code hàm mới ở đây
 export async function UpdateOrdersByUserID(userId, productId) {
+  console.log(productId);
   try {
     let response = await fetch(`${API_BASE_URL}/orders`).then((response) => response.json());
 
@@ -312,7 +313,7 @@ export async function UpdateOrdersByUserID(userId, productId) {
         body: JSON.stringify(order),
       });
     } else {
-      const neword = {
+      const newOrd = {
         userId: userId,
         productId: [productId],
       };
@@ -321,7 +322,7 @@ export async function UpdateOrdersByUserID(userId, productId) {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(neword),
+        body: JSON.stringify(newOrd),
       });
     }
 

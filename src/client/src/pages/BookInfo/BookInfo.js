@@ -25,6 +25,7 @@ const BookInfo = () => {
             // Fetch book details
             const books = await API.getBooksByAttributes({ id: id });
             setBookData(books[0]); // Assuming you want to display information for the first book
+            console.log(books[0]);
             // Fetch reviews for the book
             const bookReviews = await API.getBookReviews(id);
             setReviews(bookReviews);
@@ -56,7 +57,7 @@ const BookInfo = () => {
         }
     };
 
-    const checkStatus = async () => {
+    const checkStatus = () => {
         if (bookData.status.toString() == "available") {
             return true;
         } else {
