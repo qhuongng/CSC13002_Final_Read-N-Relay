@@ -10,7 +10,7 @@ const Checkout = () => {
     const [orders, setOrders] = useState(null)
     const [TPrice, setTPrice] = useState(null)
 
-    const [alert, SetAlert] = useState("");
+    const [alert, setAlert] = useState("");
     const navigate = useNavigate();
 
     const [userProfile, setUserProfile] = useState(null);
@@ -75,30 +75,30 @@ const Checkout = () => {
 
 
     const HandleCheckOut = async (e) => {
-        SetAlert("");
+        setAlert("");
         e.preventDefault();
         try {
             // not fill vào all fields
             if (!name || !email || !address || !phoneNumber) {
-                SetAlert("Please fill in all fields!");
+                setAlert("Please fill in all fields.");
                 return;
             }
             // chưa chọn phương thức thanh toán
             if (tickCheck != true) {
-                SetAlert("Please choose payment method!");
+                setAlert("Please choose a payment method.");
                 return;
             }
             // kiểm tra sdt, bắt đầu bằng 0 và có 10 số
             const regex = /^0\d{9}$/;
             const isValidPhoneNumber = regex.test(phoneNumber);
             if (!isValidPhoneNumber) {
-                SetAlert('Invalid phone number!');
+                setAlert('Invalid phone number (phone numbers must start with 0).');
                 return;
             }
             // có sp đã sold
             for (const cartItem of carts) {
                 if (cartItem.status === "sold") {
-                    SetAlert("A product already sold!");
+                    setAlert("A product in the cart is already sold.");
                     return;
                 }
                 // Sử dụng API để cập nhật số lượng sách
@@ -111,7 +111,7 @@ const Checkout = () => {
             // delete carts
             await API.UpdateCartsByUserID(userProfile[0].id, []);
             // navigate về home
-            navigate("/");
+            navigate("/", { state: { openPopup: true, message: "Purchase completed successfully.", type: "order" }, replace: true });
 
         } catch (error) {
             console.error('Error updating books:', error);

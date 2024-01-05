@@ -51,12 +51,12 @@ const AddBook = () => {
             }
             // không fill đủ thông tin
             if (checkEmpty == true) {
-                setAddAlert('Please fill in all fields !');
+                setAddAlert('Please fill in all fields.');
                 return;
             }
             // kiểm tra giới hạn độ dài description
             if (formData.description.length > 300) {
-                setAddAlert('Description should not exceed 300 words!');
+                setAddAlert('Description should not exceed 300 words.');
                 return;
             }
 
@@ -68,8 +68,7 @@ const AddBook = () => {
                     price: formData.price
                 }
             });
-            if (book.status === 200 && book.data && book.data.length > 0)
-            {
+            if (book.status === 200 && book.data && book.data.length > 0) {
                 setAddAlert('This book already exists!');
                 return;
             }
@@ -85,10 +84,9 @@ const AddBook = () => {
                 author: formData.author,
                 image: imgUrl,
             });
-            // pop up notification
-            setAddAlert('Added book successfully !');
+
             // navigate to home page
-            navigate("/");
+            navigate("/", { state: { openPopup: true, message: "Successfully posted book for sale.", type: "sell" }, replace: true });
         } catch (error) {
             console.error("Error adding book:", error);
             setAddAlert('Error adding book !');
@@ -110,7 +108,7 @@ const AddBook = () => {
                 const firstImageURL = data.images_results[0].original;
                 setImgUrl(firstImageURL);
             } else {
-                console.log("No images found");
+                console.log("No images found.");
             }
         } catch (error) {
             console.error("Error fetching data:", error);

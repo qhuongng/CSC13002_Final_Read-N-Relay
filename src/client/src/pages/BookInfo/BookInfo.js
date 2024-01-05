@@ -109,10 +109,10 @@ const BookInfo = () => {
                 userId: user[0].userId,
                 productId: books[0].id
             });
-            setcartAlert('Added to cart successfully !');
+            setcartAlert('Book added to cart.');
             console.log('Added to cart:', addedToCart);
         } catch (error) {
-            setcartAlert('Error adding to cart');
+            setcartAlert('Error adding book to cart.');
             console.error('Error adding to cart:', error.message);
         }
     };
@@ -129,7 +129,7 @@ const BookInfo = () => {
             });
             navigate('/checkout');
         } catch (error) {
-            setcartAlert('Error buying now');
+            setcartAlert('An error occured.');
             console.error('Error buying now', error.message);
         }
     };
@@ -145,7 +145,7 @@ const BookInfo = () => {
                     userId: user[0].userId,
                     productId: books[0].id
                 });
-                setfavAlert('Added to favorites successfully !');
+                setfavAlert('Added to favorites successfully.');
                 console.log('Added to favorites:', addedToFav);
                 setFav(true)
             }
@@ -154,12 +154,12 @@ const BookInfo = () => {
                     userId: user[0].userId,
                     productIdToRemove: books[0].id
                 });
-                setfavAlert('Remove from favorites successfully !');
+                setfavAlert('Removed from favorites successfully.');
                 console.log('Remove from favorites:', RemoveFromFav);
                 setFav(false)
             }
         } catch (error) {
-            setfavAlert('Error handling favorites !');
+            setfavAlert('An error occured.');
             console.error('Error handling favorites:', error.message);
         }
     };
@@ -179,14 +179,14 @@ const BookInfo = () => {
                 productId: books[0].id,
                 text: reviewText
             });
-            setreviewAlert('Post review successfully !');
+            setreviewAlert('Review posted successfully.');
             console.log('Post a reviews:', response);
             // đặt lại giá trị review sau khi post thành công
             setReviewText('');
             // Sau khi gửi thành công, gọi lại fetchData để tải lại đánh giá mới nhất
             fetchData();
         } catch (error) {
-            setreviewAlert('Error posting a new reviews !');
+            setreviewAlert('Error posting review.');
             console.error('Error posting a new reviews: ', error.message);
         }
     }

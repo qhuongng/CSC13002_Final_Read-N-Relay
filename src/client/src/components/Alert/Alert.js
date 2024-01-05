@@ -1,5 +1,5 @@
 import "./Alert.css";
-import React, { Component, useEffect, useState  } from "react";
+import React, { Component, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 // class Alert extends Component {
@@ -49,8 +49,8 @@ import { Link } from "react-router-dom";
 // export default Alert;
 
 
-const Alert = ({message,type}) =>{
-    const [isActive, setIsActive] = useState(true);
+const Alert = ({ message, type }) => {
+  const [isActive, setIsActive] = useState(true);
 
   const hideAlert = () => {
     setIsActive(false);
@@ -60,7 +60,7 @@ const Alert = ({message,type}) =>{
     setIsActive(true); // nếu prop message thay đổi, set lại isActive thành true để hiển thị Alert
     const timer = setTimeout(() => hideAlert(), 5000);
     return () => clearTimeout(timer);
-  }, [message]); 
+  }, [message]);
 
   if (isActive) {
     return (
@@ -72,12 +72,12 @@ const Alert = ({message,type}) =>{
           <Link to="/user/purchased" className="view-button" onClick={hideAlert}>
             View purchases
           </Link>
-        ) : type === "notype" ? (
-          <></>
-        ) : (
+        ) : type === "sell" ? (
           <Link to="/user/selling" className="view-button" onClick={hideAlert}>
             View published books
           </Link>
+        ) : (
+          <></>
         )}
       </div>
     );

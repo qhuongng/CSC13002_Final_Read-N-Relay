@@ -9,7 +9,7 @@ const Cart = () => {
     const [carts, setCart] = useState([]);
     const [CartProfile, setCartProfile] = useState(null);
     const [TPrice, setTPrice] = useState(null)
-    const [alert,SetAlert]=useState("");
+    const [alert, SetAlert] = useState("");
     const navigate = useNavigate();
 
     const fetchData = async () => {
@@ -25,7 +25,7 @@ const Cart = () => {
             // Fetch Cart using userId
             const cartBooks = await API.getUserCart(user[0].userId);
             setCart(cartBooks);
-            console.log("when fetch cart dt: ",cartBooks);
+            console.log("when fetch cart dt: ", cartBooks);
         } catch (error) {
             console.error('Error fetching data:', error);
         }
@@ -60,7 +60,7 @@ const Cart = () => {
                 console.error('Error removing item:', error);
             });
     };
-    
+
     const spreadCartItems = () => {
         return carts.map((cart, index) => (
             <div className="cart-table-row" key={index}>
@@ -86,15 +86,15 @@ const Cart = () => {
         ));
     };
 
-    const handleCheckout = async (e)=>{
+    const handleCheckout = async (e) => {
         SetAlert("");
         e.preventDefault();
-        console.log("After press chekcout button:",carts);
+        console.log("After press chekcout button:", carts);
         // cart trống
-        if(carts.length == 0){
-            SetAlert("Cannot checkout with an empty cart!");
+        if (carts.length == 0) {
+            SetAlert("Cannot check out with an empty cart.");
         }
-        else{
+        else {
             console.log(carts[0]);
             navigate("/checkout");
         }

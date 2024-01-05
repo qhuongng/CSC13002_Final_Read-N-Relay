@@ -4,7 +4,8 @@ import * as API from "../../utils/API.js";
 import { useEffect, useState } from "react";
 
 const FavoriteBooks = () => {
-    const [favorbooks, setFavorites] = useState([]);
+    const [favorites, setFavorites] = useState([]);
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -20,8 +21,9 @@ const FavoriteBooks = () => {
         };
         fetchData();
     }, []);
+
     const spreadFavoriteItems = () => {
-        return favorbooks?.map((book, index) => (
+        return favorites?.map((book, index) => (
             <div className="fav-table-row" key={index}>
                 <div className="fav-table-row-item">
                     <div className="fav-item-photo-container">
