@@ -13,12 +13,13 @@ const BookInfo = () => {
     const [reviews, setReviews] = useState([]);
     const [ReviewUser, setReviewUser] = useState([]);
     const [booksMightLike, setBooksMightLike] = useState([]);
-    const [cartAlert, setcartAlert] = useState("");
-    const [favAlert, setfavAlert] = useState("");
-    const [reviewAlert, setreviewAlert] = useState("");
+    const [cartAlert, setCartAlert] = useState("");
+    const [favAlert, setFavAlert] = useState("");
+    const [reviewAlert, setReviewAlert] = useState("");
     const [checkFav, setFav] = useState();
     const navigate = useNavigate();
     const [reviewText, setReviewText] = useState('');
+    const [currentUser, setCurrentUser] = useState(-1);
 
     const fetchData = async () => {
         try {
@@ -31,6 +32,7 @@ const BookInfo = () => {
             setReviews(bookReviews);
             //Fetch reviews' user
             const reviewUsers = [];
+
             for (const Review of bookReviews) {
                 const reviewUser = await API.getUserProfileByAttributes({ id: Review.userId });
                 reviewUsers[Review.userId] = reviewUser[0];
@@ -38,20 +40,23 @@ const BookInfo = () => {
             setReviewUser(reviewUsers);
             //Fetch Books Might Like
             const booksMightLike = await API.getBooksByPage(2, 5);
+
             setBooksMightLike(booksMightLike);
+
             const user = await API.getCurrentUser();
 
-            const listFav = await API.getUserFavoritesProfile(user[0].userId);
+            if (user[0].userId !== -1) {
+                setCurrentUser(user[0].userId);
 
-            if (listFav && listFav[0].productId.includes(Number(id))) {
-                console.log("Already Liked!")
-                setFav(true)
-            }
-            else {
-                console.log("Not Liked Yet!")
-                setFav(false)
-            }
+                const listFav = await API.getUserFavoritesProfile(user[0].userId);
 
+                if (listFav && listFav[0].productId.includes(Number(id))) {
+                    setFav(true);
+                }
+                else {
+                    setFav(false);
+                }
+            }
         } catch (error) {
             console.error("Error fetching data:", error);
         }
@@ -100,66 +105,91 @@ const BookInfo = () => {
     };
 
     const handleAddToCart = async (e) => {
-        setcartAlert("");
+        setCartAlert("");
         e.preventDefault();
         try {
             const user = await API.getCurrentUser();
-            const books = await API.getBooksByAttributes({ id: id });
-            const addedToCart = await API.addtoCart({
-                userId: user[0].userId,
-                productId: books[0].id
-            });
-            setcartAlert('Book added to cart.');
-            console.log('Added to cart:', addedToCart);
+
+            if (user[0].userId !== -1) {
+                setCurrentUser(user[0].userId);
+
+                const books = await API.getBooksByAttributes({ id: id });
+                const addedToCart = await API.addtoCart({
+                    userId: user[0].userId,
+                    productId: books[0].id
+                });
+                setCartAlert('Book added to cart.');
+                console.log('Added to cart:', addedToCart);
+            }
+            else {
+                setCartAlert('Cannot add to cart. Please log in first.');
+            }
         } catch (error) {
-            setcartAlert('Error adding book to cart.');
+            setCartAlert('Error adding book to cart.');
             console.error('Error adding to cart:', error.message);
         }
     };
 
     const handleBuyNow = async (e) => {
-        setcartAlert("");
+        setCartAlert("");
         e.preventDefault();
         try {
             const user = await API.getCurrentUser();
-            const books = await API.getBooksByAttributes({ id: id });
-            const addedToCart = await API.addtoCart({
-                userId: user[0].userId,
-                productId: books[0].id
-            });
-            navigate('/checkout');
+
+            if (user[0].userId !== -1) {
+                setCurrentUser(user[0].userId);
+
+                const books = await API.getBooksByAttributes({ id: id });
+                const addedToCart = await API.addtoCart({
+                    userId: user[0].userId,
+                    productId: books[0].id
+                });
+                navigate('/checkout');
+            }
+            else {
+                setCartAlert('Cannot proceed to checkout. Please log in first.');
+            }
         } catch (error) {
-            setcartAlert('An error occured.');
+            setCartAlert('An error occured.');
             console.error('Error buying now', error.message);
         }
     };
 
     const handelAddToFav = async (e) => {
-        setfavAlert("");
+        setFavAlert("");
         e.preventDefault();
         try {
             const user = await API.getCurrentUser();
-            const books = await API.getBooksByAttributes({ id: id });
-            if (!checkFav) {
-                const addedToFav = await API.addtoFavorite({
-                    userId: user[0].userId,
-                    productId: books[0].id
-                });
-                setfavAlert('Added to favorites successfully.');
-                console.log('Added to favorites:', addedToFav);
-                setFav(true)
+
+            if (user[0].userId !== -1) {
+                setCurrentUser(user[0].userId);
+
+                const books = await API.getBooksByAttributes({ id: id });
+
+                if (!checkFav) {
+                    const addedToFav = await API.addtoFavorite({
+                        userId: user[0].userId,
+                        productId: books[0].id
+                    });
+                    setFavAlert('Added book to favorites successfully.');
+                    console.log('Added to favorites:', addedToFav);
+                    setFav(true);
+                }
+                else {
+                    const RemoveFromFav = await API.UpdateFavoriteList({
+                        userId: user[0].userId,
+                        productIdToRemove: books[0].id
+                    });
+                    setFavAlert('Removed from favorites successfully.');
+                    console.log('Removed from favorites:', RemoveFromFav);
+                    setFav(false);
+                }
             }
             else {
-                const RemoveFromFav = await API.UpdateFavoriteList({
-                    userId: user[0].userId,
-                    productIdToRemove: books[0].id
-                });
-                setfavAlert('Removed from favorites successfully.');
-                console.log('Remove from favorites:', RemoveFromFav);
-                setFav(false)
+                setFavAlert('Cannot add book to favorites. Please log in first.');
             }
         } catch (error) {
-            setfavAlert('An error occured.');
+            setFavAlert('An error occured.');
             console.error('Error handling favorites:', error.message);
         }
     };
@@ -169,24 +199,32 @@ const BookInfo = () => {
     }
 
     const handleAddReview = async (e) => {
-        setreviewAlert("");
+        setReviewAlert("");
         e.preventDefault();
         try {
             const user = await API.getCurrentUser();
-            const books = await API.getBooksByAttributes({ id: id });
-            const response = await API.addReview({
-                userId: user[0].userId,
-                productId: books[0].id,
-                text: reviewText
-            });
-            setreviewAlert('Review posted successfully.');
-            console.log('Post a reviews:', response);
-            // đặt lại giá trị review sau khi post thành công
-            setReviewText('');
-            // Sau khi gửi thành công, gọi lại fetchData để tải lại đánh giá mới nhất
-            fetchData();
+
+            if (user[0].userId !== -1) {
+                setCurrentUser(user[0].userId);
+
+                const books = await API.getBooksByAttributes({ id: id });
+                const response = await API.addReview({
+                    userId: user[0].userId,
+                    productId: books[0].id,
+                    text: reviewText
+                });
+                setReviewAlert('Review posted successfully.');
+                console.log('Post a reviews:', response);
+                // đặt lại giá trị review sau khi post thành công
+                setReviewText('');
+                // Sau khi gửi thành công, gọi lại fetchData để tải lại đánh giá mới nhất
+                fetchData();
+            }
+            else {
+                setReviewAlert('Cannot post review. Please log in first.');
+            }
         } catch (error) {
-            setreviewAlert('Error posting review.');
+            setReviewAlert('Error posting review.');
             console.error('Error posting a new reviews: ', error.message);
         }
     }
