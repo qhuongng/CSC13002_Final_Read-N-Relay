@@ -50,7 +50,7 @@ const Signup = () => {
       }
     }
     if (checkEmpty == true) {
-      setErrorMessage('Please fill in all fields !');
+      setErrorMessage('Please fill in all fields.');
       return;
     }
     else {
@@ -58,20 +58,20 @@ const Signup = () => {
       const regex = /\w+@gmail\.com/;
       const isValidEmail = regex.test(formData.Email);
       if (!isValidEmail) {
-        setErrorMessage('Invalid email format !');
+        setErrorMessage('Invalid email format.');
         return;
       }
       else {
         // kiểm tra sự tồn tại của email
         const emailCheck = await checkEmailExists(formData.Email);
         if (emailCheck) {
-          setErrorMessage('User already exists !');
+          setErrorMessage('This email is already registered.');
           return;
         }
         else {
           // kiểm tra xem password và repeat password có match không
           if (formData.Password != formData.RepeatPassword) {
-            setErrorMessage('Password do not match !');
+            setErrorMessage('Password fields do not match.');
             return;
           }
           else {

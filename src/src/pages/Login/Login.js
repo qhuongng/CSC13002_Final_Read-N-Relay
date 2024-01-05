@@ -18,11 +18,11 @@ const Login = () => {
       const userProfile = await API.getUserProfileByAttributes({ email: email, password: password });
       if (password === '') {
         console.log("Please fill in all fields !");
-        setError("Please fill in all fields !");
+        setError("Please fill in all fields.");
       }
       else if (!regex.test(email)) {
         console.log("Invalid email format !");
-        setError("Invalid email format !");
+        setError("Invalid email format.");
         setEmail("");
       }
       else if (userProfile && userProfile.length > 0) {
@@ -32,7 +32,7 @@ const Login = () => {
         navigate('/');
       } else {
         console.log("Invalid email or password !");
-        setError("Invalid email or password !");
+        setError("Invalid email or password.");
         setPassword("");
       }
     } catch (error) {

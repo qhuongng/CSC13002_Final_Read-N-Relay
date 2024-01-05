@@ -24,7 +24,7 @@ const BooksSelling = () => {
     //     fetchData();
     // }, []);
 
-// mình cần tách fetchdata vs useEffect ra riêng để tái sử dụng fetchData sau khi xóa products. Phần comment phía trên là code cũ. 
+    // mình cần tách fetchdata vs useEffect ra riêng để tái sử dụng fetchData sau khi xóa products. Phần comment phía trên là code cũ. 
     const fetchData = async () => {
         try {
             // Fetch CurrentUserId
@@ -53,7 +53,7 @@ const BooksSelling = () => {
             const updatedSellBooks = sellingbooks.filter(book => book.productId !== productId);
             setSellingBooks(updatedSellBooks);
             // push noti
-            setAlert("Remove book successfully!");
+            setAlert("Removed book successfully.");
             // fetch lại data sau khi xóa sách
             fetchData();
         } catch (error) {
