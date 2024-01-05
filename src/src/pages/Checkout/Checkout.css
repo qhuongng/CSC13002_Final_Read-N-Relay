@@ -1,0 +1,175 @@
+@font-face {
+    font-family: "Raleway";
+    src: url("../../../public/Raleway-VariableFont_wght.ttf") format("woff");
+    font-style: normal;
+}
+
+.checkout-container {
+    display: flex;
+    align-items: center;
+    gap: 10%;
+    margin: 100px;
+    font-family: Raleway;
+}
+
+.billing-form {
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.form-title {
+    font-weight: 600;
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+.billing-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.billing-form input[type="email"]:focus,
+.billing-form input[type="text"]:focus {
+    outline: none;
+}
+
+.billing-form input[type="email"],
+.billing-form input[type="text"] {
+    display: block;
+    width: 100%;
+    height: 45px;
+    border-radius: 5px;
+    padding: 0 10px;
+    font-size: 16px;
+    font-family: Raleway;
+    border: none;
+    background-color: #ececec;
+}
+
+.small-cart-preview {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+
+.small-cart-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+.cart-row-item {
+    display: flex;
+    align-items: center;
+}
+
+.item-photo {
+    background-color: #c2c2c2;
+    width: 40px;
+    height: 60px;
+}
+
+.item-name {
+    margin-left: 15px;
+}
+
+.small-total-table {
+    margin-top: 40px;
+}
+
+.small-total-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+    border-bottom: 1px solid;
+}
+
+.payment-option {
+    margin-top: 40px;
+}
+
+.option-group {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.option-group input[type="radio"] {
+    /* Add if not using autoprefixer */
+    -webkit-appearance: none;
+    appearance: none;
+    /* For iOS < 15 to remove gradient background */
+    background-color: #fff;
+    /* Not removed via appearance */
+    margin: 0;
+
+    font: inherit;
+    color: #0c2d48;
+    width: 1.5em;
+    height: 1.5em;
+    border: 1px solid #0c2d48;
+    border-radius: 50%;
+
+    display: grid;
+    place-content: center;
+}
+
+.option-group input[type="radio"]::before {
+    content: "";
+    width: 0.9em;
+    height: 0.9em;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em #0c2d48;
+}
+
+.option-group input[type="radio"]:checked::before {
+    transform: scale(1);
+}
+
+.option-group label {
+    margin-left: 15px;
+}
+
+.card-img-group {
+    display: flex;
+    margin-left: auto;
+}
+
+.visa {
+    width: 42px;
+    height: 28px;
+    background: url("../../../public/visa.png");
+}
+
+.mastercard {
+    width: 42px;
+    height: 28px;
+    background: url("../../../public/mastercard.png");
+}
+
+.order-button {
+    margin-top: 40px;
+    align-self: center;
+    margin-right: 15px;
+    padding: 16px 20px;
+    background-color: #0c2d48;
+    border-radius: 5px;
+    color: #fff;
+    text-decoration: none;
+    font-family: Raleway;
+    font-size: 16px;
+}
+
+.order-button:hover {
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.order-button:visited {
+    color: #fff;
+}

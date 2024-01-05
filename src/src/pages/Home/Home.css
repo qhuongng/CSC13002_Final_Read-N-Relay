@@ -1,0 +1,171 @@
+@font-face {
+    font-family: "Raleway";
+    src: url("../../../public/Raleway-VariableFont_wght.ttf") format("woff");
+    font-style: normal;
+}
+
+.home-container {
+    width: 100%;
+}
+
+.top-banner {
+    background-color: #0c2d48;
+    display: flex;
+    justify-content: space-between;
+}
+
+.top-banner-illust {
+    width: 800px;
+    height: 400px;
+    background: url("../../../public/illust.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-top: 100px;
+    margin-left: 100px;
+}
+
+.top-banner-content {
+    color: white;
+    font-family: Raleway;
+    margin: 100px 100px 0 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.top-banner-heading {
+    font-weight: 700;
+    font-size: 48px;
+}
+
+.top-banner-body {
+    margin-top: 30px;
+    font-size: 18px;
+}
+
+.start-relay-btn {
+    width: 200px;
+    height: 50px;
+    font-size: 18px;
+    background-color: #2e8bc0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    margin-top: 50px;
+    text-decoration: none;
+}
+
+.start-relay-btn:visited {
+    color: #fff;
+}
+
+.start-relay-btn:hover {
+    background-color: #6fb1d8;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.start-relay-btn:active {
+    background-color: rgb(26, 93, 132);
+}
+
+.recently-posted {
+    font-family: Raleway;
+    margin: 100px 100px;
+}
+
+.title-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.title {
+    font-weight: 700;
+    font-size: 32px;
+}
+
+.view-all-btn {
+    color: #fff;
+    width: 120px;
+    height: 40px;
+    font-size: 16px;
+    background-color: #0c2d48;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.view-all-btn:hover {
+    background-color: #214d70;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.view-all-btn:active {
+    background-color: rgb(17, 49, 74);
+}
+
+.view-all-btn:visited {
+    color: #fff;
+}
+
+.home-container .product-spread {
+    display: flex;
+    width: 100%;
+}
+
+.product {
+    display: flex;
+    flex-direction: column;
+    width: 24%;
+    padding: 15px;
+}
+
+.product:visited {
+    color: #000;
+}
+
+.product:hover {
+    background: #ececec;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.product:active {
+    background: #e0e0e0;
+}
+
+.product-photo-container {
+    width: 100%;
+    height: 250px;
+    background-color: #c2c2c2;
+    margin-bottom: 30px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.product-photo {
+    width: 100%;
+    min-height: 100%;
+}
+
+.product-title {
+    font-weight: 700;
+    font-size: 22px;
+    margin-bottom: 5px;
+    text-decoration: none;
+}
+
+.product-price {
+    font-size: 18px;
+    color: #0c2d48;
+}
+
+.you-might-like {
+    font-family: Raleway;
+    margin: 100px 100px;
+}
