@@ -101,6 +101,11 @@ const Checkout = () => {
                     setAlert("A product in the cart is already sold.");
                     return;
                 }
+            }
+
+            // nếu thỏa tất cả điều kiện trên thì tiến hành update orderList, status của sách và delete cart
+            for (const cartItem of carts)
+            {
                 // Sử dụng API để cập nhật số lượng sách
                 await API.UpdateBooksByID({ id: cartItem.id, status: "sold" });
 

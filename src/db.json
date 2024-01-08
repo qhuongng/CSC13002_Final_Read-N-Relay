@@ -50,7 +50,7 @@
       "price": 500000,
       "userId": 0,
       "publishedAt": "12/12/2023",
-      "status": "available",
+      "status": "sold",
       "image": "https://images.unsplash.com/photo-1606311698062-21c4f57cb27f?q=80&w=1958&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "genre": "Mystery",
       "description": "Harry Potter là một loạt tiểu thuyết huyền bí gồm bảy phần của nhà văn Anh Quốc J. K. Rowling. Bộ truyện viết về những cuộc phiêu lưu phù thủy của cậu bé Harry Potter cùng hai người bạn thân là Ron Weasley và Hermione Granger, lấy bối cảnh tại Trường Phù thủy và Pháp sư Hogwarts ở nước Anh"
@@ -72,7 +72,7 @@
       "price": 160000,
       "userId": 2,
       "publishedAt": "10/04/2023",
-      "status": "available",
+      "status": "sold",
       "image": "https://cf.shopee.vn/file/405f1fa2de20ddfa852f87e42576b24e_tn",
       "genre": "Self-help",
       "description": "Sinh động, hài hước, hấp dẫn, từng trang viết của Nhật ký chú bé nhút nhát đã dẫn dắt người đọc đi từ bất ngờ này đến bất ngờ khác qua mỗi ngày cậu bé Greg lớn lên. Bạn đọc chắc chắn sẽ phải cười phá lên khi chứng kiến những rắc rối liên tiếp, những trò đùa tinh quái nhưng hết sức thông minh của cậu"
@@ -127,7 +127,7 @@
       "price": 300000,
       "userId": 0,
       "publishedAt": "10/12/2023",
-      "status": "available",
+      "status": "sold",
       "image": "https://down-vn.img.susercontent.com/file/d8b0f26899f6931da1f0861b46aba03e",
       "genre": "Action",
       "description": "Nhân vật Sherlock Holmes từ lâu đã trở thành nguồn cảm hứng cho hàng trăm, hàng ngàn tác phẩm ở nhiều loại hình nghệ thuật khác: từ âm nhạc, ca kịch đến điện ảnh… Bộ sách Sherlock Holmes toàn tập (boxset trọn bộ 3 tập) một lần nữa mang đến cho người đọc cơ hội được nhìn ngắm, ngưỡng mộ và đánh giá nhân vật độc đáo của nhà văn tài năng Conan Doyle"
@@ -213,12 +213,6 @@
       "productId": 5,
       "text": "hahahah rất hay, rất kịch tích và cuốn hút, các bạn phải đọc thử nhé",
       "id": 4
-    },
-    {
-      "userId": 4,
-      "productId": 4,
-      "text": "Hi",
-      "id": 5
     }
   ],
   "carts": [
@@ -233,13 +227,6 @@
       "userId": 1,
       "productId": [],
       "id": 6
-    },
-    {
-      "userId": 4,
-      "productId": [
-        1
-      ],
-      "id": 7
     }
   ],
   "orders": [
@@ -249,51 +236,6 @@
       "productId": [
         0
       ]
-    },
-    {
-      "userId": {
-        "userId": 1
-      },
-      "productId": [
-        null
-      ],
-      "id": 2
-    },
-    {
-      "userId": {
-        "userId": 1
-      },
-      "productId": [
-        null
-      ],
-      "id": 3
-    },
-    {
-      "userId": {
-        "userId": 1
-      },
-      "productId": [
-        null
-      ],
-      "id": 4
-    },
-    {
-      "userId": {
-        "userId": 1,
-        "productId": 6
-      },
-      "productId": [
-        null
-      ],
-      "id": 5
-    },
-    {
-      "userId": 1,
-      "productId": [
-        3,
-        5
-      ],
-      "id": 6
     }
   ],
   "favorites": [
@@ -320,6 +262,14 @@
         "id": 3
       },
       "id": 3
+    },
+    {
+      "0": {
+        "userId": 6,
+        "productId": [],
+        "id": 4
+      },
+      "id": 4
     }
   ],
   "currentUser": [
