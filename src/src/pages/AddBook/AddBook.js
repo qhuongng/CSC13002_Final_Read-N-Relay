@@ -64,7 +64,7 @@ const AddBook = () => {
             const book = await axios.get(`${API.API_BASE_URL}/products`, {
                 params: {
                     userId: currentUser[0].userId,
-                    name: formData.title,
+                    'name_like': formData.title,
                     price: formData.price
                 }
             });
