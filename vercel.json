@@ -1,0 +1,13 @@
+{
+    "version": 2,
+    "builds": [
+      { "src": "/src/**/App.js", "use": "@vercel/node" },
+      { "src": "/src/**/index.js", "use": "@vercel/node" }
+    ],
+    "routes": [
+      { "src": "/(.*)",
+        "dest": "/src/App.js",
+        "headers": { "key": "Cache-Control", "value": "no-cache" }
+      }
+    ]
+}
